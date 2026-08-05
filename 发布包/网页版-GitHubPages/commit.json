@@ -1,1 +1,1 @@
-{"sha":"84a458550f6410861de640331ff4baaa7d761fdb","message":"chore: 同步GitHub Pages根目录构建产物（修复炼金上限NaN）","author":"fucac"}
+{"sha":"6f3f06794d78c2891d027cffccfdc9145b74e5e7","message":"fix: EXE更新器使用git blob哈希对比，兼容CRLF/LF差异","author":"fucac"}

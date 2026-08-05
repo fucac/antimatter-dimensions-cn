@@ -246,7 +246,10 @@ class AlchemyReaction {
       }
       // The minimum reaction yield is 0.05 so the cap is actually reached
       const effectiveYield = Math.clampMin(reactionYield * this.reactionProduction, 0.05);
-      this._product.amount = Math.clampMax(this._product.amount + effectiveYield, cap);
+      // The cap is a growth limit. It can shrink (e.g. via the refinement cap reset button), but
+      // accumulated resources must never be destroyed by a lower cap, so never reduce the amount.
+      this._product.amount = Math.max(this._product.amount,
+        Math.clampMax(this._product.amount + effectiveYield, cap));
     }
   }
 }
