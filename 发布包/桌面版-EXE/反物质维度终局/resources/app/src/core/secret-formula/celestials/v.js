@@ -178,7 +178,7 @@ export const v = {
     },
     {
       id: 7,
-      name: "后途",
+      name: "后目的地",
       description: value => `以${formatInt(400000)}时间定理、/${format(Decimal.pow10(value), 2, 2)}或更慢之黑洞达成，期间不得释放或进入永恒挑战12。`,
       values: [100, 150, 200, 250, 300],
       condition: () => V.isRunning,
@@ -197,7 +197,7 @@ export const v = {
     },
     {
       id: 8,
-      name: "快门符文",
+      name: "符文禁闭",
       description: value => `达成等级${formatInt(value)}之符文。`,
       values: [6500, 7000, 8000, 9000, 10000],
       condition: () => V.isRunning,
