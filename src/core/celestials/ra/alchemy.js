@@ -112,22 +112,18 @@ class BasicAlchemyResourceState extends AlchemyResourceState {
   }
 
   set highestRefinementValue(value) {
-    if (!isFinite(value) || value < 0) return;
-    const old = this.highestRefinementValue;
-    player.celestials.ra.highestRefinementValue[this._name] = isFinite(old) ? Math.max(old, value) : value;
+    player.celestials.ra.highestRefinementValue[this._name] = Math.max(this.highestRefinementValue, value);
   }
 
   get cap() {
-    const hr = this.highestRefinementValue;
-    const cap = Math.clampMax(Ra.alchemyResourceCap, isFinite(hr) ? hr : 0);
-    return isFinite(cap) ? cap : Ra.alchemyResourceCap;
+    return Math.clampMax(Ra.alchemyResourceCap, this.highestRefinementValue);
   }
 }
 
 class AdvancedAlchemyResourceState extends AlchemyResourceState {
   get cap() {
-    const reagentCaps = this.reaction.reagents.map(x => x.resource.cap).filter(isFinite);
-    return reagentCaps.length ? Math.min(...reagentCaps) : Ra.alchemyResourceCap;
+    const reagentCaps = this.reaction.reagents.map(x => x.resource.cap);
+    return Math.min(...reagentCaps);
   }
 }
 

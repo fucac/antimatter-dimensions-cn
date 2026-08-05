@@ -1,1 +1,1 @@
-{"sha":"unknown","message":"unknown","author":"unknown"}
+{"sha":"8ef8771ec8bf4d09291402d038ebb8da002021ae","message":"fix: NaN防护 - 炼金资源amount自愈 + cap值兜底","author":"fucac"}

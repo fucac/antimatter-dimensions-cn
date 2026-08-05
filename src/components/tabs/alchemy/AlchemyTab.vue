@@ -198,6 +198,11 @@ export default {
     resetAlchemy() {
       for (const res of AlchemyResources.all) res.amount = 0;
     },
+    resetRefinementValues() {
+      for (const key of Object.keys(player.celestials.ra.highestRefinementValue)) {
+        player.celestials.ra.highestRefinementValue[key] = 1;
+      }
+    },
     nodeClass(node) {
       const resource = node.resource;
       return {
@@ -248,6 +253,12 @@ export default {
         @click="resetAlchemy"
       >
         强制重置所有炼金资源
+      </PrimaryButton>
+      <PrimaryButton
+        class="o-primary-btn--subtab-option"
+        @click="resetRefinementValues"
+      >
+        重置精炼值上限(1)
       </PrimaryButton>
     </div>
     <AlchemyResourceInfo
