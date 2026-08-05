@@ -127,7 +127,7 @@ async function applyUpdate() {
     for (let i = 0; i < entries.length; i++) {
       const entry = entries[i];
       const localPath = path.join(distDir, ...entry.path.split("/"));
-      if (sha1File(localPath) === entry.sha) {
+      if (fileBlobShas(localPath).includes(entry.sha)) {
         skipped++;
       } else {
         const buf = await httpGet(`${UPDATE_BASE}/${entry.path.split("/").map(encodeURIComponent).join("/")}`);
