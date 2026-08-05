@@ -23,7 +23,12 @@ export default {
       infinityUnlocked: false,
       automatorUnlocked: false,
       automatorLogSize: 0,
+      gameVersion: null,
+      versionLoadFailed: false,
     };
+  },
+  created() {
+    this.loadVersionInfo();
   },
   computed: {
     sliderPropsOfflineTicks() {
@@ -97,6 +102,34 @@ export default {
     adjustSliderValueAutomatorLogSize(value) {
       this.automatorLogSize = value;
       player.options.automatorEvents.maxEntries = this.automatorLogSize;
+    },
+    // 版本信息：EXE 环境通过 preload 暴露的 IPC 获取，网页版通过 fetch 获取
+    loadVersionInfo() {
+      if (window.gameVersionInfo) {
+        window.gameVersionInfo().then(info => {
+          this.gameVersion = info;
+        }).catch(() => {
+          this.versionLoadFailed = true;
+        });
+        return;
+      }
+      Promise.all([
+        fetch("version.txt").then(r => r.json()),
+        fetch("commit.json").then(r => r.json()).catch(() => null)
+      ]).then(([version, commit]) => {
+        this.gameVersion = { ...version, commit };
+      }).catch(() => {
+        this.versionLoadFailed = true;
+      });
+    },
+    formatCommit(commit) {
+      if (typeof commit === "string") return commit.slice(0, 7);
+      if (commit && typeof commit === "object") {
+        const sha = commit.sha ? commit.sha.slice(0, 7) : "未知";
+        const msg = commit.message ? `（${commit.message}）` : "";
+        return `${sha}${msg}`;
+      }
+      return "未知";
     }
   }
 };
@@ -162,11 +195,37 @@ export default {
       </div>
       <OpenModalHotkeysButton />
     </div>
+    <div class="c-version-info">
+      <b>游戏版本：</b>
+      <span v-if="gameVersion">{{ gameVersion.version }}</span>
+      <span v-else>{{ versionLoadFailed ? "未知" : "加载中…" }}</span>
+      <template v-if="gameVersion">
+        <template v-if="gameVersion.message">
+          <br>
+          <b>更新内容：</b>{{ gameVersion.message }}
+        </template>
+        <br>
+        <b>Commit：</b>
+        <span v-if="gameVersion.commit">{{ formatCommit(gameVersion.commit) }}</span>
+        <span v-else>未知</span>
+      </template>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .l-toggle-button {
   font-size: 12px;
+}
+.c-version-info {
+  margin-top: 24px;
+  padding: 10px 14px;
+  border: 1px solid #3a4152;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #d7dce6;
+  background: rgba(255, 255, 255, 0.02);
+  word-break: break-word;
 }
 </style>

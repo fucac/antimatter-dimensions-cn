@@ -1,1 +1,1 @@
-{"sha":"f3d77ba87ed0f4da31aba2b846f61b7bb114736e","message":"fix: 炼金反应不再因上限缩水强制压低已积累资源（修复25000现实资源出1级符文）","author":"fucac"}
+{"sha":"cd0645af55997f75a34b40446dc3690c298a4adb","message":"fix: 移除炼金重置按钮（强制重置所有炼金资源/重置精炼值上限）","author":"fucac"}

@@ -180,6 +180,26 @@ ipcMain.on("desktop-restart-app", () => {
   app.relaunch();
   app.exit(0);
 });
+// 供渲染进程"选项 → 版本查看"读取本地版本信息
+ipcMain.handle("desktop-get-version-info", () => {
+  let version = null;
+  let commit = null;
+  try {
+    version = JSON.parse(fs.readFileSync(path.join(__dirname, "dist", "version.txt"), "utf8"));
+  } catch {
+    // 版本文件缺失时忽略
+  }
+  try {
+    commit = JSON.parse(fs.readFileSync(path.join(__dirname, "dist", "commit.json"), "utf8"));
+  } catch {
+    // commit 文件缺失时忽略
+  }
+  return {
+    version: version ? Number(version.version) || null : null,
+    message: version ? version.message : null,
+    commit
+  };
+});
 
 // ---------- 窗口 ----------
 function createWindow() {

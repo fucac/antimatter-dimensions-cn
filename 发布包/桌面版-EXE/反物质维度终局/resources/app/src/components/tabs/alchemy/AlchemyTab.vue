@@ -212,6 +212,10 @@ export default {
         AlchemyResource.boundless.isDestroyed || AlchemyResource.multiversal.isDestroyed || AlchemyResource.unpredictability.isDestroyed) return 3;
       if (AlchemyResource.reality.isDestroyed) return 4;
       return -1;
+    },
+    resetAlchemy() {
+      for (const res of AlchemyResources.all) res.amount = 0;
+      GameUI.update();
     }
   }
 };
@@ -239,6 +243,12 @@ export default {
         onclick="Modal.realityGlyph.show()"
       >
         查看现实符文制作
+      </PrimaryButton>
+      <PrimaryButton
+        class="o-primary-btn--subtab-option"
+        @click="resetAlchemy"
+      >
+        强制重置所有炼金资源
       </PrimaryButton>
     </div>
     <AlchemyResourceInfo

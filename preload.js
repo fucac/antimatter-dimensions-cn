@@ -137,3 +137,6 @@ contextBridge.exposeInMainWorld("desktopUpdater", {
   applyUpdate: () => ipcRenderer.send("desktop-apply-update"),
   restartApp: () => ipcRenderer.send("desktop-restart-app")
 });
+
+// ---------- 版本信息(选项 → 版本查看) ----------
+contextBridge.exposeInMainWorld("gameVersionInfo", () => ipcRenderer.invoke("desktop-get-version-info"));
