@@ -1,1 +1,1 @@
-{"sha":"8ef8771ec8bf4d09291402d038ebb8da002021ae","message":"fix: NaN防护 - 炼金资源amount自愈 + cap值兜底","author":"fucac"}
+{"sha":"4a1ab09d0f1fec4e1cf0a3a7f976ef06c323f08c","message":"chore: gitignore 忽略 EXE 打包大文件","author":"fucac"}
