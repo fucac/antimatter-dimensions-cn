@@ -497,7 +497,7 @@ export const automator = {
           <b>remnants</b> - 当前残留物数量  <br>
           <b>pending ip</b> - 无限时获得的IP（不可用时为0）<br>
           <b>pending ep</b> - 永恒时获得的EP（不可用时为0）<br>
-          <b>pending tp</b> - 退出时间膨胀时获得的TP<br>
+          <b>pending tp</b> - 退出膨胀时间时获得的TP<br>
           <b>pending rm</b> - 现实时获得的RM（不可用时为0）<br>
           <b>pending rs</b> - 大灾变时获得的RS（不可用时为0）<br>
           <b>pending glyph level</b> - 现实时获得的符文等级（不可用时为0）<br>

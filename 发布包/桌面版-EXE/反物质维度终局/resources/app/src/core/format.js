@@ -221,7 +221,15 @@ const pluralDatabase = new Map([
   ["Galaxy", "星系"],
   ["Large Hadron Collider", "大型强子对撞机"],
   ["Null Particle", "虚空粒子"],
-  ["thing", "件事"]
+  ["Doomed Particle", "毁灭微粒"],
+  ["Doomed Particles", "毁灭微粒"],
+  ["毁灭微粒", "毁灭微粒"],
+  ["个毁灭微粒", "个毁灭微粒"],
+  ["thing", "件事"],
+  ["Memory", "记忆"],
+  ["Memories", "记忆"],
+  ["Memory Chunk", "记忆碎片"],
+  ["Memory Chunks", "记忆碎片"]
 ]);
 
 /**
@@ -337,8 +345,8 @@ window.quantifyHybridLarge = function quantifyHybridLarge(name, value) {
 window.makeEnumeration = function makeEnumeration(items) {
   if (items.length === 0) return "";
   if (items.length === 1) return items[0];
-  if (items.length === 2) return `${items[0]} and ${items[1]}`;
-  const commaSeparated = items.slice(0, items.length - 1).join(", ");
+  if (items.length === 2) return `${items[0]} 与 ${items[1]}`;
+  const commaSeparated = items.slice(0, items.length - 1).join("、");
   const last = items[items.length - 1];
-  return `${commaSeparated}, and ${last}`;
+  return `${commaSeparated} 与 ${last}`;
 };

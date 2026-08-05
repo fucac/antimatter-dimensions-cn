@@ -129,7 +129,7 @@ export default {
       <span class="fas fa-arrow-up" />
       <div class="c-ra-pet-upgrade__tooltip">
         <div class="c-ra-pet-upgrade__tooltip__name">
-          Level {{ pet.name }} to {{ formatInt(level + 1) }}
+          将 {{ pet.name }} 升级至 {{ formatInt(level + 1) }} 级
         </div>
         <div class="c-ra-pet-upgrade__tooltip__description">
           {{ reward }}
@@ -141,7 +141,7 @@ export default {
           </div>
         </div>
         <div class="c-ra-pet-upgrade__tooltip__footer">
-          Cost: {{ quantify("Memory", requiredMemories, 2, 2) }}
+          花费：{{ quantify("记忆", requiredMemories, 2, 2) }}
           <span v-if="memories.lte(requiredMemories)">{{ nextLevelEstimate }}</span>
         </div>
       </div>

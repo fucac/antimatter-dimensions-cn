@@ -96,7 +96,7 @@ export const v = {
     },
     {
       id: 1,
-      name: "反星",
+      name: "反星穿越",
       description: value => `拥有${formatInt(value)}总数之各型星系。`,
       values: [4000, 4300, 4600, 4900, 5200, 5500],
       condition: () => V.isRunning,
@@ -111,7 +111,7 @@ export const v = {
     },
     {
       id: 2,
-      name: "七宗死事",
+      name: "七质罪",
       description: value => `于永恒挑战7中获得${format(Decimal.pow10(value))}无限点数。`,
       values: [6e5, 7.2e5, 8.4e5, 9.6e5, 1.08e6, 1.2e6],
       condition: () => V.isRunning && EternityChallenge(7).isRunning,
@@ -124,8 +124,8 @@ export const v = {
     },
     {
       id: 3,
-      name: "少年",
-      description: value => `于永恒挑战12中获得${format(Decimal.pow10(value))}反物质，且未解锁膨胀时间。`,
+      name: "少年郎",
+      description: value => `于永恒挑战12中获得${format(Decimal.pow10(value))}反物质，且未解锁时间膨胀。`,
       values: [400e6, 450e6, 500e6, 600e6, 700e6, 800e6],
       condition: () => V.isRunning && EternityChallenge(12).isRunning && !PlayerProgress.dilationUnlocked(),
       currentValue: () => Currency.antimatter.value.add(1).log10(),
@@ -150,8 +150,8 @@ export const v = {
     },
     {
       id: 5,
-      name: "物质觉知",
-      description: value => `于膨胀时间中且在永恒挑战5内时，获得${formatInt(value)}维度提升。`,
+      name: "盗物空间",
+      description: value => `于时间膨胀中且在永恒挑战5内时，获得${formatInt(value)}维度提升。`,
       values: [51, 52, 53, 54, 55, 56],
       condition: () => V.isRunning && player.dilation.active && EternityChallenge(5).isRunning,
       currentValue: () => DimBoost.purchasedBoosts,
@@ -254,7 +254,7 @@ export const v = {
     },
     achievementBH: {
       id: 5,
-      reward: "成就倍率影响黑洞能量。",
+      reward: "成就倍率影响黑洞强度。",
       description: () => `拥有${formatInt(30)}项薇成就`,
       effect: () => player.disablePostReality ? 1 : Achievements.power,
       format: x => formatX(x, 2, 0),

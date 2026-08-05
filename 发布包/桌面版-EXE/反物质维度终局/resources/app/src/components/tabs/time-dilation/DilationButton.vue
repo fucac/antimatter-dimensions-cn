@@ -18,7 +18,7 @@ export default {
   computed: {
     disableText() {
       // Doesn't need to be reactive or check strike status; it's always permanent once entered in Doomed
-      return Pelle.isDoomed && !PelleStrikes.dilation.isDestroyed() ? "膨胀时间将永久开启。" : "退出时间膨胀。";
+      return Pelle.isDoomed && !PelleStrikes.dilation.isDestroyed() ? "膨胀时间将永久开启。" : "退出膨胀时间。";
     }
   },
   methods: {
@@ -56,7 +56,7 @@ export default {
   >
     <span v-if="!isUnlocked">购买膨胀时间研究以解锁。</span>
     <span v-else-if="!isRunning">
-      进入时间膨胀。
+      进入膨胀时间。
       <div v-if="showRequirement">
         需要 {{ format(remnantRequirement, 2) }} 残余
       </div>

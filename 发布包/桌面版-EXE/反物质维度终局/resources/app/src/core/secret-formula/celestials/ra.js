@@ -1,4 +1,4 @@
-﻿export const ra = {
+export const ra = {
   pets: {
     teresa: {
       id: "teresa",
@@ -69,7 +69,7 @@
     },
     alteredGlyphs: {
       id: 3,
-      reward: "解锁变体符文，基于符文献祭赋予符文新效",
+      reward: "解锁异变符文，基于符文献祭赋予符文新效",
       pet: "teresa",
       level: 10,
       displayIcon: `<span class="fas fa-bolt"></span>`,

@@ -201,7 +201,7 @@ export default {
     },
     exitDisplay() {
       if (Player.isInAnyChallenge) return player.options.retryChallenge ? "重试挑战" : "退出挑战";
-      if (player.dilation.active) return "退出时间膨胀";
+      if (player.dilation.active) return "退出膨胀时间";
       if (LHC.voidRunning || LHC.nullifiedVoidRunning) return "退出虚空";
       if (this.resetCelestial && this.inEndgame) return "重启终局";
       if (this.inEndgame) return "退出终局";

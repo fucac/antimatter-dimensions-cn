@@ -3,7 +3,11 @@ const path = require("path");
 const proc = require("child_process");
 
 function executeCommand(command) {
-  return proc.execSync(command).toString().trim();
+  try {
+    return proc.execSync(command).toString().trim();
+  } catch (e) {
+    return "unknown";
+  }
 }
 
 const commit = {

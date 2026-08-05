@@ -54,8 +54,8 @@ export default {
       switch (mode) {
         case AUTO_REALITY_MODE.RM: return "现实机器";
         case AUTO_REALITY_MODE.GLYPH: return "符文等级";
-        case AUTO_REALITY_MODE.EITHER: return "现实机器 或 等级";
-        case AUTO_REALITY_MODE.BOTH: return "现实机器 且 等级";
+        case AUTO_REALITY_MODE.EITHER: return "现实机器 或 符文等级";
+        case AUTO_REALITY_MODE.BOTH: return "现实机器 且 符文等级";
         case AUTO_REALITY_MODE.TIME: return "实时秒数";
         case AUTO_REALITY_MODE.RELIC_SHARD: return "遗迹碎片";
       }

@@ -54,10 +54,10 @@ export default {
   >
     <template #header>
       <span v-if="isDoomed">
-        毁灭之中，无法退出时间膨胀
+        毁灭之中，无法退出膨胀时间
       </span>
       <span v-else>
-        你即将退出时间膨胀
+        你即将退出膨胀时间
       </span>
     </template>
     <div class="c-modal-message__text">
@@ -65,7 +65,7 @@ export default {
         膨胀时间已成定局。你将{{ gainText }}并重置当前的永恒。
       </span>
       <span v-else>
-        若你此刻退出时间膨胀，你将{{ gainText }}。
+        若你此刻退出膨胀时间，你将{{ gainText }}。
       </span>
       <div v-if="isInEC">
         你亦将退出当前的永恒挑战。

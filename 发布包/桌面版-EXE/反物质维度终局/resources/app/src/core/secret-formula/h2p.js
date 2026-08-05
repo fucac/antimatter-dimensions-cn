@@ -1,4 +1,4 @@
-﻿import { credits } from "@/core/secret-formula/credits";
+import { credits } from "@/core/secret-formula/credits";
 
 export const h2p = {
   /**
@@ -146,8 +146,8 @@ ${PlayerProgress.realityUnlocked()
 - <b>AD</b>：反物质维度（Antimatter Dimension）<br>
 - <b>AG</b>：反物质星系（Antimatter Galaxy）<br>
 ${PlayerProgress.infinityUnlocked() ? "- <b>IP</b>：无限点数（Infinity Point）<br>" : ""}
-${PlayerProgress.infinityUnlocked() ? "- <b>NC</b>：普通挑战（Normal Challenge）<br>" : ""}
-${PlayerProgress.infinityUnlocked() ? "- <b>IC</b>：无限挑战（Infinity Challenge）<br>" : ""}
+${PlayerProgress.infinityUnlocked() ? "- <b>NC</b>：普通挑战<br>" : ""}
+${PlayerProgress.infinityUnlocked() ? "- <b>IC</b>：无限挑战<br>" : ""}
 ${InfinityDimension(1).isUnlocked || PlayerProgress.eternityUnlocked() ? "- <b>ID</b>：无限维度（Infinity Dimension）<br>" : ""}
 ${PlayerProgress.replicantiUnlocked() ? "- <b>RG</b>：复制器星系（Replicanti Galaxy）<br>" : ""}
 ${PlayerProgress.eternityUnlocked() ? "- <b>EP</b>：永恒点数（Eternity Point）<br>" : ""}

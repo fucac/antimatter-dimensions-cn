@@ -1,4 +1,4 @@
-﻿export const catchupResources = [
+export const catchupResources = [
   {
     name: "反物质维度",
     id: 0,
@@ -46,7 +46,7 @@
   {
     name: "普通挑战",
     id: 7,
-    openH2pEntry: "Normal Challenges",
+    openH2pEntry: "普通挑战",
     requiredStage: PROGRESS_STAGE.EARLY_INFINITY,
     description: () => `挑战要求你在更困难的条件下达到 ${format(Number.MAX_VALUE, 2)} 反物质。完成挑战可以让你升级自动购买器。`
   },

@@ -14,18 +14,18 @@ export default {
   },
   computed: {
     topLabel() {
-      return `You are about to do a Dimension Boost Reset`;
+      return `即将进行一次维度提升重置`
     },
     message() {
       const keepDimensions = (Perk.antimatterNoReset.canBeApplied || Achievement(111).canBeApplied ||
         PelleUpgrade.dimBoostResetsNothing.isBought || PelleAchievementUpgrade.achievement111.canBeApplied)
         && (!player.disablePostReality || (LHC.voidRunning && player.endgame.largeHadronCollider.void.nullified)
         || (Alpha.isRunning && Alpha.currentStage >= 12) || (LHC.voidRunning && NullUpgrade.limerick1.isBought))
-        ? `not actually reset anything due to an upgrade you have which prevents Antimatter and Antimatter Dimensions
-          from being reset in this situation. You will still gain the multiplier from the Boost, as usual.`
-        : `reset your Antimatter and Antimatter Dimensions. Are you sure you want to do this?`;
+        ? `实际不会重置任何内容，因为你拥有一个升级，可以防止反物质与反物质维度
+          在此情况下被重置。你仍将如常获得提升的乘数。`
+        : `重置你的反物质与反物质维度。确定要这样做吗？`;
 
-      return `This will ${keepDimensions}`;
+      return `这将${keepDimensions}`;
     },
   },
   methods: {

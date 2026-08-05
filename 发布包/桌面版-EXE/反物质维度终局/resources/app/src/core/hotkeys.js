@@ -111,7 +111,7 @@ export const shortcuts = [
     },
     visible: () => PlayerProgress.eternityUnlocked() || PlayerProgress.endgameUnlocked()
   }, {
-    name: "进入/退出时间膨胀",
+    name: "进入/退出膨胀时间",
     keys: ["l"],
     type: "bindRepeatableHotkey",
     function: () => startDilatedEternityRequest(),

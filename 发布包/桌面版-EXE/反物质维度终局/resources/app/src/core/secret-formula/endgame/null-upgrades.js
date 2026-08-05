@@ -110,7 +110,7 @@ export const nullUpgrades = {
     costIncrease: 1e8,
     maxUpgrades: Number.MAX_VALUE,
     effect: value => Decimal.pow(1.25, value),
-    description: () => "将永恒获取相乘",
+    description: () => "将永恒次数获取相乘",
     isDisabled: effect => effect.eq(0),
     formatEffect: value => `${formatX(value, 2, 2)}`,
     noLabel: false

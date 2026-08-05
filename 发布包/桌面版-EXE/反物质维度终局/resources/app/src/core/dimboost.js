@@ -92,7 +92,7 @@ export class DimBoost {
 
   static get lockText() {
     if (DimBoost.purchasedBoosts.gte(this.maxBoosts)) {
-      if (Ra.isRunning) return "已锁定（拉现实）";
+      if (Ra.isRunning) return "已锁定（太阳神现实）";
       if (InfinityChallenge(1).isRunning) return "已锁定（无限挑战 1）";
       if (NormalChallenge(8).isRunning) return "已锁定（8th 反物质维度自动购买器挑战）";
     }

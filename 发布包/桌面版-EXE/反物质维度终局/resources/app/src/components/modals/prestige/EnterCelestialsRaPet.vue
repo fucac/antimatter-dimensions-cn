@@ -23,13 +23,12 @@ export default {
       return `color: ${this.pet.color}`;
     },
     gainText() {
-      // We need to special-case the grammar for Nameless
       const isPlural = this.pet.id === "enslaved";
-      const gain = isPlural ? "gain" : "gains";
-      const has = isPlural ? "have" : "has";
+      const gain = isPlural ? "获得" : "获得";
+      const has = isPlural ? "拥有" : "拥有";
       return this.pet.level === 25
-        ? `${has} regained all Memories`
-        : `${gain} Memory Chunks based on ${this.chunkGain}`;
+        ? `${has} 重获所有记忆`
+        : `${gain} 记忆碎片，基于 ${this.chunkGain}`;
     },
     chunkGain() {
       return this.pet.chunkGain;

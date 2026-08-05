@@ -1,6 +1,19 @@
 <script>
 import GlyphTooltipEffect from "@/components/GlyphTooltipEffect";
 
+const GLYPH_TYPE_NAMES = {
+  power: "力量",
+  time: "时间",
+  replication: "复制",
+  dilation: "膨胀",
+  infinity: "无限",
+  effarig: "鹿颈长",
+  reality: "现实",
+  cursed: "诅咒",
+  music: "音乐",
+  companion: "伴侣",
+};
+
 export default {
   name: "GlyphTooltip",
   components: {
@@ -106,16 +119,16 @@ export default {
       };
     },
     description() {
-      const glyphName = `${this.type.capitalize()}`;
+      const glyphName = GLYPH_TYPE_NAMES[this.type];
       switch (this.type) {
         case "companion":
-          return "Companion Glyph";
+          return "伴侣符文";
         case "cursed":
-          return "Cursed Glyph";
+          return "诅咒符文";
         case "reality":
-          return `Pure Glyph of ${glyphName}`;
+          return `${glyphName}之纯净符文`;
         default:
-          return `${this.rarityInfo.name} Glyph of ${glyphName}`;
+          return `${glyphName}符文`;
       }
     },
     isLevelCapped() {

@@ -16,7 +16,7 @@ export default {
         倍率的数值。`;
     },
     entranceLabel() {
-      return `你即将进入时间膨胀`;
+      return `你即将进入膨胀时间`;
     },
     EPSinceLabel() {
       if (player.dilation.lastEP.eq(-1)) {

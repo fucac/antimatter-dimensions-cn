@@ -53,7 +53,7 @@ export const glyphEffects = {
     isGenerated: true,
     glyphTypes: ["time"],
     singleDesc: "游戏速度 ×{value}",
-    totalDesc: "游戏运行快 ×{value}",
+    totalDesc: "游戏速度 ×{value}",
     genericDesc: "游戏速度倍数",
     shortDesc: "游戏速度 ×{value}",
     effect: (level, strength) => (EffarigUnlock.endgame.canBeApplied
@@ -72,10 +72,10 @@ export const glyphEffects = {
     bitmaskIndex: 2,
     isGenerated: true,
     glyphTypes: ["time"],
-    singleDesc: "永恒获取 ×{value}",
-    totalDesc: "永恒获取 ×{value}",
-    genericDesc: "永恒获取倍数",
-    shortDesc: "永恒 ×{value}",
+    singleDesc: "永恒次数获取 ×{value}",
+    totalDesc: "永恒次数获取 ×{value}",
+    genericDesc: "永恒次数获取倍数",
+    shortDesc: "永恒次数 ×{value}",
     effect: (level, strength) => (EffarigUnlock.endgame.canBeApplied
       ? Decimal.pow10(Decimal.pow(level, 0.25).times(strength).times(GlyphAlteration.sacrificeBoost("time")))
       : Decimal.pow(new Decimal(strength + 3).times(level), 0.9).times(
@@ -141,7 +141,7 @@ export const glyphEffects = {
     isGenerated: true,
     glyphTypes: ["dilation"],
     singleDesc: "超光速星系阈值倍数 ×{value}",
-    genericDesc: "超光速星系成本倍数",
+    genericDesc: "超光速星系阈值倍数",
     shortDesc: "超光速星系阈值 ×{value}",
     effect: (level, strength) => (EffarigUnlock.endgame.canBeApplied
       ? Decimal.max(DC.D1.sub(Decimal.pow(level, 0.4).times(strength).div(100)).sub(GlyphAlteration.sacrificeBoost("dilation") / 40), 0.1)

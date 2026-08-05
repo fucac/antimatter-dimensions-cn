@@ -45,7 +45,7 @@ export const realityUpgrades = [
     id: 3,
     initialCost: 2,
     costMult: 30,
-    textTemplate: "永恒获取量 {value} 倍",
+    textTemplate: "永恒次数获取量 {value} 倍",
     effect: 3
   }),
   rebuyable({

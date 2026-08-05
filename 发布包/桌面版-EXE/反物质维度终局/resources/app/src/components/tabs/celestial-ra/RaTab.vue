@@ -166,10 +166,10 @@ export default {
         class="c-ra-remembrance-unlock"
       >
         <h1 :style="petStyle">
-          铭记
+          追忆
         </h1>
         <span :style="petStyle">
-          凡身负铭记之天神，其记忆块获取将增至 {{ formatX(remembranceMult) }}。其余
+          凡身负追忆之天神，其记忆块获取将增至 {{ formatX(remembranceMult) }}。其余
           天神之记忆块获取将降至 {{ formatX(remembranceNerf, 1, 1) }}。
         </span>
         <div

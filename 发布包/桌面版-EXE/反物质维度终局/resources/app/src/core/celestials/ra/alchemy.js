@@ -1,5 +1,13 @@
 import { GameMechanicState } from "../../game-mechanics";
 
+// Map alchemy resource ids to their keys in the resources database ("power", "infinity", ...).
+// Display names may be localized, so they can't be used to look up
+// player.celestials.ra.highestRefinementValue, which is keyed by the original English names.
+const alchemyResourceKeys = Object.fromEntries(
+  Object.entries(GameDatabase.celestials.alchemy.resources)
+    .map(([key, config]) => [config.id, key])
+);
+
 /**
  * @abstract
  */
@@ -31,11 +39,16 @@ class AlchemyResourceState extends GameMechanicState {
   }
 
   get amount() {
+    // Self-heal NaN values that may linger in corrupted saves
+    if (!isFinite(this.data.amount)) {
+      this.data.amount = 0;
+      return 0;
+    }
     return this.data.amount;
   }
 
   set amount(value) {
-    this.data.amount = value;
+    this.data.amount = isFinite(value) ? value : 0;
   }
 
   get before() {
@@ -104,14 +117,23 @@ class BasicAlchemyResourceState extends AlchemyResourceState {
     super(config);
     // The names are capitalized, so we need to convert them to lower case
     // in order to access highestRefinementValue values which are not capitalized.
-    this._name = config.name.toLowerCase();
+    // Display names may be localized, so resolve the database key (e.g. "power")
+    // from the resource id instead of deriving it from the name.
+    this._name = alchemyResourceKeys[config.id];
   }
 
   get highestRefinementValue() {
-    return player.celestials.ra.highestRefinementValue[this._name];
+    const value = player.celestials.ra.highestRefinementValue[this._name];
+    // Self-heal NaN values that may linger in corrupted saves
+    if (!isFinite(value)) {
+      player.celestials.ra.highestRefinementValue[this._name] = 0;
+      return 0;
+    }
+    return value;
   }
 
   set highestRefinementValue(value) {
+    if (!isFinite(value)) return;
     player.celestials.ra.highestRefinementValue[this._name] = Math.max(this.highestRefinementValue, value);
   }
 
