@@ -1,1 +1,1 @@
-{"sha":"6f3f06794d78c2891d027cffccfdc9145b74e5e7","message":"fix: EXE更新器使用git blob哈希对比，兼容CRLF/LF差异","author":"fucac"}
+{"sha":"f3d77ba87ed0f4da31aba2b846f61b7bb114736e","message":"fix: 炼金反应不再因上限缩水强制压低已积累资源（修复25000现实资源出1级符文）","author":"fucac"}

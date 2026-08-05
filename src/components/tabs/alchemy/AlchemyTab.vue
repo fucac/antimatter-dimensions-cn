@@ -195,14 +195,6 @@ export default {
         reaction.isActive = setIsActive;
       }
     },
-    resetAlchemy() {
-      for (const res of AlchemyResources.all) res.amount = 0;
-    },
-    resetRefinementValues() {
-      for (const key of Object.keys(player.celestials.ra.highestRefinementValue)) {
-        player.celestials.ra.highestRefinementValue[key] = 1;
-      }
-    },
     nodeClass(node) {
       const resource = node.resource;
       return {
@@ -247,18 +239,6 @@ export default {
         onclick="Modal.realityGlyph.show()"
       >
         查看现实符文制作
-      </PrimaryButton>
-      <PrimaryButton
-        class="o-primary-btn--subtab-option"
-        @click="resetAlchemy"
-      >
-        强制重置所有炼金资源
-      </PrimaryButton>
-      <PrimaryButton
-        class="o-primary-btn--subtab-option"
-        @click="resetRefinementValues"
-      >
-        重置精炼值上限(1)
       </PrimaryButton>
     </div>
     <AlchemyResourceInfo
