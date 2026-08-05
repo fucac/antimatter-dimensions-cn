@@ -1,0 +1,266 @@
+﻿// We define these in the local scope to override the player's notation setting; this is something we'll probably
+// expand upon later once we look more closely at support for extended Unicode in DRP
+function format(number, places, placesUnder1000) {
+  return Notation.scientific.format(number, places, placesUnder1000);
+}
+
+function formatInt(value) {
+  if (Notations.current.isPainful) return format(value, 2);
+  return formatWithCommas(typeof value === "number" ? value.toFixed(0) : value.toNumber().toFixed(0));
+}
+
+function formatMachines(realPart, imagPart, dualPart) {
+  const parts = [];
+  if (Decimal.neq(realPart, 0)) parts.push(format(realPart, 2));
+  if (Decimal.neq(imagPart, 0)) parts.push(`${format(imagPart, 2, 2)}i`);
+  if (Decimal.neq(dualPart, 0)) parts.push(`${format(dualPart, 2, 2)}ε`);
+  if (Decimal.eq(realPart, 0) && Decimal.eq(imagPart, 0) && Decimal.eq(dualPart, 0)) return format(0);
+  return parts.join(" + ");
+}
+
+// This is used for Discord Rich Presence, the information which shows up on a person's profile badge in Discord if
+// they are playing a game on Steam which has integration that pushes the info to Discord
+export const discordRichPresence = {
+  /**
+   * List of all challenges to display within DRP, checked from the first entry and iterating forward. It will only
+   * show the first one it finds for space reasons, but this also has the desirable effect of hiding key challenges
+   * the player may enter within cel3.
+   *
+   * This is arguably the most "useful" behavior as well due to the fact that often the highest level of challenge is
+   * the long-term goal for why the player entered the challenge in the first place.
+   * @template
+   * {
+   *  @property {function: @return String} name                     Name of the challenge (may contain name spoilers)
+   *  @property {function: @return Boolean | Number} activityToken  Whether or not this challenge is active; is a
+   *    boolean for dilation and realities, or a number for pre-dilation challenges
+   *  @property {Array: function: @return String} resource          Function returning the relevant resource for this
+   *    particular challenge
+   * }
+   */
+  challenges: [
+    {
+      name: () => `${Teresa.possessiveName} 现实`,
+      activityToken: () => Teresa.isRunning,
+      // Reward is based on antimatter, but EP is more meaningful pre-completion
+      resource: () => (Teresa.runCompleted
+        ? `${format(player.antimatter, 2, 1)} 反物质`
+        : `${format(player.eternityPoints, 2)} 永恒点数`),
+    },
+    {
+      name: () => `${Effarig.possessiveName} 现实 - ${Effarig.currentStageName}`,
+      activityToken: () => Effarig.isRunning,
+      resource: () => {
+        switch (Effarig.currentStage) {
+          case EFFARIG_STAGES.INFINITY:
+            return `${format(player.antimatter, 2, 1)} 反物质`;
+          case EFFARIG_STAGES.ETERNITY:
+            return `${format(player.infinityPoints, 2)} 无限点数`;
+          case EFFARIG_STAGES.REALITY:
+          default:
+            return `${format(player.eternityPoints, 2)} 永恒点数`;
+        }
+      },
+    },
+    {
+      name: () => `${Enslaved.possessiveName} 现实`,
+      activityToken: () => Enslaved.isRunning,
+      resource: () => `${format(player.eternityPoints, 2)} 永恒点数`,
+    },
+    {
+      name: () => `${V.possessiveName} 现实`,
+      activityToken: () => V.isRunning,
+      resource: () => null,
+      // V displays achievements normally and its value is standardized outside of its era
+    },
+    {
+      name: () => `${Ra.possessiveName} 现实`,
+      activityToken: () => Ra.isRunning,
+      resource: () => null,
+      // Ra doesn't have a meaningful in-reality resource to display
+    },
+    {
+      name: () => {
+        const dims = Laitela.maxAllowedDimension;
+        const dimStr = dims ? `D${dims} 上限` : "最终";
+        return `${Laitela.possessiveName} 现实 - ${dimStr}`;
+      },
+      activityToken: () => Laitela.isRunning,
+      resource: () => `${formatPercents(new Decimal(player.celestials.laitela.entropy).toNumber(), 2, 2)} 熵`,
+    },
+    {
+      name: () => "膨胀时间",
+      activityToken: () => player.dilation.active,
+      resource: () => `${format(player.antimatter, 2, 1)} 反物质`,
+    },
+    {
+      name: token => `EC ${token}`,
+      // This results in "EC 3x3" (for example) when there are remaining completions, and just "EC 3" if not
+      activityToken: () => {
+        if (!player.challenge.eternity.current) return false;
+        const num = player.challenge.eternity.current;
+        const ec = EternityChallenge(num);
+        return ec.remainingCompletions ? `${num}x${ec.completions + 1}` : num;
+      },
+      resource: () => `${format(player.infinityPoints, 2)} 无限点数`,
+    },
+    {
+      name: token => `IC ${token}`,
+      activityToken: () => player.challenge.infinity.current,
+      resource: () => `${format(player.antimatter, 2, 1)} 反物质`,
+    },
+    {
+      name: token => `NC ${token}`,
+      activityToken: () => player.challenge.normal.current,
+      resource: () => `${format(player.antimatter, 2, 1)} 反物质`,
+    },
+  ],
+
+  /**
+   * List of all the different progress stages which will have distinct behavior in DRP
+   * @template
+   * {
+   *  @property {String} name                                     Name of this stage of the game to display. This will
+   *    be used for the first line of text in DRP. This isn't necessarily unique, as the tracked resources may change
+   *    without the stage changing
+   *  @property {function: @return Boolean} hasReached            Function to check if this stage of the game has been
+   *    reached. These checks are done starting at the end of the array and going backwards.
+   *  @property {function: @return String} mainResource           Function returning the string describing the main
+   *    resource for a stage of the game
+   *  @property {Array: function: @return String} resourceList    Array of strings containing relevant resources for
+   *    each particular part of the game. Largely just a list of key resources that are relevant at each section. The
+   *    logic *can* handle this being undefined, but it probably shouldn't be due to poor appearance
+   * }
+   */
+  stages: [
+    {
+      name: "无限前",
+      hasReached: () => true,
+      mainResource: () => `${format(player.antimatter, 2, 1)} 反物质`,
+      resourceList: [
+        () => quantify("提升", player.dimensionBoosts, 0, 0, formatInt),
+        () => quantify("星系", player.galaxies, 0, 0, formatInt),
+      ],
+    },
+    {
+      name: "无限",
+      hasReached: () => PlayerProgress.infinityUnlocked(),
+      mainResource: () => `${format(player.infinityPoints, 2)} 无限点数`,
+      resourceList: [() => quantify("无限", player.infinities, 0, 0, formatInt)],
+    },
+    {
+      name: "打破无限",
+      hasReached: () => player.break,
+      mainResource: () => `${format(player.infinityPoints, 2)} 无限点数`,
+      resourceList: [() => quantify("无限", player.infinities, 2, 0, format)],
+    },
+    {
+      name: "永恒",
+      hasReached: () => PlayerProgress.eternityUnlocked(),
+      mainResource: () => `${format(player.eternityPoints, 2)} 永恒点数`,
+      resourceList: [() => quantify("永恒", player.eternities, 0, 0, formatInt)],
+    },
+    {
+      // Eternity Challenge era
+      name: "永恒",
+      hasReached: () => player.eternityChalls.eterc1 > 0,
+      mainResource: () => `${format(player.eternityPoints, 2)} 永恒点数`,
+      resourceList: [
+        () => quantify("EC完成",
+          Object.values(player.eternityChalls).reduce((sum, c) => sum + c, 0), 0, 0, formatInt)
+      ]
+    },
+    {
+      name: "膨胀时间",
+      hasReached: () => PlayerProgress.dilationUnlocked(),
+      mainResource: () => `${format(player.eternityPoints, 2)} 永恒点数`,
+      resourceList: [() => `${format(player.dilation.dilatedTime, 2, 2)} 膨胀时间`],
+    },
+    {
+      name: "现实",
+      hasReached: () => player.realities.gt(0),
+      mainResource: () => `${format(player.reality.realityMachines, 2)} 现实机器`,
+      resourceList: [
+        () => quantify("现实", player.realities, 0, 0, formatInt),
+        () => `最佳符文等级: ${formatHybridLarge(player.records.bestReality.glyphLevel, 3)}`
+      ]
+    },
+    {
+      name: () => Teresa.displayName,
+      hasReached: () => Teresa.isUnlocked,
+      mainResource: () => `${format(player.reality.realityMachines, 2)} 现实机器`,
+      resourceList: [
+        () => quantify("现实", player.realities, 0, 0, formatInt),
+        () => `最佳符文等级: ${formatHybridLarge(player.records.bestReality.glyphLevel, 3)}`,
+        () => `注入: ${format(player.celestials.teresa.pouredAmount, 2)} 现实机器`
+      ]
+    },
+    {
+      name: () => Effarig.displayName,
+      hasReached: () => TeresaUnlocks.effarig.isUnlocked,
+      mainResource: () => `${format(player.reality.realityMachines, 2)} 现实机器`,
+      resourceList: [
+        () => `最佳符文等级: ${formatHybridLarge(player.records.bestReality.glyphLevel, 3)}`,
+        () => quantify("遗迹碎片", player.celestials.effarig.relicShards, 2, 0, format)
+      ]
+    },
+    {
+      name: () => Enslaved.displayName,
+      hasReached: () => EffarigUnlock.eternity.isUnlocked,
+      mainResource: () => `${format(player.reality.realityMachines, 2)} 现实机器`,
+      resourceList: [
+        () => `最佳符文等级: ${formatHybridLarge(player.records.bestReality.glyphLevel, 3)}`,
+        () => `充能: ${format(TimeSpan.fromMilliseconds(new Decimal(player.celestials.enslaved.stored)).totalYears, 2)} 年`
+      ],
+    },
+    {
+      name: () => V.displayName,
+      hasReached: () => Achievement(151).isUnlocked,
+      mainResource: () => `${format(player.reality.realityMachines, 2)} 现实机器`,
+      resourceList: [
+        () => `最佳符文等级: ${formatHybridLarge(player.records.bestReality.glyphLevel, 3)}`,
+        () => quantify("薇成就", player.celestials.v.runUnlocks.sum(), 0, 0, formatInt)],
+    },
+    {
+      name: () => Ra.displayName,
+      hasReached: () => VUnlocks.raUnlock.isUnlocked,
+      mainResource: () => `${format(player.reality.realityMachines, 2)} 现实机器`,
+      resourceList: [
+        () => `最佳符文等级: ${formatHybridLarge(player.records.bestReality.glyphLevel, 3)}`,
+        () => `太阳神等级: ${Ra.pets.all.map(p => formatInt(p.level)).join("/")}`],
+    },
+    {
+      // Imaginary Machines unlocked
+      name: () => Ra.displayName,
+      hasReached: () => MachineHandler.isIMUnlocked,
+      mainResource: () =>
+        `${format(player.reality.realityMachines)} 现实机器 + ${format(player.reality.imaginaryMachines, 2)} 虚幻机器`,
+      resourceList: [
+        () => `最佳符文等级: ${formatHybridLarge(player.records.bestReality.glyphLevel, 3)}`,
+        () => `太阳神等级: ${Ra.pets.all.map(p => formatInt(p.level)).join("/")}`
+      ],
+    },
+    {
+      name: () => Laitela.displayName,
+      hasReached: () => Laitela.isUnlocked,
+      mainResource: () =>
+        `${format(player.reality.realityMachines)} 现实机器 + ${format(player.reality.imaginaryMachines, 2)} 虚幻机器`,
+      resourceList: [
+        () => `最佳符文等级: ${formatHybridLarge(player.records.bestReality.glyphLevel, 3)}`,
+        () => quantify("奇点", player.celestials.laitela.singularities, 2, 0, format)],
+    },
+    {
+      // We can't use celestial displayName here like the others because that will cause
+      // the text scramble to get put on DRP
+      name: "佩勒",
+      hasReached: () => Pelle.isDoomed,
+      mainResource: () => quantify("现实碎片", player.celestials.pelle.realityShards, 2),
+      resourceList: [() => quantify("残骸", player.celestials.pelle.remnants, 2)],
+    },
+    {
+      name: "终局",
+      hasReached: () => GameEnd.endState >= END_STATE_MARKERS.GAME_END,
+      mainResource: () => "终局反物质",
+      resourceList: [() => "一切皆无。"],
+    },
+  ]
+};

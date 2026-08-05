@@ -1,0 +1,23 @@
+﻿反物质维度：终局 — 发布包总览
+===========================
+
+├─ 桌面版-EXE/
+│   ├─ 反物质维度终局-win便携版/    ← 推荐！双击 exe 直接运行，无需安装
+│   ├─ 反物质维度终局-win32-x64/   ← electron-packager 同名产物
+│   └─ 运行说明.txt
+│
+├─ 手机版-APK/
+│   ├─ 反物质维度终局-1.0.0.apk    ← 推荐！签名 Release 版，安卓 6+ 装机
+│   ├─ 反物质维度终局-debug.apk    ← Debug 测试版
+│   ├─ app-release.apk             ← 构建产物原名（同上 Release 版）
+│   ├─ app-debug.apk               ← 构建产物原名（同上 Debug 版）
+│   └─ 安装说明.txt
+│
+└─ 网页版-WEB/
+    ├─ dist/                       ← 静态 Web 站点，上传服务器即可
+    └─ 部署说明.txt
+
+打包技术：
+ - 桌面版：Electron 36 + electron-packager
+ - 手机版：Capacitor 6 + Android SDK 34 (Gradle 8.2.1, AGP 8.2.1)
+ - 网页版：Vue CLI 构建产物（相对路径，任意静态服务器可部署）

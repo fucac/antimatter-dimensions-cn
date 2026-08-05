@@ -1,0 +1,94 @@
+﻿[1] components\tabs\time-studies\DilationTimeStudy.vue: 2
+[1] core\secret-formula\sidebar-resources.js: 1
+[1] core\secret-formula\reality\perks.js: 1
+[1] DONE 总时间研究: 4
+
+[2] core\secret-formula\sidebar-resources.js: 1
+[2] core\secret-formula\achievements\normal-achievements.js: 1
+[2] core\secret-formula\reality\glyph-sacrifices.js: 1
+[2] core\secret-formula\reality\perks.js: 5
+[2] core\secret-formula\reality\reality-upgrades.js: 3
+[2] DONE 超子微粒: 11
+
+[3a] components\modals\prestige\RealityModal.vue: 1
+[3a] components\tabs\autobuyers\RealityAutobuyerBox.vue: 2
+[3a] components\ui-modes\prestige-header\RealityButton.vue: 2
+[3a] DONE 圣物碎片: 5
+[3b] components\tabs\celestial-effarig\EffarigUnlockButton.vue: RS=1 RSs=0
+[3b] components\tabs\past-prestige-runs\PastPrestigeRunsTab.vue: RS=2 RSs=1
+[3b] core\secret-formula\celestials\navigation.js: RS=1 RSs=1
+[3b] DONE Relic Shard: 6
+
+[4] components\tabs\divine-dimensions\ClassicDivineDimensionTab.vue: 1
+[4] components\tabs\divine-dimensions\ModernDivineDimensionTab.vue: 1
+[4] components\tabs\duality-upgrades\DualityUpgradesTab.vue: 2
+[4] components\tabs\ethereal\EtherealTab.vue: 1
+[4] components\tabs\glyph-set-records\GlyphSetRecordsTab.vue: 1
+[4] components\tabs\glyphs\SacrificedGlyphs.vue: 1
+[4] core\secret-formula\news.js: 7
+[4] core\secret-formula\sidebar-resources.js: 2
+[4] core\secret-formula\celestials\quotes\pelle.js: 2
+[4] core\secret-formula\celestials\quotes\ra.js: 1
+[4] core\secret-formula\endgame\endgame-masteries.js: 4
+[4] core\secret-formula\endgame\null-upgrades.js: 1
+[4] core\secret-formula\reality\automator.js: 30
+[4] DONE 机器->现实机器: 54
+
+[5] components\BackgroundAnimations.vue: 1
+[5] components\GlyphSetName.vue: 1
+[5] components\modals\PelleEffectsModal.vue: 3
+[5] components\modals\UndoGlyphModal.vue: 2
+[5] components\modals\cloud\SaveInfoEntry.vue: 1
+[5] components\modals\options\AnimationOptionsModal.vue: 1
+[5] components\modals\prestige\EnterDilationModal.vue: 3
+[5] components\modals\prestige\EnterOverchargeModal.vue: 1
+[5] components\modals\prestige\ExitDilationModal.vue: 1
+[5] components\modals\prestige\RealityModal.vue: 1
+[5] components\modals\time-study-modal-preview\StudyStringPreview.vue: 1
+[5] components\tabs\automator\AutomatorPointsList.vue: 1
+[5] components\tabs\replicanti\ReplicantiTab.vue: 1
+[5] components\tabs\statistics\MultiplierBreakdownEntry.vue: 1
+[5] components\tabs\time-dilation\DilationButton.vue: 2
+[5] components\tabs\time-dilation\TimeDilationTab.vue: 1
+[5] components\ui-modes\HeaderChallengeDisplay.vue: 1
+[5] core\celestials\celestials.js: 7
+[5] core\secret-formula\catchup-resources.js: 5
+[5] core\secret-formula\confirmation-types.js: 1
+[5] core\secret-formula\discord-rich-presence.js: 3
+[5] core\secret-formula\h2p.js: 24
+[5] core\secret-formula\progress-checker.js: 5
+[5] core\secret-formula\script-templates.js: 3
+[5] core\secret-formula\shop-purchases.js: 2
+[5] core\secret-formula\sidebar-resources.js: 1
+[5] core\secret-formula\speedrun-milestones.js: 3
+[5] core\secret-formula\tabs.js: 1
+[5] core\secret-formula\achievements\normal-achievements.js: 13
+[5] core\secret-formula\celestials\alchemy.js: 3
+[5] core\secret-formula\celestials\alpha.js: 6
+[5] core\secret-formula\celestials\enslaved.js: 1
+[5] core\secret-formula\celestials\galaxy-generator.js: 2
+[5] core\secret-formula\celestials\pelle-destruction-upgrades.js: 3
+[5] core\secret-formula\celestials\pelle-upgrades.js: 1
+[5] core\secret-formula\celestials\perk-shop.js: 5
+[5] core\secret-formula\celestials\ra.js: 5
+[5] core\secret-formula\celestials\resurgence-upgrades.js: 2
+[5] core\secret-formula\celestials\rifts.js: 3
+[5] core\secret-formula\celestials\singularity-milestones.js: 2
+[5] core\secret-formula\celestials\strikes.js: 3
+[5] core\secret-formula\celestials\v.js: 3
+[5] core\secret-formula\endgame\break-eternity-upgrades.js: 2
+[5] core\secret-formula\endgame\endgame-masteries.js: 1
+[5] core\secret-formula\endgame\endgame-milestones.js: 1
+[5] core\secret-formula\endgame\expansion-packs.js: 1
+[5] core\secret-formula\endgame\null-upgrades.js: 1
+[5] core\secret-formula\eternity\dilation-upgrades.js: 7
+[5] core\secret-formula\eternity\time-studies\dilation-time-studies.js: 1
+[5] core\secret-formula\multiplier-tab\dilated-time.js: 2
+[5] core\secret-formula\multiplier-tab\infinity-points.js: 1
+[5] core\secret-formula\multiplier-tab\tachyon-particles.js: 2
+[5] core\secret-formula\multiplier-tab\tickspeed.js: 1
+[5] core\secret-formula\multiplier-tab\time-dimensions.js: 1
+[5] core\secret-formula\reality\automator.js: 5
+[5] core\secret-formula\reality\perks.js: 21
+[5] core\secret-formula\reality\reality-upgrades.js: 1
+[5] DONE 时间膨胀->膨胀时间: 178

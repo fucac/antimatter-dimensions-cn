@@ -1,0 +1,70 @@
+<script>
+import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
+
+export default {
+  name: "SacrificeGlyphModal",
+  components: {
+    ModalWrapperChoice
+  },
+  props: {
+    idx: {
+      type: Number,
+      required: true
+    }
+  },
+  data() {
+    return {
+      currentGlyphSacrifice: new Decimal(0),
+      gain: new Decimal(0),
+      confirmedSacrifice: false
+    };
+  },
+  computed: {
+    glyph() {
+      return Glyphs.findByInventoryIndex(this.idx);
+    },
+    message() {
+      return `您当真要献祭此符文?您所献祭的 ${this.glyph.type}
+      符文之总力量将由 ${format(this.currentGlyphSacrifice, 2, 2)} 提升至
+      ${format(this.currentGlyphSacrifice.add(this.gain), 2, 2)}。`;
+    }
+  },
+  methods: {
+    update() {
+      this.currentGlyphSacrifice = player.reality.glyphs.sac[this.glyph.type];
+      this.gain = GlyphSacrificeHandler.glyphSacrificeGain(this.glyph);
+
+      const newGlyph = Glyphs.findByInventoryIndex(this.idx);
+      if (this.glyph !== newGlyph && !this.confirmedSacrifice) {
+
+        // ConfirmedSacrifice is here because when you sac a glyph with confirmation it
+        // Displays this modal message even though the glyph was sacced successfully.
+        // I have no idea how the eventHub thing works or if moving the UI update before
+        // the sac will break things so this is the best I could do. - Scar
+
+        this.emitClose();
+        Modal.message.show("所选符文已更改位置或发生了其他变化!");
+      }
+    },
+    handleYesClick() {
+      this.confirmedSacrifice = true;
+      GlyphSacrificeHandler.sacrificeGlyph(this.glyph, true);
+    },
+  },
+};
+
+</script>
+
+<template>
+  <ModalWrapperChoice
+    option="glyphSacrifice"
+    @confirm="handleYesClick"
+  >
+    <template #header>
+      您即将献祭一枚符文
+    </template>
+    <div class="c-modal-message__text">
+      {{ message }}
+    </div>
+  </ModalWrapperChoice>
+</template>

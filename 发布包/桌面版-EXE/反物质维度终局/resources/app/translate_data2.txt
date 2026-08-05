@@ -1,0 +1,280 @@
+<<<OLD>>>
+"What is the tenth dimension?" The only one who knows that is the Elemental. "Who is the Elemental?" A powerful
+    being who lives in the depths of the Expanse. "What is the Expanse?" You'll know soon enough.
+<<<NEW>>>
+"第 10 维度是什么？"只有元素知道。"元素是谁？"一个住在拓展深处的强大
+    存在。"拓展是什么？"你很快就会知道。
+<<<END>>>
+<<<OLD>>>
+And Hevipelle asked, "Wait, explain it to me again, there are 7 resets now?" "Yeah of course, and then you have
+    to add a 9th dimension by that point y-" said Supersonic Seven. Hevipelle interrupted him and said "Wait WHAT!?!?" And
+    that's the story of how Hevipelle almost touched antimatter.
+<<<NEW>>>
+Hevipelle 问，"等等，再给我解释一遍，现在有 7 次重置了？" "对啊当然，然后到那个时候你就得
+    加第 9 维度了-" Supersonic Seven 说。Hevipelle 打断他说"等等什么！？！？" 这就是
+    Hevipelle 差点碰到反物质的故事。
+<<<END>>>
+<<<OLD>>>
+"Can you get Infinite STDs?" - Didgoty "Yes you can." - Brittany Aloe
+<<<NEW>>>
+"你能得到无限的性病吗？" - Didgoty "可以的。" - Brittany Aloe（注：STD 双关"性传播疾病"和"空间/时间维度"）
+<<<END>>>
+<<<OLD>>>
+After the arrival of ENDGAME, 7 new types of weather were discovered. They are: Existence, Nobody, Death,
+    GigaChad, Apples, Mathematician and Electricity.
+<<<NEW>>>
+ENDGAME 降临后，人们发现了 7 种新天气。分别是：存在、无人、死亡、
+    GigaChad、苹果、数学家和电。
+<<<END>>>
+<<<OLD>>>
+Welcome to Endgame - where the END is only the beginning.
+<<<NEW>>>
+欢迎来到终局 - 这里 END 只是开始。（注：END 双关"结束"）
+<<<END>>>
+<<<OLD>>>
+Endgame used to have five other brothers and sisters... we have Endgame, Expanse, and Existence. No longer
+    are Eclipse, Echelon, Exodus, Ephmeral, and John; they will not be missed.
+<<<NEW>>>
+终局曾经有另外五个兄弟姐妹……我们有终局、拓展和存在。Eclipse、Echelon、Exodus、Ephmeral 和
+    John 已不复存在；它们不会被怀念。
+<<<END>>>
+<<<OLD>>>
+<span style='color: blue'>Hey Supersonic, when will AD: Endgame release?</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style='color: yellow'>We are working on it, expect it to be released in 6.9 Eternities.</span>&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;<span style='color: blue'>Gee Whiz! Seems like I will be right on time after my 5 hour sleep.
+      Remember to watch "Why Hevi and Super decided to collaborate on a banana peel art" tommorow at 5 AM!</span>
+<<<NEW>>>
+<span style='color: blue'>嘿 Supersonic，AD: 终局什么时候发布？</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span style='color: yellow'>正在做，预计在 6.9 个永恒后发布。</span>&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;<span style='color: blue'>天哪！看来我 5 小时睡醒后刚好赶上。
+      记得明天凌晨 5 点收看"Why Hevi 和 Super 决定合作搞香蕉皮艺术"!</span>
+<<<END>>>
+<<<OLD>>>
+The update will be released at ${Time.toDateTimeString(Date.now() + 18000000)}.
+<<<NEW>>>
+更新将于 ${Time.toDateTimeString(Date.now() + 18000000)} 发布。
+<<<END>>>
+<<<OLD>>>
+The Discovery of the 9th Dimension was announced on July 1st, 2026.
+<<<NEW>>>
+第九维度的发现已于 2026 年 7 月 1 日宣布。
+<<<END>>>
+<<<OLD>>>
+""""""""""""""""Whoever copies me is gay" -Barack Obama" -Archimedes" -Sun Tzu" -Elon Musk" -Helen Keller"
+      -Queen Elizabeth II" -Dwyane “The Rock” Johnson" -Supersonic Seven" -King Midas" -John Wick"
+      -Spongebob Squarepants" -YOU" -LOST" -THE" -GAME" -Mr. Bean
+<<<NEW>>>
+""""""""""""""""谁抄我谁是同性恋" -奥巴马" -阿基米德" -孙子" -马斯克" -海伦·凯勒"
+      -伊丽莎白二世女王" -巨石强森" -Supersonic Seven" -迈达斯王" -疾速追杀"
+      -海绵宝宝" -你" -LOST" -THE" -GAME" -憨豆先生
+<<<END>>>
+<<<OLD>>>
+TECHNOBLADE NEVER DIES!!!
+<<<NEW>>>
+TECHNOBLADE 永不消逝！！！
+<<<END>>>
+<<<OLD>>>
+I've come to make an announcement ${player.username} is a bitch-ass motherfucker he pissed on my fucking wife.
+      That's right he took his antimatter dick out and pissed on my fucking wife and he said it was "THIS BIG" and
+      I said "that's disgusting" so im making a callout post on my twitter.com. ${player.username} you've got a small dick
+      it's the size of a proton and it's way smaller and guess what here's what my dong looks like. That's right baby
+      all matter no antimatter no reality machines look at that it looks like two balls and a bong. He fucked my wife
+      so guess what imma piss on the earth that's what you get my super laser piss. Except I'm not gonna piss on the
+      earth I'm gonna go higher I'm pissing on the moon. How do you like that Pelle I pissed on the moon you idiot.
+      You have twenty-three hours before the piss D R O P L E T S hit the fucking Earth, now get outta my fucking
+      sight, before I piss on you too!
+<<<NEW>>>
+我来做个声明 ${player.username} 是个狗娘养的混蛋他尿在了我的老婆身上。
+      没错他掏出他的反物质屌尿在了我的老婆身上然后他说"有这么大"然后
+      我说"太恶心了"所以我要在我的推特上发帖挂人。${player.username} 你的屌很小
+      只有质子那么大而且小得多猜猜看我的老二长什么样。没错宝贝
+      全物质无反质无现实机看看吧它看起来像两个球和一个水烟壶。他睡了我老婆
+      所以猜猜我要尿在地球上这就是你应得的我超级激光尿。不过我不打算尿在
+      地球上我要尿得更高我要尿在月球上。你觉得怎么样佩勒我尿在月球上了你个白痴。
+      你还有二十三小时然后尿 D R O P L E T S 就会砸在他妈的地球上，现在从我的
+      视线里滚出去，不然我也尿你身上！
+<<<END>>>
+<<<OLD>>>
+I guess this truly is the Endgame.
+<<<NEW>>>
+我想这真的就是终局了。
+<<<END>>>
+<<<OLD>>>
+Where are the crossovers I was promised? Oh wait wrong Endgame.
+<<<NEW>>>
+答应我的联动角色在哪？哦等等，串台到别的"终局"了。（注：指《复仇者联盟4：终局之战》）
+<<<END>>>
+<<<OLD>>>
+Why do they call it antimatter when you anti matter the cold atom of anti hot make the matter?
+<<<NEW>>>
+为什么他们叫它反物质，当你反物质冷原子反热制作物质？
+<<<END>>>
+<<<OLD>>>
+Is this truly the Endgame? Or just the ending of another parallel universe? Well, there has to
+      be someone to save the world again, escaping entropy!
+<<<NEW>>>
+这真的是终局吗？还是只是另一个平行宇宙的结局？好吧，总得
+      有人再次拯救世界，逃离熵！
+<<<END>>>
+<<<OLD>>>
+Take the "Which Celestial Are You?" test to see if you're a Teresa or a Lai'tela!
+<<<NEW>>>
+做做"你是哪位天神？"测试，看看你是特蕾莎还是莱特拉！
+<<<END>>>
+<<<OLD>>>
+When life makes you cry, know that you antimatter.
+<<<NEW>>>
+当生活让你哭泣时，要知道你反物质。（注：antimatter 双关"反物质"和"不重要"）
+<<<END>>>
+<<<OLD>>>
+<span style='color: blue'>This mod is my life!</span>&nbsp;&nbsp;&nbsp;<span style='color: green'>Get a new life!</span>
+<<<NEW>>>
+<span style='color: blue'>这个模组就是我的生命！</span>&nbsp;&nbsp;&nbsp;<span style='color: green'>换条命吧！</span>
+<<<END>>>
+<<<OLD>>>
+INCOMING NEWS : S7 BROKE THE GAME AND LEFT! CURRENT WHEREABOUTS UNKNOWN, WITNESS SAID HE SAW LIFE NEXT TO
+      HIS HOUSE A FEW HOURS BEFORE HE DISAPPEARED. WATCH "COUNTING TO 5" ON THE EVENING CHANNEL IN 5 HOURS.
+<<<NEW>>>
+突发新闻：S7 弄坏了游戏跑了！目前下落不明，目击者称在他失踪前几小时
+      看到生活在他家隔壁。5 小时后请收看晚间频道的"数到 5"。
+<<<END>>>
+<<<OLD>>>
+Antimatter Dimensions this, Antimatter Dimensioms that, How about you go touch real grass?
+<<<NEW>>>
+反物质维度这样、反物质纬度那样的，要不你去摸摸真正的草？
+<<<END>>>
+<<<OLD>>>
+Why is my screen white? Have I gone into anti-heaven? Wait, isn't that hell? Oh I just changed
+      my theme to Metro. Still hell though.
+<<<NEW>>>
+为什么我的屏幕是白色的？我是去了反天堂吗？等等，那不是地狱吗？哦我刚把
+      主题换成了 Metro。不过还是地狱。
+<<<END>>>
+<<<OLD>>>
+According to the Bosonic String Theory, Spacetime is 26-dimensional... where the hell are my other 16 Dimensions?!
+<<<NEW>>>
+根据玻色弦理论，时空是 26 维的……我另外的 16 个维度到底去哪了？！
+<<<END>>>
+<<<OLD>>>
+The Antimatter Dimensions Endgame: Easter Egg Edition (ADE:EEE) will come out in 5 Meggahours.
+<<<NEW>>>
+《反物质维度终局：彩蛋版》(ADE:EEE) 将在 5 兆小时后推出。
+<<<END>>>
+<<<OLD>>>
+I don't want to be addicted to this Gen Z stuff.
+<<<NEW>>>
+我不想沉迷于这些 Z 世代的东西。
+<<<END>>>
+<<<OLD>>>
+You just lost 3 seconds of your life reading this newsticker.
+<<<NEW>>>
+你刚因为读这条新闻条失去了 3 秒生命。
+<<<END>>>
+<<<OLD>>>
+You've wasted a large chunk of your time here. Go on, Dilate your life.
+<<<NEW>>>
+你在这里浪费了大把时间。继续吧，去膨胀你的人生。（注：Dilate 双关"时间膨胀"）
+<<<END>>>
+<<<OLD>>>
+Produce the 9th
+<<<NEW>>>
+产出第九
+<<<END>>>
+<<<OLD>>>
+We want the 9th NOW!
+<<<NEW>>>
+我们要第九个，现在就要！
+<<<END>>>
+<<<OLD>>>
+It was a big mistake making me wait to make my debut.
+<<<NEW>>>
+让我等着登场是个大错误。
+<<<END>>>
+<<<OLD>>>
+Behind every 8 there's a 9.
+<<<NEW>>>
+每个 8 后面都藏着一个 9。
+<<<END>>>
+<<<OLD>>>
+If we have Realities, where are the Fakeities?
+<<<NEW>>>
+如果我们有现实，那假实在哪里？（注：Fakeity 仿造 Reality 的谐音梗）
+<<<END>>>
+<<<OLD>>>
+TOM YOU JUST WON A GIANT ANTITUNGSTEN CUBE!
+<<<NEW>>>
+汤姆你刚赢得了一个巨大的反钨立方体！
+<<<END>>>
+<<<OLD>>>
+Today's lunch: Antimatter chicken burger made out of 100% antimatter pigs!
+<<<NEW>>>
+今日午餐：100% 由反物质猪制成的反物质鸡肉汉堡！
+<<<END>>>
+<<<OLD>>>
+"I just added like 26 news messages from this one Discord channel into the game let me know if it shits itself lmao."
+      -Supersonic Seven
+<<<NEW>>>
+"我刚从这个 Discord 频道往游戏里加了大概 26 条新闻消息，要是出 bug 了告诉我哈哈哈。"
+      -Supersonic Seven
+<<<END>>>
+<<<OLD>>>
+The 45 current stages of AD:Endgame are Dimensions, Boosts, Automators, Galaxies, Infinity, Challenges,
+      Break Infinity, Infinity Dimensions, Infinity Challenges, Replicanti, Eternity, Time Dimensions,
+      Eternity Challenges, Time Dilation, Reality, Black Hole, Teresa's Canister, Teresa's Reality, Effarig's Shop,
+      Effarig's Infinity, Effarig's Eternity, Effarig's Reality, The Nameless One's Reality, V's Achievements,
+      Continuum, Dark Matter Dimensions, Lai'tela's Reality, Pelle (Doomed Reality), Remnants,
+      The first 14 stages again (+Rifts), And of course, the beginning of endgame.
+<<<NEW>>>
+AD:终局当前的 45 个阶段是：维度、提升、自动化器、星系、无限、挑战、
+      突破无限、无限维度、无限挑战、复制元、永恒、时间维度、
+      永恒挑战、时间膨胀、现实、黑洞、特蕾莎的罐子、特蕾莎的现实、鹿颈长的商店、
+      鹿颈长的无限、鹿颈长的永恒、鹿颈长的现实、无名者的现实、V 的成就、
+      连续统、暗物质维度、莱特拉的现实、佩勒（注定的现实）、残片、
+      前 14 个阶段再走一遍（+裂隙），当然，还有终局的开始。
+<<<END>>>
+<<<OLD>>>
+If the 8th celestial is Alpha, shouldn't the 9th be Beta?
+<<<NEW>>>
+如果第 8 个天神是 Alpha，那第 9 个不应该是 Beta 吗？
+<<<END>>>
+<<<OLD>>>
+Here's your daily AD:E fact that does nothing: Did you know that Slabdrill, the 9th celestial, also unlocks
+      the 9th dimension? How crazy is that?
+<<<NEW>>>
+每日一条没用处的 AD:E 事实：你知道吗，Slabdrill——第 9 个天神——也解锁
+      第 9 维度？疯狂吧？
+<<<END>>>
+<<<OLD>>>
+Why is 6 afraid of 7? Because 7 8 9, but now why is 10 afraid? Because it is in the middle of 9/11!
+<<<NEW>>>
+为什么 6 怕 7？因为 7 吃了 9（7 8 9 谐音），但现在为什么 10 也怕了？因为它在 9/11 的中间！
+<<<END>>>
+<<<OLD>>>
+Here's your daily AD:E fact that does nothing: Lai'tela and Pelle had... you know.
+<<<NEW>>>
+每日一条没用处的 AD:E 事实：莱特拉和佩勒……你懂的。
+<<<END>>>
+<<<OLD>>>
+Welcome to the server! Here, we talk about [69].
+<<<NEW>>>
+欢迎来到服务器！在这里，我们讨论 [69]。
+<<<END>>>
+<<<OLD>>>
+Antimatter market sees infinite gains, but investors are struggling to count them all.
+<<<NEW>>>
+反物质市场出现了无限收益，但投资者们数都数不过来。
+<<<END>>>
+<<<OLD>>>
+Galactic council issues public safety announcement: "Please, for the love of all that is finite, stop trying
+      to count the dimensions. You'll never make it to the 9th."
+<<<NEW>>>
+银河议会发布公共安全公告："拜托，看在一切有限之物的份上，别再试着
+      数维度了。你们永远到不了第 9 个。"
+<<<END>>>
+<<<OLD>>>
+Experts report that the only thing more boundless than our current profits is the number of alternate realities
+      where we've already spent them.
+<<<NEW>>>
+专家报告称，唯一比我们当前利润更无边无际的，是我们已经花掉
+      它们的平行现实数量。
+<<<END>>>

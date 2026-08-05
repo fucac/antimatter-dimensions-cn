@@ -1,0 +1,356 @@
+<script>
+import { sha512_256 } from "js-sha512";
+
+import ModalWrapperChoice from "@/components/modals/ModalWrapperChoice";
+import PrimaryButton from "@/components/PrimaryButton";
+import MasteryStringLine from "@/components/modals/MasteryStringLine";
+
+import MasteryStringPreview from "./endgame-mastery-modal-preview/MasteryStringPreview";
+import MasteryTreeInfo from "./MasteryTreeInfo";
+
+let savedImportString = "";
+
+export default {
+  name: "MasteryStringModal",
+  components: {
+    ModalWrapperChoice,
+    MasteryStringLine,
+    PrimaryButton,
+    MasteryStringPreview,
+    MasteryTreeInfo
+  },
+  props: {
+    id: {
+      type: Number,
+      required: true,
+    },
+    deleting: {
+      type: Boolean,
+      required: false,
+      default: false,
+    }
+  },
+  data() {
+    return {
+      input: "",
+      name: "",
+      respecAndLoad: false,
+      canEndgame: false
+    };
+  },
+  computed: {
+    // This modal is used by both mastery importing and preset editing, but is given an id of -1 when importing
+    isImporting() {
+      return this.id === -1;
+    },
+    // This represents the state reached from importing into an empty tree
+    importedTree() {
+      if (!this.inputIsValidTree) return {};
+      const importedTree = new EndgameMasteryTree(this.truncatedInput);
+      const newMasteriesArray = importedTree.purchasedMasteries.map(s => this.masteryString(s));
+      return {
+        endgameSkills: importedTree.spentSkills[0],
+        newMasteries: makeEnumeration(newMasteriesArray),
+        newMasteriesArray,
+        invalidMasteries: importedTree.invalidMasteries,
+        firstPaths: makeEnumeration(importedTree.compressionPaths),
+        secondPaths: makeEnumeration(importedTree.currencyPaths),
+        hasInfo: makeEnumeration(importedTree.compressionPaths),
+      };
+    },
+    // This is only shown when importing; when modifying a preset we assume that generally the current state of the
+    // tree is irrelevant because if it mattered then the player would simply import instead
+    combinedTree() {
+      if (!this.inputIsValidTree) return {};
+      const currentMasteryTree = GameCache.currentMasteryTree.value;
+      const combinedTree = this.combinedTreeObject;
+      const newMasteriesArray = combinedTree.purchasedMasteries
+        .filter(m => !currentMasteryTree.purchasedMasteries.includes(m)).map(m => this.masteryString(m));
+      return {
+        endgameSkills: combinedTree.spentSkills[0] - currentMasteryTree.spentSkills[0],
+        newMasteries: makeEnumeration(newMasteriesArray),
+        newMasteriesArray,
+        firstPaths: makeEnumeration(combinedTree.compressionPaths),
+        secondPaths: makeEnumeration(combinedTree.currencyPaths),
+        hasInfo: makeEnumeration(combinedTree.compressionPaths),
+      };
+    },
+    combinedTreeObject() {
+      const combinedTree = new EndgameMasteryTree();
+      combinedTree.attemptBuyArray(EndgameMasteryTree.currentMasteries, false);
+      combinedTree.attemptBuyArray(combinedTree.parseMasteryImport(this.truncatedInput), true);
+      return combinedTree;
+    },
+    modalTitle() {
+      if (this.deleting) return `删除精通预设「${this.name}」`;
+      return this.isImporting ? "输入你的树" : `编辑精通预设「${this.name}」`;
+    },
+    invalidMessage() {
+      if (!this.inputIsValidTree || this.importedTree.invalidMasteries.length === 0) return null;
+      // Pad the input with non-digits which we remove later in order to not cause erroneous extra matches within IDs
+      // and limit the string length to stop excessive UI stretch
+      let coloredString = `#${this.truncatedInput}#`;
+      if (coloredString.length > 300) coloredString = `${coloredString.slice(0, 297)}...`;
+
+      for (const mastery of this.importedTree.invalidMasteries) {
+        const id = `${mastery}`.match(/(EC)?(\d+)/u);
+        const num = parseInt(id[2], 10);
+        switch (id[1]) {
+          default:
+            coloredString = coloredString.replaceAll(new RegExp(`(\\D)(${num})(\\D)`, "gu"),
+              `$1<span style="color: var(--color-bad);">$2</span>$3`);
+            break;
+        }
+      }
+      return `你的导入字符串含有无效的精通 ID：${coloredString.replaceAll("#", "").replaceAll(",", ", ")}
+        <br><br>`;
+    },
+    truncatedInput() {
+      return EndgameMasteryTree.truncateInput(this.input);
+    },
+    hasInput() {
+      return this.truncatedInput !== "";
+    },
+    inputIsValid() {
+      return this.inputIsValidTree || this.inputIsSecret;
+    },
+    inputIsValidTree() {
+      return EndgameMasteryTree.isValidImportString(this.truncatedInput);
+    },
+    inputIsSecret() {
+      // The button to open the modal and the actual modal itself display two different strings;
+      // we should allow either to unlock the secret achievement
+      const secretStrings = [
+        "08b819f253b684773e876df530f95dcb85d2fb052046fa16ec321c65f3330608",
+        "bb450c2a3869bae412ed0b4304dc229521fc69f0fdcc95b3b61460aaf5658fc4"
+      ];
+      return secretStrings.includes(sha512_256(this.input.toLowerCase()));
+    },
+    confirmText() {
+      if (this.deleting) return "删除";
+      return this.isImporting ? "导入" : "保存";
+    }
+  },
+  watch: {
+    input(newInput) {
+      savedImportString = newInput;
+    }
+  },
+  // Needs to be assigned in created() or else they will end up being undefined when importing
+  created() {
+    const preset = player.endgameMasteries.presets[this.id];
+    this.input = preset ? preset.masteries : savedImportString;
+    this.name = preset ? preset.name : "";
+  },
+  mounted() {
+    this.$refs.input.select();
+  },
+  methods: {
+    update() {
+      this.canEndgame = isEndgameAvailable();
+    },
+    confirm() {
+      if (this.deleting) {
+        this.deletePreset();
+      } else if (this.isImporting) {
+        if (this.respecAndLoad && this.canEndgame) {
+          player.endgame.respec = true;
+          const tree = new EndgameMasteryTree(this.truncatedInput);
+          animateAndEndgame(() => EndgameMasteryTree.commitToGameState(tree.purchasedMasteries, false));
+          return;
+        }
+        this.importTree();
+      } else {
+        this.savePreset();
+      }
+    },
+    convertInputShorthands() {
+      this.input = EndgameMasteryTree.formatMasteryList(this.input);
+    },
+    importTree() {
+      if (!this.inputIsValid) return;
+      if (this.inputIsSecret) SecretAchievement(37).unlock();
+      savedImportString = "";
+      this.emitClose();
+      // We need to use a combined tree for committing to the game state, or else it won't buy masteries in the imported
+      // tree are only reachable if the current tree is already bought
+      EndgameMasteryTree.commitToGameState(this.combinedTreeObject.purchasedMasteries, false);
+    },
+    savePreset() {
+      if (this.inputIsValid) {
+        player.endgameMasteries.presets[this.id].masteries = this.input;
+        GameUI.notify.endgame(`精通树「${this.name}」编辑成功。`);
+        this.emitClose();
+      }
+    },
+    deletePreset() {
+      const name = player.endgameMasteries.presets[this.id].name;
+      const presetName = name ? `精通预设「${name}」` : "精通预设";
+      player.endgameMasteries.presets[this.id].masteries = "";
+      player.endgameMasteries.presets[this.id].name = "";
+      GameUI.notify.endgame(`${presetName} 已从槽位 ${this.id + 1} 删除`);
+    },
+    masteryString(mastery) {
+      return `${mastery.id}`;
+    }
+  },
+};
+</script>
+
+<template>
+  <ModalWrapperChoice
+    :show-cancel="!inputIsValid"
+    :show-confirm="inputIsValid"
+    class="c-modal-import-tree"
+    @confirm="confirm"
+  >
+    <template #header>
+      {{ modalTitle }}
+    </template>
+    <input
+      ref="input"
+      v-model="input"
+      type="text"
+      maxlength="1500"
+      class="c-modal-input c-modal-import-tree__input"
+      :class="{ 'l-delete-input' : deleting }"
+      :disabled="deleting"
+      @keyup.enter="confirm"
+      @keyup.esc="emitClose"
+    >
+    <div class="c-two-column">
+      <div class="c-mastery-info l-modal-import-tree__tree-info">
+        <div v-if="inputIsSecret">
+          ???
+        </div>
+        <template v-else-if="inputIsValidTree">
+          <div
+            v-if="invalidMessage"
+            class="l-modal-import-tree__tree-info-line"
+            v-html="invalidMessage"
+          />
+          <MasteryStringLine
+            v-if="isImporting"
+            :tree="combinedTree"
+            :into-empty="false"
+          />
+          <MasteryStringLine
+            :tree="importedTree"
+            :into-empty="true"
+          />
+          <MasteryTreeInfo
+            v-if="deleting && importedTree.hasInfo"
+            header-text="精通预设包含："
+            :tree-status="importedTree"
+          />
+          <MasteryTreeInfo
+            v-if="!deleting && !isImporting && importedTree.hasInfo"
+            header-text="以<b>无精通</b>状态加载后的情形："
+            :tree-status="importedTree"
+          />
+          <MasteryTreeInfo
+            v-if="!deleting && combinedTree.hasInfo"
+            header-text="以<b>当前树</b>状态加载后的情形："
+            :tree-status="combinedTree"
+          />
+        </template>
+        <div v-if="!deleting && !inputIsValidTree && hasInput">
+          无效的树
+        </div>
+      </div>
+      <div class="c-mastery-preview">
+        <MasteryStringPreview
+          :show-preview="inputIsValidTree"
+          :new-masteries="!isImporting || (canEndgame && respecAndLoad) ? importedTree.newMasteriesArray
+            : combinedTree.newMasteriesArray"
+          :disregard-current-masteries="!isImporting || (canEndgame && respecAndLoad)"
+        />
+      </div>
+    </div>
+    <div v-if="!isImporting && inputIsValidTree">
+      <br>
+      <PrimaryButton
+        v-if="!deleting"
+        v-tooltip="'此操作将格式化精通预设文本，例如将 \'a,b,c|d\' 改为 \'a, b, c | d\'。'"
+        @click="convertInputShorthands"
+      >
+        格式化预设文本
+      </PrimaryButton>
+    </div>
+    <span v-if="isImporting">
+      <br>
+      <div
+        v-tooltip="canEndgame ? '' : '你当前无法进行终局，因此只会执行普通加载。'"
+        class="c-modal__confirmation-toggle"
+        @click="respecAndLoad = !respecAndLoad"
+      >
+        <div
+          :class="{
+            'c-modal__confirmation-toggle__checkbox': true,
+            'c-modal__confirmation-toggle__checkbox--active': respecAndLoad,
+          }"
+        >
+          <span
+            v-if="respecAndLoad"
+            class="fas fa-check"
+          />
+        </div>
+        <span class="c-modal__confirmation-toggle__text">
+          同时重置树并进行终局
+          <span
+            v-if="!canEndgame"
+            class="c-modal__confirmation-toggle__warning"
+          >
+            !
+          </span>
+        </span>
+      </div>
+    </span>
+    <template #confirm-text>
+      {{ confirmText }}
+    </template>
+  </ModalWrapperChoice>
+</template>
+
+<style scoped>
+.c-two-column {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.c-mastery-info {
+  width: 30rem;
+  padding: 0 2rem;
+}
+
+.c-mastery-preview {
+  height: 100%;
+  margin-right: 3rem;
+}
+
+.l-delete-input {
+  color: var(--color-text);
+  background-color: var(--color-disabled);
+  pointer-events: none;
+  user-select: none;
+}
+
+.c-modal__confirmation-toggle__text {
+  opacity: 1;
+}
+
+.c-modal__confirmation-toggle__warning {
+  display: inline-flex;
+  /* stylelint-disable-next-line unit-allowed-list */
+  width: 1em;
+  /* stylelint-disable-next-line unit-allowed-list */
+  height: 1em;
+  justify-content: center;
+  align-items: center;
+  color: #332222;
+  background: var(--color-bad);
+  border-radius: 100%;
+  margin-left: 0.3rem;
+}
+</style>

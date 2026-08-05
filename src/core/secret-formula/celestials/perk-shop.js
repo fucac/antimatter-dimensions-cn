@@ -1,0 +1,129 @@
+function rebuyableCost(initialCost, increment, id) {
+  return initialCost * Math.pow(increment, player.celestials.teresa.perkShop[id]);
+}
+function rebuyable(config) {
+  const { id, otherReq, cap, costCap, description, preChargedEffect, chargedEffect, formatEffect, formatCost, showEffectAfterCharge } = config;
+  return {
+    id,
+    cost: () => (config.cost ? config.cost() : rebuyableCost(config.initialCost, config.increment, config.id)),
+    otherReq,
+    cap,
+    costCap,
+    description,
+    preChargedEffect: () => config.preChargedEffect(player.celestials.teresa.perkShop[config.id]),
+    chargedEffect: () => config.chargedEffect(player.celestials.teresa.perkShop[config.id]),
+    effect: () => config.effect(player.celestials.teresa.perkShop[config.id]),
+    formatEffect,
+    formatCost,
+    rebuyable: true,
+    showEffectAfterCharge
+  };
+}
+
+export const perkShop = {
+  glyphLevel: rebuyable({
+    id: 0,
+    initialCost: 1,
+    increment: 2,
+    description: () => PerkShopUpgrade.glyphLevel.viewCharge ? `以历史最高符文等级倍增失稳前符文之等级` : `失稳前符文等级增益${formatPercents(0.05)}`,
+    effect: () => player.disablePostReality ? 1 : (PerkShopUpgrade.glyphLevel.isCharged
+      ? PerkShopUpgrade.glyphLevel.chargedEffect()
+      : PerkShopUpgrade.glyphLevel.preChargedEffect()),
+    preChargedEffect: bought => Math.pow(1.05, bought),
+    chargedEffect: () => Decimal.pow(player.records.bestEndgame.glyphLevel, 0.2).toNumber(),
+    formatEffect: value => formatX(value, 2, 2),
+    formatCost: value => format(value, 2),
+    costCap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 1048576 : 2048),
+    cap: () => PerkShopUpgrade.glyphLevel.isCharged
+      ? Number.MAX_VALUE
+      : (Ra.unlocks.perkShopIncrease.canBeApplied ? Math.pow(1.05, 20) : Math.pow(1.05, 11)),
+    showEffectAfterCharge: true
+  }),
+  rmMult: rebuyable({
+    id: 1,
+    initialCost: 1,
+    increment: 2,
+    description: () => PerkShopUpgrade.rmMult.viewCharge ? `以反物质数量倍增现实机器之收益与上限` : `现实机器收益倍增`,
+    effect: () => player.disablePostReality ? DC.D1 : (PerkShopUpgrade.rmMult.isCharged
+      ? PerkShopUpgrade.rmMult.chargedEffect()
+      : PerkShopUpgrade.rmMult.preChargedEffect()),
+    preChargedEffect: bought => Decimal.pow(2, bought),
+    chargedEffect: () => Decimal.log10(player.antimatter.add(10)),
+    formatEffect: value => formatX(value, 2),
+    formatCost: value => format(value, 2),
+    costCap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 1048576 : 2048),
+    cap: () => PerkShopUpgrade.rmMult.isCharged
+      ? Number.MAX_VALUE
+      : (Ra.unlocks.perkShopIncrease.canBeApplied ? 1048576 : 2048),
+    showEffectAfterCharge: true
+  }),
+  bulkDilation: rebuyable({
+    id: 2,
+    initialCost: 100,
+    increment: 2,
+    description: () => PerkShopUpgrade.bulkDilation.viewCharge ? `膨胀时间自动购满` : `膨胀时间自动购买每次购置两倍膨胀时间升级`,
+    effect: () => player.disablePostReality ? 1 : (PerkShopUpgrade.bulkDilation.isCharged
+      ? PerkShopUpgrade.bulkDilation.chargedEffect()
+      : PerkShopUpgrade.bulkDilation.preChargedEffect()),
+    preChargedEffect: bought => Math.pow(2, bought),
+    chargedEffect: () => Math.pow(10, 300),
+    formatEffect: value => formatX(value, 2),
+    formatCost: value => format(value, 2),
+    costCap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 1638400 : 1600),
+    cap: () => PerkShopUpgrade.bulkDilation.isCharged
+      ? Number.MAX_VALUE
+      : (Ra.unlocks.perkShopIncrease.canBeApplied ? 16384 : 16),
+    showEffectAfterCharge: false
+  }),
+  autoSpeed: rebuyable({
+    id: 3,
+    initialCost: 1000,
+    increment: 2,
+    description: () => PerkShopUpgrade.autoSpeed.viewCharge ? `无限维度、时间维度、膨胀时间与复制器自动购买间隔瞬发` : `无限维度、时间维度、膨胀时间与复制器自动购买速率提升${formatX(2)}倍`,
+    effect: () => player.disablePostReality ? 1 : (PerkShopUpgrade.autoSpeed.isCharged
+      ? PerkShopUpgrade.autoSpeed.chargedEffect()
+      : PerkShopUpgrade.autoSpeed.preChargedEffect()),
+    preChargedEffect: bought => Math.pow(2, bought),
+    chargedEffect: () => Math.pow(10, 300),
+    formatEffect: value => formatX(value, 2),
+    formatCost: value => format(value, 2),
+    costCap: () => (Ra.unlocks.perkShopIncrease.canBeApplied ? 64000 : 4000),
+    cap: () => PerkShopUpgrade.autoSpeed.isCharged
+      ? Number.MAX_VALUE
+      : (Ra.unlocks.perkShopIncrease.canBeApplied ? 64 : 4),
+    showEffectAfterCharge: false
+  }),
+  musicGlyph: rebuyable({
+    id: 4,
+    description: () => PerkShopUpgrade.musicGlyph.viewCharge ? `解锁自动购买以自动购置与净化音律符文` : `获随机类型音律符文一具，其等级为君之最高等级的${formatPercents(0.8)}。（尝试点之！）`,
+    cost: () => 1,
+    formatCost: value => formatInt(value),
+    costCap: () => Number.MAX_VALUE,
+    cap: () => Number.MAX_VALUE,
+    showEffectAfterCharge: false
+  }),
+  // Only appears with the perk shop increase upgrade
+  fillMusicGlyph: rebuyable({
+    id: 5,
+    description: () => `以音律符文填满您行囊中所有空位`,
+    cost: () => Math.clampMin(GameCache.glyphInventorySpace.value, 1),
+    otherReq: () => GameCache.glyphInventorySpace.value > 0,
+    formatCost: value => formatInt(value),
+    costCap: () => Number.MAX_VALUE,
+    cap: () => Number.MAX_VALUE,
+    showEffectAfterCharge: false
+  }),
+  // My bored ass having to do this shit smh also ditto to the above but for Teresa Expansion Pack
+  addCharges: rebuyable({
+    id: 6,
+    initialCost: 1e10,
+    increment: 1e10,
+    description: () => `解锁一项新的充能复兴升级`,
+    effect: bought => Math.floor(bought),
+    formatEffect: value => formatInt(value),
+    formatCost: value => format(value, 2),
+    costCap: () => 1e60,
+    cap: () => 5,
+    showEffectAfterCharge: false
+  }),
+};

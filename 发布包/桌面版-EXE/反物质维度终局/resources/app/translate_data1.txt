@@ -1,0 +1,625 @@
+<<<OLD>>>
+Ancient cave paintings with the number 5 have been found. It's implied they were waiting for something.
+<<<NEW>>>
+发现了带有数字 5 的古代洞穴壁画。暗示他们当时在等待什么。
+<<<END>>>
+<<<OLD>>>
+Of course paperclips have a use, you use them to hold papers together. But who uses paper anymore?
+<<<NEW>>>
+回形针当然有用了，你用它来夹纸。但现在谁还用纸啊？
+<<<END>>>
+<<<OLD>>>
+Global Challenge - across all AD players, accumulate ${format(Number.MAX_VALUE, 2)} contest-paperclips
+        (noted by the
+        square ends), to receive an event-exclusive metal bagpipe, capable of giving +2 AM/s, as well as an extra
+        tickspeed while above ${format(1e200)} tickspeed upgrades! Current global progress -
+        ${format(fakeProgress)}/${format(Number.MAX_VALUE, 2)}
+        (${formatPercents(Math.log10(fakeProgress) / Math.log10(Number.MAX_VALUE), 3)})
+<<<NEW>>>
+全球挑战 - 在所有 AD 玩家中，累积 ${format(Number.MAX_VALUE, 2)} 个比赛回形针
+        （由
+        方形端表示），即可获得活动专属金属风笛，能给予 +2 AM/s，并在 ${format(1e200)} 滴答速升级以上时额外获得一个
+        滴答速！当前全球进度 -
+        ${format(fakeProgress)}/${format(Number.MAX_VALUE, 2)}
+        (${formatPercents(Math.log10(fakeProgress) / Math.log10(Number.MAX_VALUE), 3)})
+<<<END>>>
+<<<OLD>>>
+Real life is an enigma. No one knows how it really works. There are many questions left unanswered:
+      What is the meaning of life? Are we all living inside a simulation? How do you do antitables? Where and
+      how did existence begin? These are all the questions that always linger in the back of our heads, and
+      the answers to them? We may never know.
+<<<NEW>>>
+现实生活是个谜。没人知道它究竟怎么运作。有许多问题仍无答案：
+      生命的意义是什么？我们都生活在模拟之中吗？反桌怎么做？存在是从何开始、
+      如何开始的？这些问题总是萦绕在我们脑海，而答案？我们可能永远不会知道。
+<<<END>>>
+<<<OLD>>>
+Japanese complain, as haikus can't be shown here. Conflict arises.
+<<<NEW>>>
+日本人抱怨，因为这里无法显示俳句。冲突随之而起。
+<<<END>>>
+<<<OLD>>>
+Did you know Antimatter Dimensions is also available on Android? <a
+      href="https://play.google.com/store/apps/details?id=kajfosz.antimatterdimensions" target="_blank">
+      Click here to check it out!<a>
+<<<NEW>>>
+你知道吗？反物质维度也有安卓版本！<a
+      href="https://play.google.com/store/apps/details?id=kajfosz.antimatterdimensions" target="_blank">
+      点击此处查看！<a>
+<<<END>>>
+<<<OLD>>>
+Pluto isn't a state. The 50 states, as we all know, are: Adverb, Air, Artemis, Asia, Atlantic, Bargaining,
+      Bilabial, Braille, Candela, Comma, Dacron, Dairy, Dative, Dexterity, Disenchanter, Dodecahedron, Erie,
+      Eukaryota, Folklore, Great Pyramid, Halogen, Igneous, Italy, Kansas, Kilimanjaro, Lambda, Leviticus, Libra,
+      Liquid, Lymphatic, Mesozoic, Microwave, Muon, North, Nova Scotia, Octagon, October, P = NP, Perissodactyla,
+      Polk, Potassium, Pulley, Quinary, Rook, Saturn, Tiana, Tiger, Varaha, Yale, and Yellow.
+<<<NEW>>>
+冥王星不是一个州。众所周知，50 个州分别是：副词、空气、阿尔忒弥斯、亚洲、大西洋、讨价还价、
+      双唇音、盲文、坎德拉、逗号、涤纶、乳制品、与格、灵巧、附魔解除者、十二面体、伊利、
+      真核生物、民间传说、大金字塔、卤素、火成岩、意大利、堪萨斯、乞力马扎罗、λ、利未记、天秤座、
+      液体、淋巴、中生代、微波、μ子、北方、新斯科舍、八边形、十月、P=NP、奇蹄目、
+      波尔克、钾、滑轮、五进制、车、土星、蒂安娜、老虎、筏罗诃、耶鲁和黄色。
+<<<END>>>
+<<<OLD>>>
+<span style='color: red'>[News Message removed by moderator]<span>
+<<<NEW>>>
+<span style='color: red'>[新闻消息已被管理员移除]<span>
+<<<END>>>
+<<<OLD>>>
+We have come, writers, painters, sculptors, architects, passionate enthusiasts of the hitherto untouched
+        beauty of Paris, to protest with all our strength, all our indignation, in the name of the unknown French
+        taste, in the name of art and of French history threatened, against the erection, in the heart of our
+        capital, of the useless and monstrous Eiffel Tower, which public malignity, often marked by common sense
+        and the spirit of justice, has already named of "Tower of Babel". Without falling into the exaltation of
+        chauvinism, we have the right to proclaim that Paris is the unrivaled city in the world. Above the streets,
+        the widened boulevards, and the magnificent walks, rise the most noble monuments that the human race has
+        produced. The soul of France, creator of masterpieces, shines amidst this august flowering of stones. Italy,
+        Germany and Flanders, so justifiably proud of their artistic legacy, possess nothing comparable to ours,
+        and from all corners of the universe Paris attracts curiosities and admiration.
+<<<NEW>>>
+我们来了——作家、画家、雕塑家、建筑师，作为巴黎迄今未受玷污之美的热情爱好者，以全部力量、
+        全部愤慨，以法兰西未知的品味之名，以受威胁的艺术与法兰西历史之名，抗议在我国首都心脏地带
+        嫌恶地耸立的无用而怪诞的埃菲尔铁塔。公众的怨毒——常带有常识与正义感——早已将其称为
+        "巴别塔"。在不陷入沙文主义狂热的前提下，我们有权宣告：巴黎是举世无双之城。在街道、
+        拓宽的林荫大道与壮丽的步道之上，耸立着人类所产生的最崇高的纪念碑。法兰西之灵魂——
+        杰作之缔造者——在这庄严的石之花丛中熠熠生辉。意大利、德意志与佛兰德斯虽以其艺术遗产自豪，
+        却无一可与我们相提并论；从宇宙各个角落，巴黎吸引着猎奇与赞美。
+<<<END>>>
+<<<OLD>>>
+Are we going to let all this be profaned? Will the city of Paris go on to associate itself longer with the
+        baroques, with the mercantile imaginations of a machine builder, to become irreparably ugly and dishonor
+        itself? For the Eiffel Tower, which commercial America itself would not want, is, doubtless, the dishonor
+        of Paris. Everyone feels it, everyone says it, everyone deeply grieves it, and we are only a weak echo of
+        the universal opinion, so legitimately alarmed.
+<<<NEW>>>
+难道我们要让这一切被亵渎吗？巴黎城难道要继续与巴洛克怪诞、与一个机械制造者的铜臭想象为伍，
+        变得不可挽回地丑陋、自取其辱吗？因为埃菲尔铁塔——连商业化的美国都不屑一顾——无疑是巴黎之耻。
+        人人感之，人人言之，人人痛之，我们不过是这理所当然警觉的普遍舆论中微弱的回响。
+<<<END>>>
+<<<OLD>>>
+Finally, when the foreigners come to visit our Exhibition, they will exclaim, astonished: "What? It is this
+        horror that the French have found to give us an idea of their taste so much vaunted? And they will be right
+        to make fun of us, because the Paris of the sublime gothics, the Paris of Jean Goujon, Germain Pilon, Puget,
+        Rude, Barye, etc., will have become the Paris of M. Eiffel.
+<<<NEW>>>
+最后，当外国人前来参观我们的博览会时，他们会惊叹道："什么？这就是法国人用以展示其吹嘘品味
+        的恐怖之物？" 而他们嘲笑我们将是有道理的，因为崇高哥特式的巴黎，让·古戎、日耳曼·皮隆、
+        普热、吕德、巴里等人的巴黎，将变成埃菲尔先生的巴黎。
+<<<END>>>
+<<<OLD>>>
+It suffices, moreover, to realize what we are doing, to imagine for a moment a vertiginously ridiculous
+        tower dominating Paris, as well as a gigantic factory chimney, crushing with its barbarian mass. Our Lady,
+        the Sainte-Chapelle, the dome of the Invalides, the Arc de Triomphe, all our humiliated monuments, all our
+        shrunken architectures, which will disappear in this astonishing dream. And for twenty years, we will see
+        how to stretch out over the entire city, still quivering with the genius of so many centuries, we will see
+        the odious shadow of the odious column of bolted sheet metal stretch like an ink stain ...
+<<<NEW>>>
+此外，只需想想我们在做什么——想象一座令人目眩的荒谬铁塔凌驾于巴黎之上，如同巨大的工厂烟囱，
+        以其野蛮的体量碾压一切。圣母院、圣礼拜堂、荣军院穹顶、凯旋门——我们所有受辱的纪念碑，
+        我们所有萎缩的建筑，都将消失在这场荒诞的梦中。二十年间，我们将看到——在仍颤动着
+        数个世纪天才之气的整座城市上空——那可憎的螺栓钢板柱的可憎阴影如墨渍般蔓延……
+<<<END>>>
+<<<OLD>>>
+It's up to you, Monsieur and dear compatriot, to you who love Paris so much, who have embellished it so
+        much, who have so often protected it against the administrative devastation and the vandalism of industrial
+        enterprises, that it is the honor to defend it once more. We leave it to you to plead the cause of Paris,
+        knowing that you will deploy all the energy, all the eloquence that must inspire an artist such as you love
+        what is beautiful, what is great, what is right ... And if our cry of alarm is not heard, if our reasons are
+        not listened to, if Paris is stubborn in the idea of dishonoring Paris, we will have, at least, you and us,
+        hear a protest that honors.
+<<<NEW>>>
+亲爱的同胞先生，这取决于你——如此热爱巴黎的你，如此装点巴黎的你，如此多次保护它免受
+        行政破坏与工业企业之野蛮行径的你——再次捍卫它是你的荣耀。我们将巴黎之业托付于你，
+        深知你将倾注身为艺术家的你热爱美、伟大与正义所应有的全部能量与雄辩……若我们的警钟
+        无人倾听，若我们的理由无人理睬，若巴黎执意自取其辱，至少你我将共同发出一场荣耀的抗议。
+<<<END>>>
+<<<OLD>>>
+Alexander wept, for he had just watched a pop-culture lecture on quantum mechanics by Anaxarchus and
+      realised that there are infinite worlds to conquer, and that he couldn't even be the lord of one without
+      a mutiny or 6 stopping him.
+<<<NEW>>>
+亚历山大哭了，因为他刚看了阿那克萨库斯讲的流行文化版量子力学讲座，
+      意识到还有无数世界可征服，而没有一个他能称王而不被一次或六次叛乱阻止的。
+<<<END>>>
+<<<OLD>>>
+Hi, I'm here to complain about the poor quality of the copper that has just been delivered to me.
+<<<NEW>>>
+你好，我来投诉刚送来的铜质量太差。
+<<<END>>>
+<<<OLD>>>
+      This news message is antimemetic. You will forget that it exists shortly.</span>
+<<<NEW>>>
+      这条新闻消息是反模因的。你很快就会忘记它的存在。</span>
+<<<END>>>
+<<<OLD>>>
+Press "Choose save" to explore the other 2 parallel universes.
+<<<NEW>>>
+按"选择存档"来探索另外 2 个平行宇宙。
+<<<END>>>
+<<<OLD>>>
+The Scientific Community remains baffled over the meaning of 286,078. "We're certain it's related to potatoes,
+      but we need to do more tests." one researcher notes.
+<<<NEW>>>
+科学界仍对 286,078 的含义感到困惑。一位研究员指出："我们确定它与土豆有关，
+      但还需做更多测试。"
+<<<END>>>
+<<<OLD>>>
+Local incremental game dev makes physicists unhappy again. They claim
+      "the physics violations and blatant use of technobabble has gone too far".
+<<<NEW>>>
+本地增量游戏开发者又让物理学家不高兴了。他们声称
+      "物理违规和明目张胆的技术胡扯已经太过分了"。
+<<<END>>>
+<<<OLD>>>
+We're having a sale of top quality waterproof towels! Be sure to get some on your way out!
+<<<NEW>>>
+我们正在特价出售顶级防水毛巾！出门时一定要买一些！
+<<<END>>>
+<<<OLD>>>
+Hevipelle Incorporated is proud to present a new brand of cereal: The Big Crunch! This nutritious breakfast
+      meal contains crunchy antimatter O's, pocket dimensions, Infinity-flavored Sugar Cubes, exponentially-growing
+      Replicanti, and Eternity-flavored Marshmallows. Now you can experience Antimatter Dimensions inside of your
+      stomach! Warning: Side effects may include spontaneous combustion, nausea, vomiting, diarrhea,
+      dematerialization, vaporization, heart failure, the end of the world, or death. If you are not made out of
+      antimatter, consult an educated professional on Antimatter Consumption before eating 'The Big Crunch'.
+<<<NEW>>>
+Hevipelle 公司自豪地推出全新麦片品牌：The Big Crunch！这款营养早餐
+      含有脆脆的反物质 O、口袋维度、无限味方糖、指数增长的复制元和永恒味棉花糖。
+      现在你可以在胃里体验反物质维度了！警告：副作用可能包括自燃、恶心、呕吐、腹泻、
+      分解、蒸发、心力衰竭、世界末日或死亡。如果你不是由反物质构成的，
+      在食用"The Big Crunch"前请咨询受过专业教育的反物质消费顾问。
+<<<END>>>
+<<<OLD>>>
+The most expensive thing about a dragon isn't the gold you need to fill the nest, the magic you sacrifice
+      entire empires for, or the billions of wars you need to supply the decillions of adamantium. No, it is the
+      dirt. It's always the dirt. Don't ask the royal treasurers why we have more creatures on the plane than
+      molecules of dirt. Just keep summoning bulldozers through arcane rituals and keep looking through the
+      earth's core for more scraps of dirt.
+<<<NEW>>>
+养龙最昂贵的不是填满巢穴所需的黄金，不是你为之牺牲整个帝国的魔法，
+      也不是供应数十亿战争所需数万亿金刚石的资金。不，是泥土。永远是泥土。
+      别问皇家财务官为什么我们这个位面上的生物比泥土分子还多。
+      继续用秘术仪式召唤推土机，继续在地球核心寻找更多泥土碎屑吧。
+<<<END>>>
+<<<OLD>>>
+Illustration 320-A - True Office Graphics Wall. One of our senior consultants will observe your business,
+        and come up with a list of words to be added to a hallway, to remind all employees of the values of their
+        company. Known to decrease employee motivation by at least 25%! Past walls include words such as Black
+        Hole, Catastrophic, Haphazard, compromising, Inferior, Delusional, Inefficient and Collapsed! Order now!
+<<<NEW>>>
+插画 320-A - 真正的办公室图形墙。我们的一位资深顾问将观察您的企业，
+        然后列出一份要添加到走廊上的词汇，以提醒所有员工公司的价值观。
+        已知会使员工积极性下降至少 25%！过往墙面词汇包括黑洞、
+        灾难性、杂乱无章、妥协、劣等、妄想、低效和崩塌！立即订购！
+<<<END>>>
+<<<OLD>>>
+Furniture 150-A (2034 edition) - 3-person seating device. A revolutionary new design for office waiting
+        areas, it consists of a large 3 legged stool, placed upside down for aesthetic benefits. Perfect for
+        getting employees back to work, in a new set of shoes, or pants. It isn't tied down or glued to the
+        floor like other editions, but we do make sure that other employees look at you funny if you edit our
+        art. No need to order, it comes as a complimentary service for any customer!
+<<<NEW>>>
+家具 150-A（2034 版）- 3 人座位装置。革命性的办公室等候区新设计，
+        由一个大型 3 腿凳倒置放置以获得美学效益。非常适合让员工
+        穿着新鞋或新裤子重返工作岗位。它不像其他版本那样被绑住或粘在
+        地板上，但我们确实会确保其他员工用怪异的眼神看你——如果你擅自修改我们的
+        艺术品的话。无需订购，它作为免费服务提供给任何顾客！
+<<<END>>>
+<<<OLD>>>
+Furniture 0853 - "The Rack" - this revolutionary new workspace, from the inventors of the crawling
+        desk, helps your employees overcome their limits and ensure that your whole business is screaming -
+        in agony! At times chosen by our revolutionary "pAIn AI", it will suggest mandatory stretchers for all
+        users. Recommended by your local gaol, order now! *Warning, AOS&C only takes responsibility for acts
+        of god such as lightning or merciful purifications by deities.
+<<<NEW>>>
+家具 0853 - "拉肢架" - 这款革命性的新工作空间，由爬行桌的发明者打造，
+        帮助你的员工突破极限，确保你整个企业都在尖叫——
+        痛苦地尖叫！由我们革命性的"pAIn AI"选择时间，它会为所有
+        用户建议强制拉伸器。当地监狱推荐，立即订购！*警告，AOS&C 仅对雷霆或神祇慈悲净化等
+        不可抗力事件承担责任。
+<<<END>>>
+<<<OLD>>>
+Antimatter Office Supplies and Co present their new "Modern Office" catalogue! Each template
+        design can be customised for your business, and offers a unique way to promote business synergy! Here
+        is a sneak preview of one of their newest items:
+<<<NEW>>>
+反物质办公用品公司推出全新"现代办公"目录！每个模板
+        设计都可为您企业定制，提供促进业务协同的独特方式！以下是
+        其最新商品的独家预览：
+<<<END>>>
+<<<OLD>>>
+I don't like Replicanti. They're coarse and rough and irritating and they replicate everywhere.
+<<<NEW>>>
+我不喜欢复制元。它们又粗又糙又烦人，还到处复制。
+<<<END>>>
+<<<OLD>>>
+Stage magic, such as illusions, has an interesting history. A mix of charlatans attempting to scam people,
+      and actors acting out performances using illusions or sleight of hand. Altering styles of magic, and continued
+      discourse and disagreements over whether it should be stated that it is an illusion, and whether people will
+      magically realise that it is fake and that it does not need to be stated. A schism a century ago split magic
+      into 2 types - gentle, simplistic utilitarian tricks and grand spectacles involving the flashy machinery and
+      beautiful assistants - originating from the popularisation of a single trick involving sawing a person in
+      half. Much more interesting than watching some TV psychic pretending to pull a lottery ticket out from a news
+      ticker, at any rate. Speaking of which, tonight's lottery numbers are 23, 10, 81, 106.4, 3 + 2i, and e.
+<<<NEW>>>
+舞台魔术，比如幻术，有着有趣的历史。是骗子们试图诈骗人们，与演员用幻术或戏法表演的混合体。
+      改变魔术的风格，以及关于是否应说明这是幻术、人们是否会神奇地意识到这是假的、是否需要说明的
+      持续讨论与分歧。一个世纪前的分裂将魔术分为 2 类——温和、简单的实用戏法和涉及花哨机械与
+      美女助手的盛大奇观——后者源于一个把人锯成两半的流行戏法的普及化。怎么说也比看某个电视通灵师
+      假装从新闻播报器里抽出一张彩票有趣得多。说到这里，今晚的彩票号码是 23、10、81、106.4、3 + 2i 和 e。
+<<<END>>>
+<<<OLD>>>
+Snakes look scary, and they absolutely are and you should run, calmly, from every snake you see. But, luckily
+      for you, snakes don't often take the initiative to bite - excluding the really mean ones. If they've gone out
+      of their way to bite you, there's generally 4 reasons. 1- The Snake is Mean. 2- You scared the snake. Snakes
+      are scary to you, but you are scary to snakes. Be the bigger lizard when you meet a snake. 3- You entered the
+      territory of the snake. Often, a snake will warn you if you do this - this is why rattle snakes rattle. If you
+      don't listen to the warning, they'll bite you. And the most important reason, 4- the snake finds you ugly.
+      This is the fault of the snake's ocular system, but is the most common form of bites in at least 2
+      jurisdictions. And if you get bitten by a snake, by virtue of being a scarily ugly lizard who keeps stumbling
+      into the wrong bushes, there's 3 main things you can do. First, calm down, again, and stay calm. Secondly,
+      immobilise the area around site that was bitten, and try using a compression bandage. Snake venom vision is
+      entirely based on movement of the object it's currently in. And third, calmly, call for help from other
+      lizards. Excluding the snake. The snake's too mean to help you.
+<<<NEW>>>
+蛇看起来很可怕，它们确实可怕，你应该冷静地逃离你看到的每一条蛇。但幸运的是
+      对你来说，蛇通常不会主动咬人——除了那些真的很坏的。如果它们费心咬了你，
+      一般有 4 个原因。1- 蛇很坏。2- 你吓到了蛇。蛇对你来说可怕，
+      但你对蛇也可怕。遇到蛇时做更大的蜥蜴吧。3- 你进入了蛇的领地。
+      通常蛇会警告你——这就是响尾蛇响的原因。如果你不听警告，它们就会咬你。
+      而最重要的原因，4- 蛇觉得你丑。这是蛇视觉系统的错，但这是至少 2 个
+      管辖区内最常见的咬人形式。如果你被蛇咬了——作为一个丑陋到吓人、还总是闯进
+      错误灌木丛的蜥蜴——你有 3 件主要的事可做。第一，再次冷静下来，保持冷静。
+      第二，固定被咬部位周围区域，尝试使用压迫绷带。蛇毒视觉完全基于
+      当前所视物体的运动。第三，冷静地向其他蜥蜴求助。
+      不包括蛇。蛇太坏了，不会帮你。
+<<<END>>>
+<<<OLD>>>
+I suspect more people would press the hard reset button if genuine effort was done to make the process as
+      miserable as possible. A slow removal of resources, with unique nerfs just to stop you from progressing. The
+      destruction of UI, turning from usable to unusable, arcane and unwieldy, requiring memory and luck to even
+      continue this quest. Randomness, against the player for even the simplest actions, to punish the thought of
+      progression. Hooks and traps and disasters and low rolls for a chance see progression, which entirely consists
+      of putting the state of the game further from anything deemed reasonable. A situation where the character is
+      broken just to tell you to leave… but the damage is already done, if it is even possible to turn back. And…
+      from there, a hard reset probably isn't enough. It would have to be… harder. Not just a hard reset, but a
+      cookie, something in local storage designed specifically to make it impossible to actually start a new game.
+      Or, something more malicious? And despite this, people would still throw themselves into this nightmare, for
+      humanity knows no bounds in its endless curiosity. No amount of warnings will stop everyone. They will find
+      a way to proceed, given it exists, and may even complain when it isn't as punishing as expected. So, do you
+      want to push the button, and experience the depths of despair, willingly? Hopefully not, because it isn't here.
+<<<NEW>>>
+我怀疑如果真的费心让过程尽可能痛苦，会有更多人按下硬重置按钮。缓慢地剥夺资源，
+      用独特的削弱来阻止你前进。UI 的毁灭，从可用变为不可用、晦涩而笨拙，
+      需要记忆和运气才能继续这个任务。随机性对抗玩家——即使是最简单的行动——以惩罚
+      前进的念头。陷阱、圈套、灾难和低骰值，只为有机会看到进展，而这进展完全是
+      把游戏状态推向更不合理的境地。一个角色被摧毁只为告诉你该离开……但伤害
+      已经造成，如果还能回头的话。而且……从那里起，硬重置可能还不够。
+      必须是……更硬的。不只是硬重置，而是一个 cookie，
+      存在本地存储中专门设计来让新游戏实际上无法开始。
+      或者，更恶毒的东西？尽管如此，人们仍会投身于这场噩梦，因为
+      人类无尽的好奇心没有边界。再多警告也无法阻止所有人。只要存在
+      前进的方法，他们就会找到，甚至可能抱怨它没有预期那么惩罚性。
+      所以，你愿意按下按钮，自愿体验绝望的深渊吗？希望不会，因为按钮不在这里。
+<<<END>>>
+<<<OLD>>>
+An empire-building project is one of the most difficult things to implement. Thousands of hours of time,
+      planning, effort, consultation, and political manoeuvring to create truly airbreaking endeavours. Take the
+      Realmway Revitalisation Roadmap, a revolutionary program referred to by the 3 R's, which is known as the
+      pinnacle of the most famous of the empire's bureaucratic infrastructure committees - the EMIF (empire magic
+      infrastructure foundation) - not to be confused with the EAIF (Electric airship investment fund) or the
+      NMIC (National Magical Infrastructure Coalition). The goal of the three R's, set out by the EMIF, was to
+      reinstate a mana trade corridor for SMSS (Small-Medium Steam Shuttles), a vital part of the burgeoning
+      consolidated states after their unfortunate pillaging during the NELC (ninth empire liberation crusade).
+      The three R's was a multi stage project - stage 1 was a survey glyph in the air - all big things start with
+      a small step. Stage 2, the unveiling of the EMOF (Empire Mechanical Obliteration Forcefield) had over 50
+      dignitaries - multiple emperors (from federated states to organisational leaders), foreign rulers, EMDF
+      (Effluent Manifested Destiny Families) who currently own the land, and even some of the forecast witches,
+      all gathered together to unveil the project in a show of EOSF (Empire Official Solidarity Friendships).
+      Sadly, the project was eventually cancelled at stage 215, as the creation of the EMTF (Excrement Material
+      Transmutation Facility) for the contractors exploded after coming into contact with a SMEA (Small-Medium
+      Electric Airship) placing the last survey peg from stage 459 due to a time vortex created by an argument
+      at the WAIC (Witches Annual Infrastructure Committee) as part of stage 56. Truly, tragic stuff - 3 award
+      nominations and 2 wins during that process due to EBIF (Efficient Bureaucracy In (the) Field).
+<<<NEW>>>
+帝国建设项目是最难实施的事情之一。数千小时的时间、
+      规划、努力、咨询和政治运作，才能创造出真正惊天动地的伟业。以
+      王道复兴路线图为例，这是一个被称为"3R"的革命性计划，
+      被誉为帝国最著名的官僚基础设施委员会之巅——EMIF（帝国魔法
+      基础设施基金会）——不要与 EAIF（电动飞艇投资基金）或
+      NMIC（国家魔法基础设施联盟）混淆。EMIF 制定的"3R"目标是
+      为 SMSS（中小型蒸汽穿梭机）恢复法力贸易走廊——这是
+      新兴联合各州在 NELC（第九次帝国解放十字军）中不幸被掠夺后的
+      重要组成部分。"3R"是一个多阶段项目——阶段 1 是在空中
+      测绘符文——一切大事始于小步。阶段 2，EMOF（帝国机械湮灭力场）的
+      揭幕有 50 多位政要——多位皇帝（从联邦各州到组织领袖）、外国
+      统治者、目前拥有土地的 EMDF（污水天命家族），甚至一些预言女巫，
+      都齐聚一堂为项目揭幕，彰显 EOSF（帝国官方团结友谊）。
+      遗憾的是，项目最终在第 215 阶段被取消，因为承包商建造的 EMTF
+      （排泄物物质嬗变设施）在接触一架放置第 459 阶段最后测绘桩的
+      SMEA（中小型电动飞艇）后爆炸，原因是 WAIC（女巫年度基础设施
+      委员会）在作为第 56 阶段一部分的争吵中制造了时间漩涡。真是
+      悲剧——在此过程中获得 3 项提名和 2 项大奖，归功于 EBIF（实地高效官僚制）。
+<<<END>>>
+<<<OLD>>>
+Man tries installing cookies to store computer data, accidentally cleans them due to being too delicious.
+<<<NEW>>>
+男子尝试安装 cookies 来存储电脑数据，却因太美味而意外地把它们都吃了。（注：cookies 双关"饼干"和"浏览器缓存"）
+<<<END>>>
+<<<OLD>>>
+Pop quiz: there are 3 doors, you pick a door at random, and get to keep what's behind the door. The doors
+      have 2 golden goats, 2 silver goats, and a gold and a silver goat. After you pick a door, the door with the
+      lowest $ worth of goats will be opened and shown to you. After this, you are given the choice to swap.
+      What is the probability that you will swap doors?
+<<<NEW>>>
+突击测验：有 3 扇门，你随机选一扇门，保留门后的东西。门后
+      有 2 只金山羊、2 只银山羊、1 只金银山羊。你选好门后，山羊
+      价值最低的那扇门会被打开给你看。之后，你可以选择换门。
+      你换门的概率是多少？
+<<<END>>>
+<<<OLD>>>
+If you're ever lost in a forest, look at the trees around you. It's said that moss grows north, so by the
+      time you've finished looking at a tree, a roaming guitarist will run up to you and ask if you want to hear
+      wonderwall
+<<<NEW>>>
+如果你在森林里迷了路，看看周围的树。据说苔藓长在北面，所以
+      当你看完一棵树时，一个游荡的吉他手会跑过来问你
+      想不想听 wonderwall
+<<<END>>>
+<<<OLD>>>
+As a symbol of friendship between the Matter and Antimatter Periodic Tables, they have done an exchange of
+      elements. The element of Mony is now part of the Antimatter Periodic Table, while Antimony has been added
+      to the regular Periodic Table.
+<<<NEW>>>
+作为物质与反物质元素周期表之间友谊的象征，它们交换了
+      元素。Mony 现在属于反物质元素周期表，而 Antimony（锑）
+      被加入普通元素周期表。（注：Mony/Antimony 的物质/反物质对应梗）
+<<<END>>>
+<<<OLD>>>
+This newsticker was specifically designed for promotional purposes only.
+<<<NEW>>>
+此新闻条仅专为宣传目的而设计。
+<<<END>>>
+<<<OLD>>>
+As you probably know, it is traditional to give gifts made of certain materials to celebrate anniversaries
+      The classic ones are silver at 25 and gold at 50. Here are some little known anniversary gifts:
+      Pineapple - 37 years Hellstone - 66 years Lizardite- 82 years Nitrowhisperin- 86 years Taconite - 95 years
+      Hatchettite - 100 years Electrum - 110 Yakitoda - 111 years years Fordite - 119 years Bloodstone - 120 years
+      Celestite - 125 years Jet - 140 years Petroleum - 145 years Steel - 150 years Cummingtonite - 198 years
+      Concrete - 200 years Laserblue- 210 years Painite - 250 years Parisite - 255 years Parasite - 260 years
+      Carbon Nanotubes - 300 years Mercury - 310 years Martian Soil - 340 years Neptunium - 370 years
+      Uranium - 380 years Plutonium - 390 years Xium - 400 years Blaze rods - 420 years Asbestos - 430 years
+      Gabite - 444 years Crimtane - 666 years Lagga - 777 years
+<<<NEW>>>
+你可能知道，用特定材料制成的礼物来庆祝周年纪念是传统
+      经典的是 25 周年送银、50 周年送金。以下是一些鲜为人知的周年礼物：
+      菠萝 - 37 年 地狱岩 - 66 年 蜥蜴石 - 82 年 硝低语 - 86 年 铁燧岩 - 95 年
+      斧石 - 100 年 琥珀金 - 110 年 Yakitoda - 111 年 汽车石 - 119 年 血石 - 120 年
+      天青石 - 125 年 煤精 - 140 年 石油 - 145 年 钢 - 150 年 镁铁闪石 - 198 年
+      混凝土 - 200 年 激光蓝 - 210 年 痛苦石 - 250 年 巴黎石 - 255 年 寄生石 - 260 年
+      碳纳米管 - 300 年 汞 - 310 年 火星土 - 340 年 镎 - 370 年
+      铀 - 380 年 钚 - 390 年 Xium - 400 年 烈焰棒 - 420 年 石棉 - 430 年
+      Gabite - 444 年 猩红矿 - 666 年 Lagga - 777 年
+<<<END>>>
+<<<OLD>>>
+Big tech companies have collaborated to create a new neural network that's trained in the generation of rap
+      lyrics, called RAP-3. First lyrical generations include "Call me prometheus 'cuz I bring the fire" and
+      "Call me Sonic the way I'm gettin' these rings". Critics say it still has a way to go before it replaces
+      traditional music.
+<<<NEW>>>
+大型科技公司合作创建了一个新的神经网络，专门用于生成说唱
+      歌词，名为 RAP-3。首批歌词作品包括"叫我普罗米修斯，因为我带来了火"和
+      "叫我索尼克，看我拿到这些戒指"。评论家说它要取代
+      传统音乐还有很长的路要走。
+<<<END>>>
+<<<OLD>>>
+With the new android OS, android 20, being predicted in the near future, the new system for internal codenames
+      has been revealed. The first codename, as it currently stands, is “antimatter”. This conveniently works well
+      with the predicted generation of phones that will use Android 20 - these phones will be the most explosive
+      ever due to their annihilation-based power source. Sources tell us that a billion dollar research unit is
+      working on a name for android 21, by tradition to start with B, “that doesn't sound too bad when you think
+      about it”. 
+<<<NEW>>>
+随着新版安卓系统 Android 20 预计近期发布，新的内部
+      代号系统也已揭晓。目前的第一个代号是“antimatter”（反物质）。
+      这恰好与预计使用 Android 20 的这一代手机相得益彰——由于采用
+      基于湮灭的电源，这些手机将是有史以来最具爆炸性的。
+      消息人士称，一个耗资十亿美元的研究团队正在为 Android 21 起名，
+      按传统以 B 开头，“想想其实也不算太糟”。
+<<<END>>>
+<<<OLD>>>
+If every antimatter were an apple, you would have enough to keep all the doctors away for 3000 years
+<<<NEW>>>
+如果每个反物质都是一个苹果，你拥有的数量足以让所有医生远离 3000 年
+<<<END>>>
+<<<OLD>>>
+THE ${format(Number.MAX_VALUE, 2)} PIECE! THE ${format(Number.MAX_VALUE, 2)} PIECE IS REAL!
+<<<NEW>>>
+THE ${format(Number.MAX_VALUE, 2)} 块！THE ${format(Number.MAX_VALUE, 2)} 块是真的！（注：梗出自《海贼王》"ONE PIECE"）
+<<<END>>>
+<<<OLD>>>
+The FitnessGram Pacer Test is a multistage aerobic capacity test that progressively gets more difficult
+      as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed
+      starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be
+      completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as
+      possible. The second time you fail to complete a lap before the sound, your test is over. The test will
+      begin on the word start. On your mark, get ready, start.
+<<<NEW>>>
+FitnessGram 配速测试是一项多阶段有氧能力测试，难度会
+      随着测试进行逐渐增加。20 米配速测试将在 30 秒后开始。在起跑线排好。
+      跑步速度起初较慢，但听到信号后每分钟会加快。[哔] 每听到
+      这个声音时应完成一圈。[叮] 记住要跑直线，并尽可能跑
+      最长时间。第二次未能在声音前完成一圈时，测试结束。测试将在
+      "开始"一词发出时启动。各就位，预备，开始。
+<<<END>>>
+<<<OLD>>>
+Why do they call it second dimension when you of in the first dimension of out second eat the dimension?
+<<<NEW>>>
+为什么他们叫它第二维度，当你在第一维度里出第二吃维度？（注：保留原文语法混乱的梗）
+<<<END>>>
+<<<OLD>>>
+Any AD player born after 1993 can't joke... All they know is 5 hours, paperclips, 1.79e308 & Ninth Dimension.
+<<<NEW>>>
+任何 1993 年后出生的 AD 玩家都不会开玩笑……他们只知道 5 小时、回形针、1.79e308 和第九维度。
+<<<END>>>
+<<<OLD>>>
+The only thing better than an anti-joke is two. Like the number. Not two anti-jokes. I just like the number two.
+<<<NEW>>>
+唯一比反笑话更好的是两。像数字那样。不是两个反笑话。我只是喜欢数字二。
+<<<END>>>
+<<<OLD>>>
+Click here to make nothing happen.
+<<<NEW>>>
+点击此处让什么也不发生。
+<<<END>>>
+<<<OLD>>>
+I wonder... Why did Apple skip iPhone 9 and Microsoft skip Windows 9...
+      Was it because they were bribed by a game developer?
+<<<NEW>>>
+我想知道……为什么苹果跳过了 iPhone 9，微软跳过了 Windows 9……
+      是因为他们被某个游戏开发者贿赂了吗？
+<<<END>>>
+<<<OLD>>>
+9 out of 10 doctors recommended against trying to touch antimatter. We haven't heard back from the 10th one.
+<<<NEW>>>
+10 位医生中有 9 位建议不要尝试触摸反物质。我们还没收到第 10 位医生的消息。
+<<<END>>>
+<<<OLD>>>
+In spring, Man built a pillar. In summer, another. Throughout autumn they held. But in winter, one experienced
+      an unexpected (See definition in: Abstract Multidimensional Retrocausal Physics) ZW-Class "Ascension" event,
+      and is hypothesised to have fallen into a dimensional loophole, where it, by definition, has to take up more
+      dimensions than itself. Current efforts at retrieving the pillar and returning it to baseline reality have been
+      unsuccessful (See test log 2453-3e9a-50d1-84fc for more details)
+<<<NEW>>>
+春天，人类造了一根柱子。夏天，又造了一根。整个秋天它们都屹立不倒。但冬天，其中一根经历了
+      一次意外的（参见：抽象多维逆向因果物理学定义）ZW 级"飞升"事件，
+      被假设已坠入一个维度漏洞，在那里，根据定义，它必须占据比自身更多的
+      维度。目前取回柱子并将其送回基线现实的所有努力均告失败
+      （详情见测试日志 2453-3e9a-50d1-84fc）
+<<<END>>>
+<<<OLD>>>
+In light of recent events, we'd like to issue an official statement. Antimatter Dimensions™ is in no way
+      affiliated with Jimmy's Causality Violating Brainworms™. We do not endorse, nor were we involved in their creation
+      of the product which was involved in several catastrophic dimension-destabilising and reality-toppling incidents.
+      We almost certainly did not sign a contract at 5:30:26 UTC on 08/12/1994 after discussing how we could benefit
+      from destabilising and warping dimensions. There was no industrial zone constructed in the 5th Orion Arm of the
+      వ' galaxy, and even if they were we did not install localised anomalies following the Scranton Reality Anti-anchor
+      mechanism. Additionally, no time loop is occurring at Acroamatic Abatement Facility AAF-D in site 43. We apologise
+      if things seemed this way, and we will be more thorough in cracking down misinformation in the future.
+<<<NEW>>>
+鉴于近期事件，我们想发表一份官方声明。反物质维度™ 绝不
+      与 Jimmy's Causality Violating Brainworms™（吉米因果违规脑虫）有关联。我们既不认可，也未参与他们
+      创造该产品——该产品卷入了数起灾难性的维度失稳和现实倾覆事件。
+      我们几乎可以肯定没有在 1994 年 08 月 12 日 UTC 5:30:26 签署合同，讨论如何从
+      破坏和扭曲维度中获益。猎户座旋臂第 5 区
+      వ' 星系中并未建造工业区，即使有，我们也未按照 Scranton 现实反锚
+      机制安装局部异常。此外，43 号站点 Acroamatic 消减设施 AAF-D 内并未发生时间循环。若造成
+      此类印象我们深表歉意，未来我们将更彻底地打击虚假信息。
+<<<END>>>
+<<<OLD>>>
+If only we could condense the antimatter in the universe into cookies...
+<<<NEW>>>
+要是我们能将宇宙中的反物质压缩成饼干就好了……
+<<<END>>>
+<<<OLD>>>
+Can you believe it guys? Update, just 5 hours away. Update is in a 5 hours. Wahoo. I'm so happy about this
+      information. Update just 5 hours away. Oh wow. Can you believe it? Update just in a 5 hours. It got here so
+      fast. Update, just 5 hours.
+<<<NEW>>>
+你们敢信吗？更新，只要 5 小时就到了。更新在 5 小时内。哇哦。我太高兴听到这个
+      消息了。更新只要 5 小时。哦哇。你们敢信吗？更新只要 5 小时。来得
+      真快。更新，只要 5 小时。
+<<<END>>>
+<<<OLD>>>
+Hello. My name is Supersonic Seven. If you are here, then this means you are one of the few admitted into the
+      Council of the Elite. Congratulations. I will be the first to say this: Welcome to Endgame. Endgame is a dangerous
+      place. You have already seen it may appear easier at first, it most certainly is not. After reaching the monumentous
+      landmark of e9e15 Antimatter, the simulation will end, and you will be awakened into the real world. You will find
+      the real world to be very similar to the simulation, however it is much longer and will take years of dedication to
+      progress. If you are up for the challenge, click on Enter the Endgame. Otherwise, you may opt-out when you like. The
+      choice is yours. If you choose to stay, then Endgame is yours. Happy playing.
+<<<NEW>>>
+你好。我叫 Supersonic Seven。如果你到了这里，说明你是少数被选入
+      精英议会的幸运儿。恭喜。我会第一个说：欢迎来到终局。终局是个危险的
+      地方。你已经看到它起初看似容易，但绝对不是。在达到 e9e15 反物质这一
+      里程碑后，模拟将结束，你将苏醒进入真实世界。你会发现
+      真实世界与模拟非常相似，但它长得多，需要数年的投入才能
+      进步。如果你准备好接受挑战，点击"进入终局"。否则，你可以随时退出。
+      选择权在你。如果你选择留下，终局就是你的。玩得开心。
+<<<END>>>
+<<<OLD>>>
+"The 5 Hours are over. Endgame has been released. What is Endgame? You'll have to keep playing to see for yourself."
+      - Supersonic Seven
+<<<NEW>>>
+"5 小时已到。终局已发布。终局是什么？你得继续玩才能亲眼见证。"
+      - Supersonic Seven
+<<<END>>>
+<<<OLD>>>
+Yo! I just got a 9th Dimension! Too bad I can't use it until the Celestial Plus Update...
+<<<NEW>>>
+哟！我刚得到一个第九维度！可惜在"天神加强"更新前都用不了……
+<<<END>>>
+<<<OLD>>>
+Apologies for the inconvenience. We had to remove the last news message because it was conflicting with the
+      game's storyline. You don't want fake news, do you? Anyway, I'll let you get back to AD: Endgame now.
+<<<NEW>>>
+为不便致歉。我们不得不移除上一条新闻消息，因为它与
+      游戏剧情冲突。你不想看到假新闻吧？总之，我让你回去玩 AD: 终局了。
+<<<END>>>
+<<<OLD>>>
+Antimatter Dimensions: Endgame™ will be released in 5 hours.
+<<<NEW>>>
+《反物质维度：终局》将在 5 小时后发布。
+<<<END>>>
+<<<OLD>>>
+Supersonic Seven here. Today we have been asked a simple question. Does the 9th Dimension exist? The answer is
+      more simple than you think. Yes, the 9th Dimension CAN exist, however it takes a lot of power for one to ascend
+      to that level. After you are able to create the 9th Dimension, you'll have to unlock a series of upgrades classified
+      as "Mechanics" in order to get more. After that, there really is no limit to how many 9th Dimensions one can possess.
+      However, the number that can be safely possessed is another story.
+<<<NEW>>>
+Supersonic Seven 在此。今天有人问了我们一个简单的问题。第九维度存在吗？答案
+      比你想的更简单。是的，第九维度 CAN 存在，但一个人要飞升
+      到那个层次需要大量能量。在你能够创造第九维度后，你还得解锁一系列被归类为
+      "机制"的升级才能获得更多。在那之后，一个人能拥有的第九维度数量确实没有上限。
+      但是，能安全拥有的数量就是另一回事了。
+<<<END>>>
+<<<OLD>>>
+THE 11TH DIMENSION DOESN'T EXIST!!! "So where's the 10th?" STOP ASKING QUESTIONS!!!
+<<<NEW>>>
+第 11 维度不存在！！！"那第 10 维度在哪？"别再问问题了！！！
+<<<END>>>
+<<<OLD>>>
+ANTIMATTER DIMENSIONS: ENDGAME
+<<<NEW>>>
+反物质维度：终局
+<<<END>>>
+<<<OLD>>>
+The Endgame Update is the first major update of Antimatter Dimensions conducted by Supersonic Seven after the
+    release of Hevipelle's Reality Update. There will be two more major updates: Celestial Plus, and Expansion. The
+    Expansion Update will be split into the Expanse and Existence Updates.
+<<<NEW>>>
+终局更新是 Supersonic Seven 在 Hevipelle 的现实更新
+    发布后进行的第一次反物质维度大版本更新。之后还有两次大更新：天神加强和扩展。
+    扩展更新将被拆分为 Expanse（拓展）和 Existence（存在）更新。
+<<<END>>>

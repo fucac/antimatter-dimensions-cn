@@ -1,0 +1,170 @@
+<script>
+import ModalWrapper from "@/components/modals/ModalWrapper";
+import SingularityMilestoneComponent from "@/components/tabs/celestial-laitela/SingularityMilestoneComponent";
+
+export default {
+  name: "SingularityMilestonesModal",
+  components: {
+    SingularityMilestoneComponent,
+    ModalWrapper,
+  },
+  data() {
+    return {
+      milestones: [],
+      resourceVal: 0,
+      sortVal: 0,
+      completedVal: 0,
+      orderVal: 0,
+      milestoneGlow: false,
+    };
+  },
+  computed: {
+    resourceStr() {
+      const states = ["奇点数量", "凝聚次数", "手动时间", "自动时间"];
+      return states[this.resourceVal];
+    },
+    sortStr() {
+      const states = ["所需奇点数", "当前完成数", "完全完成进度",
+        "最终奇点数", "最近达成"];
+      return states[this.sortVal];
+    },
+    completedStr() {
+      const states = ["首个", "末个", "保持位置"];
+      return states[this.completedVal];
+    },
+    orderStr() {
+      const states = ["升序", "降序"];
+      return states[this.orderVal];
+    },
+  },
+  watch: {
+    resourceVal(newValue) {
+      player.celestials.laitela.singularitySorting.displayResource = newValue;
+    },
+    sortVal(newValue) {
+      player.celestials.laitela.singularitySorting.sortResource = newValue;
+    },
+    completedVal(newValue) {
+      player.celestials.laitela.singularitySorting.showCompleted = newValue;
+    },
+    orderVal(newValue) {
+      player.celestials.laitela.singularitySorting.sortOrder = newValue;
+    },
+    milestoneGlow(newValue) {
+      player.celestials.laitela.milestoneGlow = newValue;
+    },
+  },
+  beforeDestroy() {
+    player.celestials.laitela.lastCheckedMilestones = Currency.singularities.value;
+  },
+  methods: {
+    update() {
+      this.milestones = SingularityMilestones.sortedForCompletions(true);
+      const settings = player.celestials.laitela.singularitySorting;
+      this.resourceVal = settings.displayResource;
+      this.sortVal = settings.sortResource;
+      this.completedVal = settings.showCompleted;
+      this.orderVal = settings.sortOrder;
+      this.milestoneGlow = player.celestials.laitela.milestoneGlow;
+    },
+    cycleButton(id) {
+      const settings = player.celestials.laitela.singularitySorting;
+      let stateCount;
+      switch (id) {
+        case 0:
+          stateCount = Object.keys(SINGULARITY_MILESTONE_RESOURCE).length;
+          settings.displayResource = (settings.displayResource + 1) % stateCount;
+          break;
+        case 1:
+          stateCount = Object.keys(SINGULARITY_MILESTONE_SORT).length;
+          settings.sortResource = (settings.sortResource + 1) % stateCount;
+          break;
+        case 2:
+          stateCount = Object.keys(COMPLETED_MILESTONES).length;
+          settings.showCompleted = (settings.showCompleted + 1) % stateCount;
+          break;
+        case 3:
+          stateCount = Object.keys(SORT_ORDER).length;
+          settings.sortOrder = (settings.sortOrder + 1) % stateCount;
+          break;
+        default:
+          throw new Error("Unrecognized Singularity milestone sorting button");
+      }
+    },
+    glowOptionClass() {
+      return {
+        "c-modal__confirmation-toggle__checkbox": true,
+        "c-modal__confirmation-toggle__checkbox--active": this.milestoneGlow
+      };
+    },
+    toggleGlow() {
+      this.milestoneGlow = !this.milestoneGlow;
+    }
+  },
+};
+</script>
+
+<template>
+  <ModalWrapper>
+    <template #header>
+      奇点里程碑
+    </template>
+    <div
+      class="c-modal__confirmation-toggle"
+      @click="toggleGlow"
+    >
+      <div :class="glowOptionClass()">
+        <span
+          v-if="milestoneGlow"
+          class="fas fa-check"
+        />
+      </div>
+      <span class="c-modal__confirmation-toggle__text">
+        当达成新里程碑时使按钮发光
+      </span>
+    </div>
+    <div class="l-singularity-milestone-modal-container-outer">
+      <div class="l-singularity-milestone-modal-container-inner">
+        <SingularityMilestoneComponent
+          v-for="milestone in milestones"
+          :key="milestone.id"
+          :milestone="milestone"
+        />
+      </div>
+    </div>
+    <div class="l-singularity-milestone-sort-container">
+      <button
+        class="c-singularity-milestone-modal-sort-button"
+        @click="cycleButton(0)"
+      >
+        至里程碑:
+        <br>
+        {{ resourceStr }}
+      </button>
+      <button
+        class="c-singularity-milestone-modal-sort-button"
+        @click="cycleButton(1)"
+      >
+        排序依据:
+        <br>
+        {{ sortStr }}
+      </button>
+      <button
+        class="c-singularity-milestone-modal-sort-button"
+        @click="cycleButton(2)"
+      >
+        已完成里程碑:
+        <br>
+        {{ completedStr }}
+      </button>
+      <button
+        class="c-singularity-milestone-modal-sort-button"
+        @click="cycleButton(3)"
+      >
+        排序顺序:
+        <br>
+        {{ orderStr }}
+      </button>
+    </div>
+  </ModalWrapper>
+</template>
