@@ -24,6 +24,7 @@ export * from "./ethereal";
 export * from "./hypercubes";
 export * from "./large-hadron-collider";
 export * from "./ascension";
+export * from "./auto-ai";
 
 export * from "./elemental";
 export * from "./destroyer";

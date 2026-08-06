@@ -23,6 +23,9 @@ export default {
       infinityUnlocked: false,
       automatorUnlocked: false,
       automatorLogSize: 0,
+      autoplayEnabled: false,
+      autoplayDecision: { phase: "", strategy: "", progress: "", updatedAt: 0 },
+      autoplayLog: [],
       gameVersion: null,
       versionLoadFailed: false,
     };
@@ -69,6 +72,9 @@ export default {
     automatorLogSize(newValue) {
       player.options.automatorEvents.maxEntries = parseInt(newValue, 10);
     },
+    autoplayEnabled(newValue) {
+      AutoAI.setEnabled(newValue);
+    },
   },
   // This puts the slider in the right spot on initialization
   created() {
@@ -88,6 +94,17 @@ export default {
       this.infinityUnlocked = PlayerProgress.current.isInfinityUnlocked;
       this.automatorUnlocked = Player.automatorUnlocked;
       this.automatorLogSize = options.automatorEvents.maxEntries;
+      const autoplay = player.options.autoplay;
+      this.autoplayEnabled = autoplay && autoplay.enabled === true;
+      if (autoplay) {
+        this.autoplayDecision = {
+          phase: autoplay.decision.phase || "",
+          strategy: autoplay.decision.strategy || "",
+          progress: autoplay.decision.progress || "",
+          updatedAt: autoplay.decision.updatedAt || 0
+        };
+        this.autoplayLog = Array.isArray(autoplay.log) ? autoplay.log : [];
+      }
     },
     // Given the endpoints of 22-54, this produces 500, 600, ... , 900, 1000, 2000, ... , 1e6 ticks
     // It's essentially 10^(x/10) but with the mantissa spaced linearly instead of logarithmically
@@ -130,6 +147,12 @@ export default {
         return `${sha}${msg}`;
       }
       return "未知";
+    },
+    formatAutoplayTime(timestamp) {
+      if (!timestamp) return "";
+      const date = new Date(timestamp);
+      const pad = n => String(n).padStart(2, "0");
+      return `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
     }
   }
 };
@@ -193,6 +216,46 @@ export default {
           />
         </div>
       </div>
+      <div class="l-options-grid__row">
+        <PrimaryToggleButton
+          v-model="autoplayEnabled"
+          class="o-primary-btn--option l-options-grid__button"
+          label="自动游玩（AI 机器人）："
+        />
+      </div>
+      <div v-if="autoplayEnabled" class="c-autoplay-panel">
+        <b class="c-autoplay-panel__title">自动游玩决策面板</b>
+        <div class="c-autoplay-panel__row">
+          <span class="c-autoplay-panel__label">当前阶段：</span>
+          <span>{{ autoplayDecision.phase || "—" }}</span>
+        </div>
+        <div class="c-autoplay-panel__row">
+          <span class="c-autoplay-panel__label">执行策略：</span>
+          <span>{{ autoplayDecision.strategy || "—" }}</span>
+        </div>
+        <div class="c-autoplay-panel__row">
+          <span class="c-autoplay-panel__label">进度监测：</span>
+          <span>{{ autoplayDecision.progress || "—" }}</span>
+        </div>
+        <div class="c-autoplay-panel__row">
+          <span class="c-autoplay-panel__label">最近决策日志：</span>
+        </div>
+        <ul class="c-autoplay-panel__log">
+          <li
+            v-for="entry in autoplayLog"
+            :key="entry.t + entry.action"
+            class="c-autoplay-panel__log-entry"
+          >
+            <span class="c-autoplay-panel__log-time">{{ formatAutoplayTime(entry.t) }}</span>
+            <span class="c-autoplay-panel__log-phase">{{ entry.phase }}</span>
+            <b>{{ entry.action }}</b>
+            <span v-if="entry.detail">：{{ entry.detail }}</span>
+          </li>
+          <li v-if="autoplayLog.length === 0" class="c-autoplay-panel__log-empty">
+            暂无决策记录…
+          </li>
+        </ul>
+      </div>
       <OpenModalHotkeysButton />
     </div>
     <div class="c-version-info">
@@ -227,5 +290,60 @@ export default {
   color: #d7dce6;
   background: rgba(255, 255, 255, 0.02);
   word-break: break-word;
+}
+.c-autoplay-panel {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid #5a6b8c;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #d7dce6;
+  background: rgba(64, 120, 255, 0.06);
+  word-break: break-word;
+}
+.c-autoplay-panel__title {
+  display: block;
+  margin-bottom: 6px;
+  color: #9fb7e8;
+}
+.c-autoplay-panel__row {
+  margin-bottom: 3px;
+}
+.c-autoplay-panel__label {
+  color: #9fb7e8;
+}
+.c-autoplay-panel__log {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.c-autoplay-panel__log-entry {
+  display: flex;
+  gap: 8px;
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 12px;
+}
+.c-autoplay-panel__log-time {
+  flex: none;
+  color: #8a93a6;
+  font-variant-numeric: tabular-nums;
+}
+.c-autoplay-panel__log-phase {
+  flex: none;
+  color: #b98ee8;
+}
+.c-autoplay-panel__log-empty {
+  padding: 4px 0;
+  color: #8a93a6;
+}
+@media (max-width: 960px) {
+  .c-autoplay-panel__log {
+    max-height: 160px;
+  }
 }
 </style>
