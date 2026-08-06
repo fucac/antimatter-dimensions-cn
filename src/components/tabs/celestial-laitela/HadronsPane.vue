@@ -65,47 +65,47 @@ export default {
       return per.div(100).min((100 + (Accelerators.emptiness.effectValue2 - 1) * 100 + EndgameMastery(251).effectOrDefault(0)) / 100);
     },
     effect1Text() {
-      if (this.effect1Time.lte(0)) return `Effect is capped`;
-      return `Time to cap: ${TimeSpan.fromHours(this.effect1Time).toStringShort()}`;
+      if (this.effect1Time.lte(0)) return `效果已达上限`;
+      return `达上限所需时间：${TimeSpan.fromHours(this.effect1Time).toStringShort()}`;
     },
     effect2Text() {
-      if (this.effect2Time.lte(0)) return `Effect is capped`;
-      return `Time to cap: ${TimeSpan.fromHours(this.effect2Time).toStringShort()}`;
+      if (this.effect2Time.lte(0)) return `效果已达上限`;
+      return `达上限所需时间：${TimeSpan.fromHours(this.effect2Time).toStringShort()}`;
     },
     effect3Text() {
-      if (this.effect3Time.lte(0)) return `Effect is capped`;
-      return `Time to cap: ${TimeSpan.fromHours(this.effect3Time).toStringShort()}`;
+      if (this.effect3Time.lte(0)) return `效果已达上限`;
+      return `达上限所需时间：${TimeSpan.fromHours(this.effect3Time).toStringShort()}`;
     },
     effect4Text() {
-      if (this.effect4Time.lte(0)) return `Effect is capped`;
-      return `Time to cap: ${TimeSpan.fromHours(this.effect4Time).toStringShort()}`;
+      if (this.effect4Time.lte(0)) return `效果已达上限`;
+      return `达上限所需时间：${TimeSpan.fromHours(this.effect4Time).toStringShort()}`;
     },
     effect5Text() {
-      if (this.effect5Time.lte(0)) return `Effect is capped`;
-      return `Time to cap: ${TimeSpan.fromHours(this.effect5Time).toStringShort()}`;
+      if (this.effect5Time.lte(0)) return `效果已达上限`;
+      return `达上限所需时间：${TimeSpan.fromHours(this.effect5Time).toStringShort()}`;
     },
     hadronTime() {
       return TimeSpan.fromHours(this.hadronTimer).toStringShort();
     },
     buttonText1() {
-      if (this.hasExotic) return `Convert a Hadron and a Dark Hadron into an Exotic Hadron`;
-      return `Convert a Hadron into a Dark Hadron`;
+      if (this.hasExotic) return `将一个强子与一个暗强子转化为一个异强子`;
+      return `将一个强子转化为一个暗强子`;
     },
     buttonText2() {
-      if (this.hasExotic) return `Convert an Exotic Hadron into a Hadron and a Dark Hadron`;
-      return `Convert a Dark Hadron into a Hadron`;
+      if (this.hasExotic) return `将一个异强子转化为一个强子与一个暗强子`;
+      return `将一个暗强子转化为一个强子`;
     },
     buttonText3() {
-      if (this.hasExotic) return `Convert all Hadrons and all Dark Hadrons into Exotic Hadrons`;
-      return `Convert all Hadrons into Dark Hadrons`;
+      if (this.hasExotic) return `将全部强子与全部暗强子转化为异强子`;
+      return `将全部强子转化为暗强子`;
     },
     buttonText4() {
-      if (this.hasExotic) return `Convert all Exotic Hadrons into Hadrons and Dark Hadrons`;
-      return `Convert all Dark Hadrons into Hadrons`;
+      if (this.hasExotic) return `将全部异强子转化为强子与暗强子`;
+      return `将全部暗强子转化为强子`;
     },
     extraH1Text() {
       if (SingularityMilestone.hadronEffect1Improvement.isReached) {
-        return ` and ${formatPow(SingularityMilestone.hadronEffect1Improvement.effectOrDefault(1), 2, 3)}`;
+        return ` 与 ${formatPow(SingularityMilestone.hadronEffect1Improvement.effectOrDefault(1), 2, 3)}`;
       }
       return "";
     }
@@ -205,13 +205,13 @@ export default {
   <div class="c-laitela-hadrons-container">
     <div class="c-laitela-hadrons-row">
       <h2>
-        你拥有 {{ quantify("Hadron", lightHadrons, 2) }}
+        你拥有 {{ quantify("强子", lightHadrons, 2) }}
       </h2>
       <h2 v-if="hasDark">
-        你拥有 {{ quantify("Dark Hadron", darkHadrons, 2) }}
+        你拥有 {{ quantify("暗强子", darkHadrons, 2) }}
       </h2>
       <h2 v-if="hasExotic">
-        你拥有 {{ quantify("Exotic Hadron", exoticHadrons, 2) }}
+        你拥有 {{ quantify("异强子", exoticHadrons, 2) }}
       </h2>
       <br>
       <h2>
@@ -223,16 +223,16 @@ export default {
       class="c-laitela-hadrons-row"
     >
       <div>
-        Hadron Effect 1:
+        强子效果 1：
       </div>
       <div>
-        Increase Singularities by {{ formatX(effect1, 2, 2) }}{{ extraH1Text }}
+        奇点产量增加 {{ formatX(effect1, 2, 2) }}{{ extraH1Text }}
       </div>
       <div>
         {{ effect1Text }}
       </div>
       <div>
-        Effectiveness: {{ formatDecimalPercents(effect1Percent, 2, 2) }}
+        效能：{{ formatDecimalPercents(effect1Percent, 2, 2) }}
       </div>
     </div>
     <div
@@ -240,16 +240,16 @@ export default {
       class="c-laitela-hadrons-row"
     >
       <div>
-        Hadron Effect 2:
+        强子效果 2：
       </div>
       <div>
-        Multiply Dark Matter cap by {{ format(effect2, 2, 2) }}
+        暗物质上限 ×{{ format(effect2, 2, 2) }}
       </div>
       <div>
         {{ effect2Text }}
       </div>
       <div>
-        Effectiveness: {{ formatDecimalPercents(effect2Percent, 2, 2) }}
+        效能：{{ formatDecimalPercents(effect2Percent, 2, 2) }}
       </div>
     </div>
     <div
@@ -257,16 +257,16 @@ export default {
       class="c-laitela-hadrons-row"
     >
       <div>
-        Hadron Effect 3:
+        强子效果 3：
       </div>
       <div>
-        Increase Dark Energy Multiplier on Ascension by {{ format(effect3, 2, 2) }}
+        飞升时暗能量乘数增加 {{ format(effect3, 2, 2) }}
       </div>
       <div>
         {{ effect3Text }}
       </div>
       <div>
-        Effectiveness: {{ formatDecimalPercents(effect3Percent, 2, 2) }}
+        效能：{{ formatDecimalPercents(effect3Percent, 2, 2) }}
       </div>
     </div>
     <div
@@ -274,16 +274,16 @@ export default {
       class="c-laitela-hadrons-row"
     >
       <div>
-        Hadron Effect 4:
+        强子效果 4：
       </div>
       <div>
-        Antimatter generates {{ formatX(effect4, 2, 2) }} more Entropy
+        反物质产生额外 {{ formatX(effect4, 2, 2) }} 熵
       </div>
       <div>
         {{ effect4Text }}
       </div>
       <div>
-        Effectiveness: {{ formatDecimalPercents(effect4Percent, 2, 2) }}
+        效能：{{ formatDecimalPercents(effect4Percent, 2, 2) }}
       </div>
     </div>
     <div
@@ -291,16 +291,16 @@ export default {
       class="c-laitela-hadrons-row"
     >
       <div>
-        Dark Hadron Effect:
+        暗强子效果：
       </div>
       <div>
-        Multiply Continuum Purchases by {{ format(effect5, 2, 2) }}
+        连续统购买 ×{{ format(effect5, 2, 2) }}
       </div>
       <div>
         {{ effect5Text }}
       </div>
       <div>
-        Effectiveness: {{ formatDecimalPercents(effect5Percent, 2, 2) }}
+        效能：{{ formatDecimalPercents(effect5Percent, 2, 2) }}
       </div>
     </div>
     <div
@@ -340,7 +340,7 @@ export default {
       v-if="showWarning"
       class="c-laitela-warning"
     >
-      Hadron effectiveness will increase much slower above {{ formatPercents(1) }}
+      强子效能超过 {{ formatPercents(1) }} 后提升将大幅减缓
     </div>
   </div>
 </template>

@@ -1515,7 +1515,7 @@ export const celestialNavigation = {
       },
       legend: {
         text: complete => {
-          const dmdText = "2nd Dark Matter Dimension";
+          const dmdText = "第2暗物质维度";
           const dim = DarkMatterDimension(2);
           if (dim.isUnlocked) return [dmdText];
 
@@ -1571,12 +1571,12 @@ export const celestialNavigation = {
       },
       legend: {
         text: complete => {
-          if (complete >= 1) return ["Obtain a Singularity"];
+          if (complete >= 1) return ["获得一个奇点"];
           const darkEnergy = Currency.darkEnergy.value;
           const singularityGoal = Singularity.cap;
           return [
-            "Condense your Dark Energy",
-            "Into a Singularity",
+            "凝缩你的暗能量",
+            "为一个奇点",
             `${format(darkEnergy)} / ${format(singularityGoal)}`
           ];
         },
@@ -1613,7 +1613,7 @@ export const celestialNavigation = {
       },
       legend: {
         text: complete => {
-          const dmdText = "3rd Dark Matter Dimension";
+          const dmdText = "第3暗物质维度";
           const dim = DarkMatterDimension(3);
           if (dim.isUnlocked) return [dmdText];
 
@@ -1639,7 +1639,7 @@ export const celestialNavigation = {
 
           return [
             dmdText,
-            `Automatically Condense ${format(20)} Singularities at once`,
+            `自动一次凝缩 ${format(20)} 个奇点`,
             `${format(Decimal.clampMax(Singularity.singularitiesGained, 20).toNumber())} / ${format(20)}`
           ];
         },
@@ -1688,7 +1688,7 @@ export const celestialNavigation = {
       },
       legend: {
         text: complete => {
-          const dmdText = "4th Dark Matter Dimension";
+          const dmdText = "第4暗物质维度";
           const dim = DarkMatterDimension(4);
           if (dim.isUnlocked) return [dmdText];
 
@@ -1711,7 +1711,7 @@ export const celestialNavigation = {
             Replicanti.galaxies.total.add(player.galaxies).add(player.dilation.totalTachyonGalaxies).add(GalacticPower.freeGalaxies);
           return [
             dmdText,
-            `Have ${format(80000)} total Galaxies`,
+            `拥有总共 ${format(80000)} 个星系`,
             `${format(Decimal.clampMax(allGalaxies, 80000))} / ${format(80000)}`
           ];
         },

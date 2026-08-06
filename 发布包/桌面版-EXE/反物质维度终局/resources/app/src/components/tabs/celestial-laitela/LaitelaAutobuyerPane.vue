@@ -25,18 +25,18 @@ export default {
   computed: {
     autobuyStr() {
       return this.maxAutobuy === 8
-        ? "ON (all DMD)"
-        : `ON (max. DMD ${this.maxAutobuy})`;
+        ? "开（全部暗物质维度）"
+        : `开（最高至第 ${this.maxAutobuy} 暗物质维度）`;
     },
     autoAscendStr() {
       return this.maxAutoAscend === 8
-        ? "ON (all DMD)"
-        : `ON (max. DMD ${this.maxAutoAscend})`;
+        ? "开（全部暗物质维度）"
+        : `开（最高至第 ${this.maxAutoAscend} 暗物质维度）`;
     },
     autoSingularityStr() {
       return this.autoSingularityFactor === 1
-        ? "At Cap"
-        : `Cap ${formatX(this.autoSingularityFactor, 2, 2)}`;
+        ? "于上限"
+        : `上限 ${formatX(this.autoSingularityFactor, 2, 2)}`;
     },
   },
   watch: {
@@ -82,28 +82,28 @@ export default {
       v-if="hasDimension"
       v-model="dimension"
       class="c-laitela-automation-toggle"
-      label="Auto-buy DMD:"
+      label="自动购买暗物质维度："
       :on="autobuyStr"
     />
     <PrimaryToggleButton
       v-if="hasAscension"
       v-model="ascension"
       class="c-laitela-automation-toggle"
-      label="Auto-Ascend:"
+      label="自动飞升："
       :on="autoAscendStr"
     />
     <PrimaryToggleButton
       v-if="hasSingularity"
       v-model="singularity"
       class="c-laitela-automation-toggle"
-      label="Auto-Singularity:"
+      label="自动奇点："
       :on="autoSingularityStr"
     />
     <PrimaryToggleButton
       v-if="hasAnnihilated"
       v-model="annihilation"
       class="c-laitela-automation-toggle"
-      label="Auto-Annihilation:"
+      label="自动湮灭："
     />
   </div>
 </template>

@@ -67,25 +67,25 @@ export default {
     },
     completionsDisplay() {
       const maxStr = Number.isFinite(this.limit) ? formatInt(this.maxCompletions) : "∞";
-      return `${formatInt(this.completions)}/${maxStr} ${pluralize("completion", this.completions)}`;
+      return `${formatInt(this.completions)}/${maxStr} 完成`;
     },
     progressDisplay() {
       const condenseCount = this.remainingSingularities.div(this.singularitiesPerCondense);
       let thisSingularityTime, extraTime, timeText;
       switch (this.milestoneMode) {
         case SINGULARITY_MILESTONE_RESOURCE.SINGULARITIES:
-          return `In ${quantify("Singularity", this.remainingSingularities, 2)}`;
+          return `需 ${quantify("奇点", this.remainingSingularities, 2)}`;
         case SINGULARITY_MILESTONE_RESOURCE.CONDENSE_COUNT:
-          return `Condense ${quantify("time", condenseCount, 2, 2)}`;
+          return `凝缩 ${quantify("次", condenseCount, 2, 2)}`;
         case SINGULARITY_MILESTONE_RESOURCE.MANUAL_TIME:
           thisSingularityTime = Decimal.clampMin(0, this.currentCondenseTime);
           extraTime = Decimal.ceil(condenseCount.sub(1)).mul(this.baseCondenseTime);
-          return `In ${TimeSpan.fromSeconds(new Decimal(thisSingularityTime.add(extraTime))).toStringShort()} (manual)`;
+          return `需 ${TimeSpan.fromSeconds(new Decimal(thisSingularityTime.add(extraTime))).toStringShort()}（手动）`;
         case SINGULARITY_MILESTONE_RESOURCE.AUTO_TIME:
           thisSingularityTime = Decimal.clampMin(0, this.currentCondenseTime.add(this.autoCondenseDelay));
           extraTime = Decimal.ceil(condenseCount.sub(1)).times(this.baseCondenseTime.add(this.autoCondenseDelay));
-          timeText = `In ${TimeSpan.fromSeconds(new Decimal(thisSingularityTime.add(extraTime))).toStringShort()}`;
-          return this.autoSingActive ? timeText : `Auto-Singularity is OFF`;
+          timeText = `需 ${TimeSpan.fromSeconds(new Decimal(thisSingularityTime.add(extraTime))).toStringShort()}`;
+          return this.autoSingActive ? timeText : `自动奇点已关闭`;
         default:
           throw new Error("Unrecognized Singularity Milestone mode");
       }
