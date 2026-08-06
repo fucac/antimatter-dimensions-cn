@@ -1,5 +1,6 @@
 <script>
 import BackgroundAnimations from "@/components/BackgroundAnimations";
+import AutoAIFloatingPanel from "@/components/AutoAIFloatingPanel";
 import ClassicUi from "@/components/ui-modes/classic/ClassicUi";
 import GameUiComponentFixed from "@/components/GameUiComponentFixed";
 import ModernUi from "@/components/ui-modes/modern/ModernUi";
@@ -20,6 +21,7 @@ export default {
     S12Ui,
     S12UiFixed,
     S12DesktopIcons,
+    AutoAIFloatingPanel,
   },
   computed: {
     view() {
@@ -74,6 +76,7 @@ export default {
     <GameUiComponentFixed v-if="!isThemeS12" />
     <BackgroundAnimations v-if="!isThemeS12" />
     <S12UiFixed v-if="isThemeS12" />
+    <AutoAIFloatingPanel />
   </div>
 </template>
 
