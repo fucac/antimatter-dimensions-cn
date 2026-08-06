@@ -1,1 +1,1 @@
-{"sha":"834f9c6d811cfbccd12cfbf04f9e7f57392b9037","message":"fix: 重构现实符文制作逻辑，等级与炼金资源数量正确对应，版本升至11.9.1","author":"fucac"}
+{"sha":"80743e1726f22134559c36e66372abe7ccf6e6eb","message":"feat: 删除版本更新检查与commit监控功能","author":"fucac"}
