@@ -463,35 +463,62 @@ export const AutoAI = {
     );
   },
 
-  // ============ 阶段四：现实阶段（首次现实后，含终局） ============
+  // ============ 阶段四：现实阶段（首次现实后，含天体挑战与佩勒终局） ============
   _postReality() {
     this._buyUpgrades();
     this._buyTimeStudies();
+    this._buyImaginaryUpgrades();
+    this._buyEndgameUpgrades();
 
-    // 天体挑战进行中：仅维持自动购买器
-    if (this._inCelestialRun()) {
+    // 末日终局分支（佩勒）
+    if (Pelle.isDoomed) {
+      this._pelleEndgame();
+      return;
+    }
+
+    // 阿尔法 / 虚空 / 超载等"关闭现实后内容"状态：仅维持自动购买
+    if (player.disablePostReality) {
+      // 鹿颈长终局阶段：进入时会设置 disablePostReality，但需要手动结算退出
+      if (Effarig.isRunning && Effarig.currentStage === EFFARIG_STAGES.ENDGAME) {
+        beginProcessReality(getRealityProps(true));
+        this.log("退出天体", "鹿颈长终局阶段完成");
+        return;
+      }
+      this._buyAntimatter();
       this._setStrategyAndProgress(
-        "天体挑战进行中，维持自动购买器",
-        `现实次数：${format(Currency.realities.value, 2)}`
+        "特殊挑战进行中（阿尔法/虚空/超载），维持自动购买器",
+        this._celestialProgressText()
       );
       return;
     }
 
+    // 天体挑战进行中
+    if (isInCelestialReality()) {
+      this._handleCelestialRun();
+      return;
+    }
+
+    // 天体进入决策（未在任何天体且未进入末日时）
+    if (this._enterCelestialIfReady()) return;
+
+    // 永恒挑战 / 时间膨胀 / 现实循环（沿用前期逻辑）
     if (EternityChallenge.isRunning) {
       this._handleRunningEC();
       return;
     }
     if (this._enterNextEC()) return;
-
-    // 时间膨胀
     if (PlayerProgress.dilationUnlocked()) {
-      this._buyDilationStudies();
-      this._buyDilationUpgrades();
-      if (!player.dilation.active && TimeStudy.dilation.isBought) {
-        startDilatedEternity(true);
-        return;
-      }
+      this._dilationPhase();
+      return;
     }
+
+    // 现实外养成：向特蕾莎灌注现实机器（解锁特蕾莎/鹿颈长前置）
+    if (Teresa.isUnlocked && Teresa.pouredAmount.lt(Teresa.pouredAmountCap)) {
+      Teresa.pourRM(0, true);
+    }
+
+    // 符文管理：净化废弃符文并自动装备最佳（仅在无锁定机制时）
+    this._manageGlyphs();
 
     // 现实循环：由现实自动购买器持续推进
     if (Autobuyer.reality.isUnlocked && !Autobuyer.reality.isActive) {
@@ -511,13 +538,217 @@ export const AutoAI = {
     }
 
     this._setStrategyAndProgress(
-      "现实循环：自动购买升级并持续现实，推进天体与终局内容",
-      `现实机器：${format(Currency.realityMachines.value, 2)}`
+      "现实循环：自动购买升级并持续现实，推进天体与终局解锁",
+      `现实机器：${format(Currency.realityMachines.value, 2)}，现实次数：${format(Currency.realities.value, 2)}`
     );
   },
 
-  _inCelestialRun() {
-    return Effarig.isRunning || Enslaved.isRunning || V.isRunning || Teresa.isRunning ||
-      Ra.isRunning || Laitela.isRunning;
+  // 购买虚幻升级（解锁莱特拉/佩勒/阿尔法等终局前置）
+  _buyImaginaryUpgrades() {
+    for (const upg of ImaginaryUpgrades.all) {
+      if (upg.canBeBought && !upg.isBought) upg.purchase();
+    }
+  },
+
+  // 购买终局升级（提升通关能力）
+  _buyEndgameUpgrades() {
+    for (const upg of EndgameUpgrades.all) {
+      if (upg.canBeBought && !upg.isBought) upg.purchase();
+    }
+  },
+
+  // 符文管理：净化废弃符文，并在空槽自动装备最佳符文
+  // 注意：存在锁定机制（会弹确认框）或已进入末日时跳过，避免弹窗阻塞
+  _manageGlyphs() {
+    try {
+      if (Pelle.isDoomed || !player.reality.glyphs) return;
+      const locks = [RealityUpgrade(9), RealityUpgrade(24), ImaginaryUpgrade(25), DualityUpgrade(22)];
+      if (locks.some(u => u && u.isLockingMechanics)) return;
+
+      Glyphs.autoClean();
+      Glyphs.refresh();
+      const slots = Glyphs.active;
+      for (let slot = 0; slot < slots.length; slot++) {
+        if (slots[slot] !== null) continue;
+        const candidates = Glyphs.inventory.filter(g => g && g.idx >= Glyphs.protectedSlots);
+        if (candidates.length === 0) break;
+        const best = AutoGlyphProcessor.pick(candidates);
+        if (best) Glyphs.equip(best, slot);
+      }
+    } catch (e) {
+      // 符文系统相关错误不影响主流程
+    }
+  },
+
+  // 天体进入决策：按前置依赖链与收益顺序选择
+  _enterCelestialIfReady() {
+    // 太阳神：长期养成（终局前置需宠物总等级 ≥ 100），优先尽早进入并挂满
+    if (Ra.isUnlocked && !Ra.isRunning && Ra.totalPetLevel < Ra.maxTotalPetLevel) {
+      return this._enterCelestial("太阳神", Ra);
+    }
+    // 莱特拉：完全失稳（层级 8）后执行强子化，重置层级并积累强子
+    if (Laitela.isUnlocked && Laitela.isFullyDestabilized && !Laitela.isRunning) {
+      Laitela.hadronize();
+      this.log("莱特拉", `强子化完成，当前强子数 ${formatInt(player.celestials.laitela.hadronizes)}`);
+      return true;
+    }
+    // 莱特拉：熵循环推进难度层级
+    if (Laitela.isUnlocked && !Laitela.isFullyDestabilized && !Laitela.isRunning) {
+      return this._enterCelestial("莱特拉", Laitela);
+    }
+    // 特蕾莎：现实机器灌注达到门槛后进入现实
+    if (Teresa.isUnlocked && !Teresa.runCompleted && TeresaUnlocks.run.canBeApplied) {
+      return this._enterCelestial("特蕾莎", Teresa);
+    }
+    // 鹿颈长：依次完成 无限→永恒→现实→终局 四层
+    if (EffarigUnlock.run.isUnlocked && !EffarigUnlock.endgame.isUnlocked) {
+      return this._enterCelestial("鹿颈长", Effarig);
+    }
+    // 无名氏：储存时间与符文达标后进入现实完成一次
+    if (Enslaved.isUnlocked && Enslaved.has(ENSLAVED_UNLOCKS.RUN) && !Enslaved.isCompleted) {
+      return this._enterCelestial("无名氏", Enslaved);
+    }
+    // 薇：反复进现实刷空间定理成就
+    if (V.canUnlockCelestial && !V.isFullyCompleted) {
+      return this._enterCelestial("薇", V);
+    }
+    return false;
+  },
+
+  // 进入天体：先结算当前现实，再初始化该天体
+  _enterCelestial(name, celestial) {
+    try {
+      beginProcessReality(getRealityProps(true));
+      celestial.initializeRun();
+      this.log("进入天体", name);
+    } catch (e) {
+      this.log("进入天体异常", `${name}：${(e && e.message) || e}`);
+    }
+    return true;
+  },
+
+  // 天体挑战进行中：挂机推进并处理特殊退出
+  _handleCelestialRun() {
+    // 鹿颈长终局阶段：游戏不会自动退出，需手动结算
+    if (Effarig.isRunning && Effarig.currentStage === EFFARIG_STAGES.ENDGAME) {
+      beginProcessReality(getRealityProps(true));
+      this.log("退出天体", "鹿颈长终局阶段完成");
+      return;
+    }
+    // 无名氏已完成（避免开启自动重进导致的循环）
+    if (Enslaved.isRunning && Enslaved.isCompleted) {
+      beginProcessReality(getRealityProps(true));
+      this.log("退出天体", "无名氏已完成");
+      return;
+    }
+    // 太阳神：宠物全部满级后退出（终局前置需总等级 ≥ 100，即 4 宠物 × 25 级）
+    if (Ra.isRunning && Ra.totalPetLevel >= Ra.maxTotalPetLevel) {
+      beginProcessReality(getRealityProps(true));
+      this.log("退出天体", "太阳神宠物已全部满级");
+      return;
+    }
+    // 太阳神：自动购买记忆升级并升级宠物
+    if (Ra.isRunning) {
+      for (const pet of Ra.pets.all) {
+        if (pet.canBuyMemoryUpgrade) pet.purchaseMemoryUpgrade();
+        if (pet.canBuyChunkUpgrade) pet.purchaseChunkUpgrade();
+        if (pet.level < Ra.levelCap) pet.levelUp();
+      }
+    }
+    this._setStrategyAndProgress(
+      "天体挑战进行中，维持自动购买器",
+      this._celestialProgressText()
+    );
+  },
+
+  _celestialProgressText() {
+    if (Ra.isRunning) return `太阳神宠物总等级：${formatInt(Ra.totalPetLevel)} / ${formatInt(Ra.levelCap)}`;
+    if (Laitela.isRunning) return `莱特拉层级：${formatInt(player.celestials.laitela.difficultyTier)} / 8，熵：${format(player.celestials.laitela.entropy, 2)}`;
+    if (Effarig.isRunning) return `鹿颈长阶段：${formatInt(Effarig.currentStage)} / 5`;
+    if (Teresa.isRunning) return `特蕾莎灌注：${format(Teresa.pouredAmount, 2)} / 1e24`;
+    if (Enslaved.isRunning) return `无名氏储存时间：${format(player.celestials.enslaved.stored, 2)} 年`;
+    if (V.isRunning) return `薇空间定理：${formatInt(V.spaceTheorems)} / 66`;
+    return "天体挑战进行中";
+  },
+
+  // ============ 终局：佩勒末日推进 ============
+  _pelleEndgame() {
+    // 0) 基础维持：购买反物质维度与升级
+    this._buyAntimatter();
+    this._buyUpgrades();
+
+    // 1) 用现实碎片购买佩勒升级（单次 + 可重复）
+    for (const u of PelleUpgrade.singles) {
+      if (u.canBeBought) u.purchase();
+    }
+    for (const u of PelleUpgrade.rebuyables) {
+      if (u.canBeBought) u.purchase();
+    }
+
+    // 2) 裂隙管理：保持裂隙在填充（最多 2 个活跃）
+    for (const r of PelleRifts.all) {
+      if (r.canBeApplied && !r.isActive && !r.isMaxed) r.toggle();
+    }
+
+    // 3) 世界末日：残留物 → 提升现实碎片产出
+    if (Pelle.canArmageddon) {
+      Pelle.armageddon(true);
+      this.log("末日", "结算残留物，提升现实碎片产出");
+    }
+
+    // 4) 星系生成器：满阶段献祭推进 + 购买升级
+    if (Pelle.hasGalaxyGenerator) {
+      for (const u of GalaxyGeneratorUpgrades.all) {
+        if (u.canBeBought) u.purchase(true);
+      }
+      if (GalaxyGenerator.isCapped && !GalaxyGenerator.sacrificeActive) {
+        GalaxyGenerator.startSacrifice();
+        this.log("末日", "星系生成器达到上限，开始献祭");
+      }
+    }
+
+    // 5) 阿尔法：解锁后进入并推进全部阶段（游戏自动触发层推进）
+    if (Alpha.isUnlocked && !Alpha.isRunning && !Alpha.isDestroyed) {
+      Alpha.initializeRun();
+      this.log("进入阿尔法", "开始推进阿尔法全部阶段");
+      return;
+    }
+    if (Alpha.isRunning) {
+      this._setStrategyAndProgress(
+        "阿尔法挑战进行中，维持自动购买器",
+        `阿尔法阶段：${formatInt(Alpha.currentStage)} / 28`
+      );
+      return;
+    }
+
+    // 6) 大型强子对撞机：购买动力核心并保持加速器填充
+    if (LHC.powerCores.isAffordable) LHC.powerCores.purchase();
+    const acc = Accelerators.all.find(a => a.isUnlocked && !a.isMaxed);
+    if (acc && !acc.isActive) acc.toggle();
+    // 虚空：有强子来源时进入，积累虚空物质购买虚空升级
+    if (!LHC.voidRunning && !LHC.nullifiedVoidRunning && player.celestials.laitela.hadrons.total.gte(1)) {
+      enterTheVoid();
+      this.log("进入虚空", "积累虚空物质");
+      return;
+    }
+    if (LHC.voidRunning) {
+      this._setStrategyAndProgress(
+        "虚空挑战进行中，维持自动购买器",
+        `虚空物质：${format(Currency.nullMatter.value, 2)}`
+      );
+      return;
+    }
+
+    // 7) 终局结算：反物质达到阈值后手动结算终局
+    if (isEndgameAvailable() && player.antimatter.gte(DC.E9E15)) {
+      Endgame.hotkeyReset();
+      this.log("终局", `完成第 ${player.endgames} 轮终局`);
+      return;
+    }
+
+    this._setStrategyAndProgress(
+      "佩勒末日推进：购买升级、填充裂隙、推进星系生成器与阿尔法",
+      `现实碎片：${format(Currency.realityShards.value, 2)}，残留物：${format(Currency.remnants.value, 2)}`
+    );
   },
 };
