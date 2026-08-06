@@ -113,9 +113,13 @@ export default {
         });
         return;
       }
+      // 网页版：版本号与提交信息分开加载，commit.json 加载慢/失败时不阻塞版本号显示
       Promise.all([
         fetch("version.txt").then(r => r.json()),
-        fetch("commit.json").then(r => r.json()).catch(() => null)
+        Promise.race([
+          fetch("commit.json").then(r => r.json()).catch(() => null),
+          new Promise(resolve => setTimeout(() => resolve(null), 5000))
+        ])
       ]).then(([version, commit]) => {
         this.gameVersion = { ...version, commit };
       }).catch(() => {
