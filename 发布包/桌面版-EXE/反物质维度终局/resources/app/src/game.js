@@ -6,7 +6,6 @@ import { deepmergeAll } from "@/utility/deepmerge";
 import { DEV } from "@/env";
 import { SpeedrunMilestones } from "./core/speedrun";
 import { Cloud } from "./core/storage";
-import { AutoAI } from "./core/auto-ai";
 import { supportedBrowsers } from "./supported-browsers";
 
 import Payments from "./core/payments";
@@ -546,11 +545,6 @@ export function gainedNebulae() {
   neb = neb.min(DC.E100).times(neb.div(DC.E100).max(1).pow(0.1));
 
   return neb.floor();
-}
-
-export function updateRefresh() {
-  GameStorage.save();
-  location.reload(true);
 }
 
 export const GAME_SPEED_EFFECT = {
@@ -1219,9 +1213,6 @@ export function gameLoop(passedDiff, options = {}) {
       [...Tab.dimensions.subtabs].reverse().find(t => !t.isPermanentlyHidden).show(true);
     }
   }
-
-  // 自动游玩机器人决策层
-  AutoAI.tick(realDiff);
 
   EventHub.dispatch(GAME_EVENT.GAME_TICK_AFTER);
   GameUI.update();

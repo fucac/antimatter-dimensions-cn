@@ -547,11 +547,6 @@ export function gainedNebulae() {
   return neb.floor();
 }
 
-export function updateRefresh() {
-  GameStorage.save();
-  location.reload(true);
-}
-
 export const GAME_SPEED_EFFECT = {
   FIXED_SPEED: 1,
   TIME_GLYPH: 2,
