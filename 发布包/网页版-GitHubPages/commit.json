@@ -1,1 +1,1 @@
-{"sha":"f03601edb6209a652561973e43a83d1e91c8c637","message":"chore: 更新 commit.json 至 86e038b","author":"fucac"}
+{"sha":"e0f68c4023decbb7c9267cac4d40c564f5db820c","message":"fix: 修复版本号显示被 commit.json 加载超时阻塞，版本与提交信息解耦加载","author":"fucac"}

@@ -1534,6 +1534,21 @@ export const devMigrations = {
       player.options.lightGlyphs = !player.options.forceDarkGlyphs;
       delete player.options.forceDarkGlyphs;
     },
+    player => {
+      // Clean up NaN/null residue in alchemy resource amounts and highest refinement values.
+      // JSON.stringify turns NaN into null, so check the type as well as isFinite().
+      if (player.celestials.ra && Array.isArray(player.celestials.ra.alchemy)) {
+        for (const resource of player.celestials.ra.alchemy) {
+          if (typeof resource.amount !== "number" || !isFinite(resource.amount)) resource.amount = 0;
+        }
+        if (player.celestials.ra.highestRefinementValue) {
+          for (const key of Object.keys(player.celestials.ra.highestRefinementValue)) {
+            const value = player.celestials.ra.highestRefinementValue[key];
+            if (typeof value !== "number" || !isFinite(value)) player.celestials.ra.highestRefinementValue[key] = 0;
+          }
+        }
+      }
+    },
   ],
 
   patch(player) {

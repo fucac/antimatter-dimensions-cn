@@ -1,6 +1,7 @@
 <script>
 import ModalWrapper from "@/components/modals/ModalWrapper";
 import PrimaryButton from "@/components/PrimaryButton";
+import { RealityGlyphCreation } from "@/core/glyphs/reality-glyph-creation";
 
 export default {
   name: "RealityGlyphCreationModal",
@@ -19,7 +20,7 @@ export default {
   methods: {
     update() {
       this.isDoomed = Pelle.isDoomed && !PelleAlchemyUpgrade.alchemyReality.canBeApplied;
-      this.realityGlyphLevel.copyFrom(new Decimal(AlchemyResource.reality.effectValue));
+      this.realityGlyphLevel.copyFrom(new Decimal(RealityGlyphCreation.level));
       const realityEffectConfigs = GlyphEffects.all
         .filter(eff => eff.glyphTypes.includes("reality"))
         .sort((a, b) => a.bitmaskIndex - b.bitmaskIndex);
@@ -28,15 +29,7 @@ export default {
         .map(cfg => [realityGlyphEffectLevelThresholds[cfg.bitmaskIndex - minRealityEffectIndex], cfg.id]);
     },
     createRealityGlyph() {
-      if (GameCache.glyphInventorySpace.value === 0) {
-        Modal.message.show("库存空间已满;请献祭部分符文以腾出空间。",
-          { closeEvent: GAME_EVENT.GLYPHS_CHANGED });
-        return;
-      }
-      Glyphs.addToInventory(GlyphGenerator.realityGlyph(this.realityGlyphLevel));
-      if (!ExpansionPack.effarigPack.isBought || player.disablePostReality) AlchemyResource.reality.amount = 0;
-      player.reality.glyphs.createdRealityGlyph = true;
-      this.emitClose();
+      if (RealityGlyphCreation.create()) this.emitClose();
     },
     formatGlyphEffect(effect) {
       if (this.realityGlyphLevel.lt(effect[0])) return `(需要符文等级 ${formatInt(effect[0])})`;

@@ -39,16 +39,18 @@ class AlchemyResourceState extends GameMechanicState {
   }
 
   get amount() {
-    // Self-heal NaN values that may linger in corrupted saves
-    if (!isFinite(this.data.amount)) {
+    // Self-heal NaN values (and non-number values such as Decimal objects) that may linger in corrupted saves.
+    // isFinite() would throw on a Decimal instance because its valueOf() is disabled, so check the type first.
+    const value = this.data.amount;
+    if (typeof value !== "number" || !isFinite(value)) {
       this.data.amount = 0;
       return 0;
     }
-    return this.data.amount;
+    return value;
   }
 
   set amount(value) {
-    this.data.amount = isFinite(value) ? value : 0;
+    this.data.amount = (typeof value === "number" && isFinite(value)) ? value : 0;
   }
 
   get before() {
@@ -126,7 +128,7 @@ class BasicAlchemyResourceState extends AlchemyResourceState {
   get highestRefinementValue() {
     const value = player.celestials.ra.highestRefinementValue[this._name];
     // Self-heal NaN values that may linger in corrupted saves
-    if (!isFinite(value)) {
+    if (typeof value !== "number" || !isFinite(value)) {
       player.celestials.ra.highestRefinementValue[this._name] = 0;
       return 0;
     }
@@ -134,19 +136,21 @@ class BasicAlchemyResourceState extends AlchemyResourceState {
   }
 
   set highestRefinementValue(value) {
-    if (!isFinite(value)) return;
+    if (typeof value !== "number" || !isFinite(value) || value < 0) return;
     player.celestials.ra.highestRefinementValue[this._name] = Math.max(this.highestRefinementValue, value);
   }
 
   get cap() {
-    return Math.clampMax(Ra.alchemyResourceCap, this.highestRefinementValue);
+    const refinement = this.highestRefinementValue;
+    const cap = Math.clampMax(Ra.alchemyResourceCap, isFinite(refinement) ? refinement : 0);
+    return isFinite(cap) ? cap : Ra.alchemyResourceCap;
   }
 }
 
 class AdvancedAlchemyResourceState extends AlchemyResourceState {
   get cap() {
-    const reagentCaps = this.reaction.reagents.map(x => x.resource.cap);
-    return Math.min(...reagentCaps);
+    const reagentCaps = this.reaction.reagents.map(x => x.resource.cap).filter(isFinite);
+    return reagentCaps.length ? Math.min(...reagentCaps) : Ra.alchemyResourceCap;
   }
 }
 
@@ -237,11 +241,14 @@ class AlchemyReaction {
   // ω above 200.  In fact, since some Ξ will be used during the reaction, the actual cap will be a bit lower.
   combineReagents() {
     if (!this.isActive || this.reactionYield === 0) return;
+    const cap = this._product.cap;
+    // Never let a corrupted (non-finite) cap poison resource amounts with NaN.
+    if (!isFinite(cap)) return;
     const unpredictabilityEffect = AlchemyResource.unpredictability.effectValue;
     const times = Math.clampMax(1 + poissonDistribution(unpredictabilityEffect / (1 - unpredictabilityEffect)), 50);
-    const cap = this._product.cap;
     for (let i = 0; i < times; i++) {
       const reactionYield = this.actualYield;
+      if (!isFinite(reactionYield) || reactionYield <= 0) continue;
       for (const reagent of this._reagents) {
         reagent.resource.amount -= reactionYield * reagent.cost;
       }
