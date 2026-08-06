@@ -1669,15 +1669,6 @@ window.player = {
     autoRealityForFilter: false,
     brightAlpha: false,
     simpleHotkeysCelestialMode: false,
-    // 自动游玩机器人配置（见 src/core/auto-ai.js）
-    autoplay: {
-      enabled: false,
-      tickIntervalMs: 250,
-      maxLogEntries: 60,
-      logEnabled: true,
-      decision: { phase: "", strategy: "", progress: "", updatedAt: 0 },
-      log: []
-    },
   },
   IAP: {
     enabled: false,
