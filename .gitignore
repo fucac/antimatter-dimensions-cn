@@ -1,7 +1,8 @@
 dist
 .tmp
-发布包/桌面版-EXE/反物质维度终局.rar
-发布包/桌面版-EXE/反物质维度终局/反物质维度终局.exe
+发布包/
+js/*.map
+_temp_check.js
 
 .vscode
 .idea
