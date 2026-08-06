@@ -1,1 +1,1 @@
-{"sha":"e0f68c4023decbb7c9267cac4d40c564f5db820c","message":"fix: 修复版本号显示被 commit.json 加载超时阻塞，版本与提交信息解耦加载","author":"fucac"}
+{"sha":"834f9c6d811cfbccd12cfbf04f9e7f57392b9037","message":"fix: 重构现实符文制作逻辑，等级与炼金资源数量正确对应，版本升至11.9.1","author":"fucac"}
