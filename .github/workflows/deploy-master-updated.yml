@@ -3,6 +3,9 @@ name: Deploy master
 env:
   FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
 
+permissions:
+  contents: write
+
 on:
   push:
     branches:
@@ -30,3 +33,4 @@ jobs:
           branch: gh-pages
           folder: dist
           single-commit: true
+          nojekyll: true
