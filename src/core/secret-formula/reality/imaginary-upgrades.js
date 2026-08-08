@@ -1,4 +1,4 @@
-﻿const rebuyable = props => {
+const rebuyable = props => {
   props.cost = () => getHybridCostScaling(
     player.reality.imaginaryRebuyables[props.id],
     1e15,
@@ -159,7 +159,7 @@ export const imaginaryUpgrades = [
     checkRequirement: () => Enslaved.isRunning &&
       MachineHandler.uncappedRM.times(simulatedRealityCount(false) + 1).gte(Number.MAX_VALUE),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "基于已购买的虚构升级提升虚构机上限",
+    description: "基于已购买的虚构升级提升虚幻机器上限",
     effect: () => player.disablePostReality ? 1 : Math.pow(1 + ImaginaryUpgrades.totalRebuyables / 20 + ImaginaryUpgrades.totalSinglePurchase / 2, EndgameMastery(154).effectOrDefault(1)),
     formatEffect: value => `${formatX(value, 2, 1)}`,
     isDisabledInDoomed: () => !PelleImaginaryUpgrade.transienceOfInformation.canBeApplied
@@ -248,7 +248,7 @@ export const imaginaryUpgrades = [
     hasFailed: () => false,
     checkRequirement: () => Laitela.matterExtraPurchaseFactor >= 2,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: () => `解锁可重复虚构升级的自动购买器，使虚构机生成速度
+    description: () => `解锁可重复虚构升级的自动购买器，使虚幻机器生成速度
       提升 ${formatInt(10)} 倍`,
     effect: () => player.disablePostReality ? 1 : 10,
     isDisabledInDoomed: () => !PelleImaginaryUpgrade.vacuumAcceleration.canBeApplied
@@ -264,7 +264,7 @@ export const imaginaryUpgrades = [
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     canLock: true,
     lockEvent: "启用连续统",
-    description: "湮灭乘数收益基于虚构机数量提升",
+    description: "湮灭乘数收益基于虚幻机器数量提升",
     effect: () => player.disablePostReality ? 1 : Decimal.clampMin(Decimal.pow(Decimal.log10(Currency.imaginaryMachines.value.add(1)).sub(10), 3), 1).toNumber(),
     formatEffect: value => `${formatX(value, 2, 1)}`,
     isDisabledInDoomed: () => !PelleImaginaryUpgrade.existentialElimination.canBeApplied

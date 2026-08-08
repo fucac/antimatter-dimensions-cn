@@ -1741,7 +1741,7 @@ export const normalAchievements = [
   {
     id: 208,
     name: "……然未忘怀",
-    get description() { return `虚构机器达到${format(DC.NUMMAX, 1, 0)}。` },
+    get description() { return `虚幻机器达到${format(DC.NUMMAX, 1, 0)}。` },
     checkRequirement: () => Currency.imaginaryMachines.value.gte(DC.NUMMAX),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     get reward() {
@@ -1803,11 +1803,11 @@ export const normalAchievements = [
   {
     id: 216,
     name: "此成就本不存在 IV",
-    get description() { return `虚构机器达到${formatPostBreak(DC.D9_99999E999, 5, 0)}。` },
+    get description() { return `虚幻机器达到${formatPostBreak(DC.D9_99999E999, 5, 0)}。` },
     checkRequirement: () => player.reality.imaginaryMachines.gte(DC.D9_99999E999),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     get reward() {
-      return `基于虚构机器获得以太之力的小型倍率。`;
+      return `基于虚幻机器获得以太之力的小型倍率。`;
     },
     effect: () => player.disablePostReality ? DC.D1 : Decimal.pow(Decimal.log10(player.reality.imaginaryMachines.add(1)).div(1000), 5).times(1000),
     formatEffect: value => `${formatX(value, 3)}`,
