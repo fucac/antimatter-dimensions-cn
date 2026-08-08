@@ -155,7 +155,7 @@ export default {
       // We want a bit of additional flavor for partially-filled sets
       const word = GLYPH_NAMES[this.sortedGlyphs[0].type].noun;
       const perc = this.sortedGlyphs[0].perc;
-      if (this.isDoomed) return `末日之${word}`;
+      if (this.isDoomed) return `毁灭之${word}`;
       if (perc === 100) return `圆满之${word}`;
       if (perc >= 75) return `强化之${word}`;
       if (perc >= 40) return `残缺之${word}`;

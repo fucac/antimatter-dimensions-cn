@@ -113,8 +113,8 @@ export const speedrunMilestones = [
   {
     id: 15,
     key: "upgradeTTgen",
-    name: "时间研究生成",
-    description: "购买时间研究生成膨胀时间升级",
+    name: "时间定理生成",
+    description: "购买时间定理生成膨胀时间升级",
     checkRequirement: () => true,
   },
   {

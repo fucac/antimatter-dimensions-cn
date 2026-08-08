@@ -121,7 +121,7 @@ export default {
         v-if="isDoomed"
         class="pelle-current-glyph-effects"
       >
-        末日状态下无法献祭符文。
+        毁灭状态下无法献祭符文。
       </span>
       <span v-else>
         <div>将符文拖至此处或按住 Shift 点击以献祭。</div>
@@ -178,7 +178,7 @@ export default {
       v-else-if="isDoomed"
       class="pelle-current-glyph-effects"
     >
-      末日状态下,所有符文献祭加成均被禁用,包括因异变符文导致的效果变化。
+      毁灭状态下,所有符文献祭加成均被禁用,包括因异变符文导致的效果变化。
     </div>
     <div v-else>
       你尚未献祭任何符文!

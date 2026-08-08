@@ -72,7 +72,7 @@
   glyphGenerationBoost: {
     id: 8,
     get description() {
-      return `鹿颈长等级${formatInt(100)}影响末日与终局时生成的符文`;
+      return `鹿颈长等级${formatInt(100)}影响毁灭与终局时生成的符文`;
     },
     cost: new Decimal("1e4400"),
     onPurchased: () => {

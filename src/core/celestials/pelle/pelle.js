@@ -471,7 +471,7 @@ export const Pelle = {
         return onlyReturnUseful ? null : "未装备符文！";
       default:
         if (onlyReturnUseful) return null;
-        if (this.isGlyphTypeDisabled(type)) return "末日状态下无法装备此符文！";
+        if (this.isGlyphTypeDisabled(type)) return "毁灭状态下无法装备此符文！";
         return "此符文没有佩勒专属效果！真糟糕。";
     }
   },

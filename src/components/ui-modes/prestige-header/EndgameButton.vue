@@ -14,7 +14,7 @@ export default {
       return `获得天神点：${format(this.gainedCP, 2)}`;
     },
     formatDPGain() {
-      return `获得末日遗物：${format(this.gainedDP, 2)}`;
+      return `获得毁灭微粒：${format(this.gainedDP, 2)}`;
     },
     classObject() {
       return {

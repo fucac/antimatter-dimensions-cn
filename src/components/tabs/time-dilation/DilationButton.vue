@@ -58,7 +58,7 @@ export default {
     <span v-else-if="!isRunning">
       进入膨胀时间。
       <div v-if="showRequirement">
-        需要 {{ format(remnantRequirement, 2) }} 残余
+        需要 {{ format(remnantRequirement, 2) }} 遗物
       </div>
     </span>
     <span v-else-if="canEternity && hasGain">

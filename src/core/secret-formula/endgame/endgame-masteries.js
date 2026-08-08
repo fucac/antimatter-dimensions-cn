@@ -4,7 +4,7 @@ export const endgameMasteries = [
     cost: 1,
     requirement: [],
     reqType: EM_REQUIREMENT_TYPE.ALL,
-    description: () => `每次永恒每分钟产生${formatInt(1)}个复兴点`,
+    description: () => `每次终局每分钟产生${formatInt(1)}个复兴点`,
     effect: () => player.disablePostReality ? 0 : player.endgames,
     formatEffect: value => `${formatHybridSmall(value, 3)}/min`
   },
@@ -28,7 +28,7 @@ export const endgameMasteries = [
     cost: 2,
     requirement: [21],
     reqType: EM_REQUIREMENT_TYPE.AT_LEAST_ONE,
-    description: () => `永恒开始时拥有${formatInt(100)}现实`,
+    description: () => `终局开始时拥有${formatInt(100)}现实`,
     effect: () => player.disablePostReality ? 0 : 100
   },
   {
@@ -36,7 +36,7 @@ export const endgameMasteries = [
     cost: 2,
     requirement: [22],
     reqType: EM_REQUIREMENT_TYPE.AT_LEAST_ONE,
-    description: () => `永恒开始时拥有${formatInt(1000000)}台现实机器`,
+    description: () => `终局开始时拥有${formatInt(1000000)}台现实机器`,
     effect: () => player.disablePostReality ? 0 : 1000000
   },
   {
@@ -52,7 +52,7 @@ export const endgameMasteries = [
     cost: 3,
     requirement: [32],
     reqType: EM_REQUIREMENT_TYPE.AT_LEAST_ONE,
-    description: "永恒开始时解锁所有现实升级"
+    description: "终局开始时解锁所有现实升级"
   },
   {
     id: 51,
@@ -75,14 +75,14 @@ export const endgameMasteries = [
     cost: 4,
     requirement: [42],
     reqType: EM_REQUIREMENT_TYPE.AT_LEAST_ONE,
-    description: () => `永恒开始时拥有全部太阳神等级${formatInt(1)}奖励`,
+    description: () => `终局开始时拥有全部太阳神等级${formatInt(1)}奖励`,
   },
   {
     id: 61,
     cost: 4,
     requirement: [52],
     reqType: EM_REQUIREMENT_TYPE.AT_LEAST_ONE,
-    description: "在永恒中保留成就，并获得一个自由的超立方体",
+    description: "在终局中保留成就，并获得一个自由的超立方体",
     effect: () => player.disablePostReality ? 0 : 1
   },
   {
@@ -90,7 +90,7 @@ export const endgameMasteries = [
     cost: 7,
     requirement: [61],
     reqType: EM_REQUIREMENT_TYPE.AT_LEAST_ONE,
-    description: () => `永恒开始时拥有${formatInt(5)}个每种基础符文，效果为${formatInt(4)}、${formatPercents(1)}稀有度，等级基于永恒次数与峰值GL`,
+    description: () => `终局开始时拥有${formatInt(5)}个每种基础符文，效果为${formatInt(4)}、${formatPercents(1)}稀有度，等级基于终局次数与峰值GL`,
     effect: () => player.disablePostReality ? DC.D1 : (EffarigUnlock.endgame.canBeApplied ? player.records.bestEndgame.glyphLevel : new Decimal(1 - ((1 / Math.max(player.endgames, 1)) ** 0.1)).times(player.records.bestEndgame.glyphLevel)),
     formatEffect: value => formatHybridSmall(value, 3)
   },
@@ -130,7 +130,7 @@ export const endgameMasteries = [
     cost: 7,
     requirement: [81],
     reqType: EM_REQUIREMENT_TYPE.AT_LEAST_ONE,
-    description: () => `基于永恒次数延后无限挑战${formatInt(8)}奖励硬上限`,
+    description: () => `基于终局次数延后无限挑战${formatInt(8)}奖励硬上限`,
     effect: () => player.disablePostReality ? 1 : player.endgames,
     formatEffect: value => formatPow(value, 2)
   },
@@ -139,7 +139,7 @@ export const endgameMasteries = [
     cost: 7,
     requirement: [82],
     reqType: EM_REQUIREMENT_TYPE.AT_LEAST_ONE,
-    description: "基于永恒次数延后无限维度压缩起始",
+    description: "基于终局次数延后无限维度压缩起始",
     effect: () => player.disablePostReality ? 1 : player.endgames,
     formatEffect: value => formatPow(value, 2)
   },
@@ -148,7 +148,7 @@ export const endgameMasteries = [
     cost: 7,
     requirement: [83],
     reqType: EM_REQUIREMENT_TYPE.AT_LEAST_ONE,
-    description: "基于永恒次数延后时间维度压缩起始",
+    description: "基于终局次数延后时间维度压缩起始",
     effect: () => player.disablePostReality ? 1 : player.endgames,
     formatEffect: value => formatPow(value, 2)
   },
@@ -157,7 +157,7 @@ export const endgameMasteries = [
     cost: 7,
     requirement: [84],
     reqType: EM_REQUIREMENT_TYPE.AT_LEAST_ONE,
-    description: "基于永恒次数延后天神物质软上限起始",
+    description: "基于终局次数延后天神物质软上限起始",
     effect: () => player.disablePostReality ? DC.D1 : Decimal.pow(10, Decimal.pow(player.endgames, 0.25)),
     formatEffect: value => formatX(value, 2)
   },
@@ -205,7 +205,7 @@ export const endgameMasteries = [
     cost: 4,
     requirement: [111],
     reqType: EM_REQUIREMENT_TYPE.AT_LEAST_ONE,
-    description: "在永恒中保留复兴树"
+    description: "在终局中保留复兴树"
   },
   {
     id: 121,
@@ -423,7 +423,7 @@ export const endgameMasteries = [
     cost: 300000,
     requirement: [231, 232, 233],
     reqType: EM_REQUIREMENT_TYPE.AT_LEAST_ONE,
-    description: "以太力增益基于永恒技能总数倍增",
+    description: "以太力增益基于终局技能总数倍增",
     effect: () => player.disablePostReality ? 1 : player.endgameMasteries.maxSkills.pow(2)
   },
   {

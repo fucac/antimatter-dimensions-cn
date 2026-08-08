@@ -69,7 +69,7 @@ export default {
     </div>
     <div v-if="isDoomed">
       <span class="c-galactic-power-description-text">
-        佩勒已在末日状态下禁止你产出星系之力!
+        佩勒已在毁灭状态下禁止你产出星系之力!
       </span>
     </div>
     <div

@@ -11,7 +11,7 @@ export default {
   }),
   computed: {
     tooltip() {
-      if (this.isDoomed) return "你无法增幅末日现实";
+      if (this.isDoomed) return "你无法增幅毁灭现实";
       if (this.isDisabled) return "你无法增幅天神现实";
       if (!this.canAmplify) {
         return "储存更多真实时间,或更快完成现实以进行增幅";
@@ -51,7 +51,7 @@ export default {
     @click="toggleActive"
   >
     <div v-if="isDoomed">
-      你无法增幅末日现实。
+      你无法增幅毁灭现实。
     </div>
     <div v-else-if="canAmplify">
       <span v-if="isActive">将被增幅:</span>

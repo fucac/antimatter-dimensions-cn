@@ -78,7 +78,7 @@
     formatEffect: value => formatPow(value, 2, 3)
   },
   rsSurge: {
-    name: "遗物复苏",
+    name: "遗迹复苏",
     id: "rsSurge",
     cost: new Decimal("1e550"),
     description: "遗迹碎片的独特符文效果系数现在基于你背包中符文的总独特效果数",

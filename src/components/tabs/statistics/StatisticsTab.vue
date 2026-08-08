@@ -385,10 +385,10 @@ export default {
       <div class="c-stats-tab-general">
         <div>你总共已产出 {{ format(totalAntimatter, 2, 1) }} 反物质。</div>
         <div v-if="divinity.isUnlocked">
-          本次神化中，末日状态下已产出 {{ format(bestDoomedAntimatterThisDivinity, 2, 1) }} 反物质。
+          本次神化中，毁灭状态下已产出 {{ format(bestDoomedAntimatterThisDivinity, 2, 1) }} 反物质。
         </div>
         <div v-if="endgame.isUnlocked">
-          在末日之外，你总共已产出 {{ format(totalAntimatterOutsideDoom, 2, 1) }} 反物质。
+          在毁灭之外，你总共已产出 {{ format(totalAntimatterOutsideDoom, 2, 1) }} 反物质。
         </div>
         <div v-if="endgame.isUnlocked">
           本次终局中，你总共已产出 {{ format(endgame.totalEndgameAntimatter, 2, 1) }} 反物质。
@@ -543,7 +543,7 @@ export default {
       class="c-stats-tab-subheader c-stats-tab-general"
     >
       <div :class="realityClassObject()">
-        {{ isDoomed ? "末日现实" : "现实" }}
+        {{ isDoomed ? "毁灭现实" : "现实" }}
       </div>
       <div>
         你已进行 {{ realityCountString }}<span v-if="endgame.isUnlocked">（本次终局）</span>。
@@ -564,7 +564,7 @@ export default {
         v-if="isDoomed"
         class="c-stats-tab-doomed"
       >
-        你处于末日状态已 {{ realTimeDoomed.toStringShort() }}（真实时间）。
+        你处于毁灭状态已 {{ realTimeDoomed.toStringShort() }}（真实时间）。
       </div>
       <div>
         你每分钟最佳现实机器
@@ -604,7 +604,7 @@ export default {
         为 {{ format(endgame.bestRateCP, 2, 2) }}。
       </div>
       <div>
-        你每分钟最佳末日遗物
+        你每分钟最佳毁灭微粒
         为 {{ format(endgame.bestRateDP, 2, 2) }}。
       </div>
       <br>

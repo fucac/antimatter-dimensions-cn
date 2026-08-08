@@ -11,7 +11,7 @@ export const permanentEndgameMasteries = [
   },
   {
     id: 2,
-    description: "使以上所有非常驻永恒精通免费",
+    description: "使以上所有非常驻终局精通免费",
     cost: 100,
     requirement: () => {
       const esRequirement = Currency.endgameSkills.max.gte(EndgameMastery.permaMasteries.totalEndgameSkillRequirement);

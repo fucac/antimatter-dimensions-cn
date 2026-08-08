@@ -13,7 +13,7 @@ export const infinityUpgrades = {
     effect: () => Decimal.pow(Time.totalTimePlayed.totalMinutes.div(2), 0.15),
     formatEffect: value => formatX(value, 2, 2),
     charged: {
-      description: "诸天反物质维度受冥冥之母·特蕾莎之力与岁月滋养，增益幂效",
+      description: "诸天反物质维度受特蕾莎等级与岁月滋养，增益幂效",
       effect: () => 1 +
         Decimal.log10(Decimal.log10(Time.totalTimePlayed.totalMilliseconds)).times(
         Math.pow(Ra.pets.teresa.level * Ra.unlocks.chargeBoost.effectOrDefault(1) * (player.disablePostReality ? 1 : AlphaUnlocks.autoCrunchChallenge.effects.buff.effectOrDefault(1)), 0.5)).div(150).toNumber(),
@@ -28,7 +28,7 @@ export const infinityUpgrades = {
     effect: () => dimInfinityMult(),
     formatEffect: value => formatX(value, 1, 1),
     charged: {
-      description: "第一与第八维度受无极与母神之力加持，增益幂效",
+      description: "第一与第八维度受无极与特蕾莎等级加持，增益幂效",
       effect: () => chargedDimInfinityMult(),
       formatEffect: value => formatPow(value, 4, 4)
     }
@@ -41,7 +41,7 @@ export const infinityUpgrades = {
     effect: () => dimInfinityMult(),
     formatEffect: value => formatX(value, 1, 1),
     charged: {
-      description: "第二与第七维度受无极与母神之力加持，增益幂效",
+      description: "第二与第七维度受无极与特蕾莎等级加持，增益幂效",
       effect: () => chargedDimInfinityMult(),
       formatEffect: value => formatPow(value, 4, 4)
     }
@@ -54,7 +54,7 @@ export const infinityUpgrades = {
     effect: () => dimInfinityMult(),
     formatEffect: value => formatX(value, 1, 1),
     charged: {
-      description: "第三与第六维度受无极与母神之力加持，增益幂效",
+      description: "第三与第六维度受无极与特蕾莎等级加持，增益幂效",
       effect: () => chargedDimInfinityMult(),
       formatEffect: value => formatPow(value, 4, 4)
     }
@@ -67,7 +67,7 @@ export const infinityUpgrades = {
     effect: () => dimInfinityMult(),
     formatEffect: value => formatX(value, 1, 1),
     charged: {
-      description: "第四与第五维度受无极与母神之力加持，增益幂效",
+      description: "第四与第五维度受无极与特蕾莎等级加持，增益幂效",
       effect: () => chargedDimInfinityMult(),
       formatEffect: value => formatPow(value, 4, 4)
     }
@@ -80,7 +80,7 @@ export const infinityUpgrades = {
       `维度提升与反物质星系所需维度数，减少 ${formatInt(9)}`,
     effect: 9,
     charged: {
-      description: () => "依母神之力，削减维度提升之门槛",
+      description: () => "依特蕾莎等级，削减维度提升之门槛",
       effect: () => 1 / (1 + Math.sqrt(Ra.pets.teresa.level * Ra.unlocks.chargeBoost.effectOrDefault(1) * (player.disablePostReality ? 1 : AlphaUnlocks.autoCrunchChallenge.effects.buff.effectOrDefault(1))) / 10),
       formatEffect: value => `${formatX(value, 4, 4)}`
     }
@@ -92,7 +92,7 @@ export const infinityUpgrades = {
     effect: () => 1.1,
     formatEffect: () => `${formatX(2, 0, 1)} ➜ ${formatX(2.2, 0, 1)}`,
     charged: {
-      description: () => `购买 ${formatInt(10)} 个反物质维度之倍率，受母神之力增益幂效`,
+      description: () => `购买 ${formatInt(10)} 个反物质维度之倍率，受特蕾莎等级增益幂效`,
       effect: () => 1 + (Ra.pets.teresa.level * Ra.unlocks.chargeBoost.effectOrDefault(1) * (player.disablePostReality ? 1 : AlphaUnlocks.autoCrunchChallenge.effects.buff.effectOrDefault(1))) / 200,
       formatEffect: value => formatPow(value, 3, 3)
     }
@@ -104,7 +104,7 @@ export const infinityUpgrades = {
     description: "星系之力倍增",
     effect: 2,
     charged: {
-      description: "星系之力随母神之力增强",
+      description: "星系之力随特蕾莎等级增强",
       effect: () => 2 + Math.sqrt(Ra.pets.teresa.level * Ra.unlocks.chargeBoost.effectOrDefault(1) * (player.disablePostReality ? 1 : AlphaUnlocks.autoCrunchChallenge.effects.buff.effectOrDefault(1))) / 100,
       formatEffect: value => `+${formatPercents(value - 1)}`
     }
@@ -117,7 +117,7 @@ export const infinityUpgrades = {
     formatEffect: value => formatX(value, 2, 2),
     charged: {
       description:
-        "反物质维度受当前无限之境与母神之力加持，增益幂效",
+        "反物质维度受当前无限之境与特蕾莎等级加持，增益幂效",
       effect: () => 1 +
         Decimal.log10(Decimal.log10(Time.thisInfinity.totalMilliseconds.plus(100))).times(
         Math.sqrt(Ra.pets.teresa.level * Ra.unlocks.chargeBoost.effectOrDefault(1) * (player.disablePostReality ? 1 : AlphaUnlocks.autoCrunchChallenge.effects.buff.effectOrDefault(1)))).div(150).toNumber(),
@@ -136,7 +136,7 @@ export const infinityUpgrades = {
     },
     formatEffect: value => formatX(value, 2, 2),
     charged: {
-      description: "依未耗之无限点数，受母神之力驱动，增益第一反物质维度之倍率",
+      description: "依未耗之无限点数，受特蕾莎等级驱动，增益第一反物质维度之倍率",
       effect: () => {
         const divisor = (EndgameMastery(81).isBought && !player.disablePostReality) ? 5 : 10;
         const subtrahend = (EndgameMastery(81).isBought && !player.disablePostReality) ? 1.5 : 0;
@@ -153,7 +153,7 @@ export const infinityUpgrades = {
     effect: () => 2.5,
     formatEffect: () => `${formatX(2, 0, 1)} ➜ ${formatX(2.5, 0, 1)}`,
     charged: {
-      description: "维度提升之倍率受母神之力增益幂效",
+      description: "维度提升之倍率受特蕾莎等级增益幂效",
       effect: () => 1 + (Ra.pets.teresa.level * Ra.unlocks.chargeBoost.effectOrDefault(1) * (player.disablePostReality ? 1 : AlphaUnlocks.autoCrunchChallenge.effects.buff.effectOrDefault(1))) / 200,
       formatEffect: value => formatPow(value, 3, 3)
     }
@@ -175,7 +175,7 @@ export const infinityUpgrades = {
     },
     charged: {
       description: () =>
-        `每一真实秒依现实所得之量比例获取现实机器，随母神之力增益`,
+        `每一真实秒依现实所得之量比例获取现实机器，随特蕾莎等级增益`,
       effect: () => Math.pow(Ra.pets.teresa.level * Ra.unlocks.chargeBoost.effectOrDefault(1) * (player.disablePostReality ? 1 : AlphaUnlocks.autoCrunchChallenge.effects.buff.effectOrDefault(1)), 2) *
         Ra.unlocks.continuousTTBoost.effects.autoPrestige.effectOrDefault(1),
       formatEffect: value => formatX(value, 2, 1)

@@ -67,7 +67,7 @@ export default {
       v-if="showEndgame"
     >
       你拥有 <span class="cp-text">{{ format(celestialPoints, 2) }}</span>{{ pluralize(" 个天神点", celestialPoints) }}。
-      你拥有 <span class="dp-text">{{ format(doomedParticles, 2) }}</span>{{ pluralize(" 个末日遗物", doomedParticles) }}。
+      你拥有 <span class="dp-text">{{ format(doomedParticles, 2) }}</span>{{ pluralize(" 个毁灭微粒", doomedParticles) }}。
     <br>
     </div>
     <span>你拥有 <span class="c-game-header__antimatter">{{ format(antimatter, 2, 1) }}</span> 反物质。</span>

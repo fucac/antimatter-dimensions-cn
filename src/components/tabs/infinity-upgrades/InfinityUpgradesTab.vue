@@ -149,7 +149,7 @@ export default {
       <span v-if="!isDoomed || !alwaysRecpec"> 你可以在现实时自由重置你的选择。</span>
     </div>
     <div v-if="isUseless">
-      末日状态下无法对无限升级充能。
+      毁灭状态下无法对无限升级充能。
     </div>
     <div v-if="isDoomed && !isUseless && alwaysRecpec">
       已充能的无限升级在世界末日时总会重置，直到你能在世界末日时保留突破无限升级。

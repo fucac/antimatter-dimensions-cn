@@ -10,7 +10,7 @@ export class GalaxyGeneratorAutobuyerState extends IntervaledAutobuyerState {
   }
 
   get name() {
-    return ["基础星系倍数", "乘法星系倍数", "反物质倍数", "无限点数倍数", "永恒点数倍数", "现实碎片倍数", "膨胀时间倍数", "残余威力", "星系威力", "星系膨胀"][this.id - 1];
+    return ["基础星系倍数", "乘法星系倍数", "反物质倍数", "无限点数倍数", "永恒点数倍数", "现实碎片倍数", "膨胀时间倍数", "遗物威力", "星系威力", "星系膨胀"][this.id - 1];
   }
 
   get interval() {

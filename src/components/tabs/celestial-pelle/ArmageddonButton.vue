@@ -56,7 +56,7 @@ export default {
     <span class="c-remnant-gain-display">
       行末日以获
       <span class="c-remnant-gain">{{ remnants }}</span>
-      残余
+      遗物
     </span>
     <br>
     现实碎片

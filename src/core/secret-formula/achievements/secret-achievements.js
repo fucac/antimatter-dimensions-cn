@@ -173,7 +173,7 @@
   {
     id: 45,
     name: "这拖拽也太慢了",
-    description: "拖动 perks 一分钟。",
+    description: "拖动复兴点一分钟。",
     checkRequirement: () => player.requirementChecks.permanent.perkTreeDragging++ / 100 >= 60
   },
   {

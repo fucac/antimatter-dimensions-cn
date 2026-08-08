@@ -289,13 +289,13 @@ export const catchupResources = [
     id: 45,
     openH2pEntry: "Pelle",
     requiredStage: PROGRESS_STAGE.PELLE,
-    description: `末日审判是佩勒专属的重置，你可以随时执行。这会将你的进度重置到末日现实的开端，但会给予生产现实碎片的残骸。`
+    description: `末日审判是佩勒专属的重置，你可以随时执行。这会将你的进度重置到毁灭现实的开端，但会给予生产现实碎片的残骸。`
   },
   {
     name: "佩勒打击与裂隙",
     id: 46,
     openH2pEntry: "Pelle Strikes",
     requiredStage: PROGRESS_STAGE.PELLE,
-    description: `在佩勒中达到特定进度里程碑时，可能会发生打击，永久地对末日现实施加另一个削弱。每次打击都伴随着一个裂隙，这是一种让你抽取不同资源以换取加成的机制。这些是永久的，在末日审判后仍然保持解锁。`
+    description: `在佩勒中达到特定进度里程碑时，可能会发生打击，永久地对毁灭现实施加另一个削弱。每次打击都伴随着一个裂隙，这是一种让你抽取不同资源以换取加成的机制。这些是永久的，在末日审判后仍然保持解锁。`
   },
 ];

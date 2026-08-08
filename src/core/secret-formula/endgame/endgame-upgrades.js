@@ -1,4 +1,4 @@
-﻿const rebuyable = props => {
+const rebuyable = props => {
   props.cost = () => getHybridCostScaling(
     player.endgame.rebuyables[props.id],
     1e100,
@@ -85,17 +85,17 @@ export const endgameUpgrades = [
     requirement: () => `游玩${formatPostBreak("1e666")}年`,
     checkRequirement: () => Time.totalTimePlayed.totalYears.gt(Decimal.pow(10, 666)),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "在天神现实之外，若你启用了天神物质，游戏速度等于本次永恒的最大游戏速度"
+    description: "在天神现实之外，若你启用了天神物质，游戏速度等于本次终局的最大游戏速度"
   },
   {
-    name: "永恒薪酬",
+    name: "终局薪酬",
     id: 8,
     cost: new Decimal(1e60),
-    requirement: () => `在${formatInt(10)}分钟（真实时间）内手动完成永恒`,
+    requirement: () => `在${formatInt(10)}分钟（真实时间）内手动完成终局`,
     hasFailed: () => Time.thisEndgameRealTime.totalMinutes.gte(10),
     checkRequirement: () => Time.bestEndgameRealTime.totalMinutes.lt(10),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: () => `永恒生成速度为你最快永恒（真实时间）的${formatInt(10)}倍慢`,
+    description: () => `终局生成速度为你最快终局（真实时间）的${formatInt(10)}倍慢`,
     effect: () => player.disablePostReality ? DC.NUMMAX : new Decimal(player.records.bestEndgame.realTime * 10),
     formatEffect: value => {
       if (new Decimal(value).gte(9999999999)) return "无永恒生成";
@@ -125,7 +125,7 @@ export const endgameUpgrades = [
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     canLock: true,
     lockEvent: "购买「理想伪造」",
-    description: "在永恒中保留所有虚数升级"
+    description: "在终局中保留所有虚数升级"
   },
   {
     name: "天神混沌",
@@ -138,7 +138,7 @@ export const endgameUpgrades = [
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     canLock: true,
     lockEvent: "向特蕾莎注入RM",
-    description: () => "记录特蕾莎反物质在永恒中保留"
+    description: () => "记录特蕾莎反物质在终局中保留"
   },
   {
     name: "九中和",
@@ -206,7 +206,7 @@ export const endgameUpgrades = [
     requirement: () => `拥有${format(1e10)}星系力`,
     checkRequirement: () => Currency.galacticPower.gte(1e10),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "你可以在永恒精通中装备第二个货币路径",
+    description: "你可以在终局精通中装备第二个货币路径",
     effect: () => player.disablePostReality ? 1 : 2
   },
   {
@@ -216,7 +216,7 @@ export const endgameUpgrades = [
     requirement: () => `拥有${format(1e20)}星系力`,
     checkRequirement: () => Currency.galacticPower.gte(1e20),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "你可以在永恒精通中装备第二个压缩路径",
+    description: "你可以在终局精通中装备第二个压缩路径",
     effect: () => player.disablePostReality ? 1 : 2
   },
   {
@@ -227,7 +227,7 @@ export const endgameUpgrades = [
     hasFailed: () => !EndgameUpgrade(16).isBought,
     checkRequirement: () => Currency.galacticPower.gte(1e30) && EndgameUpgrade(16).isBought,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "你可以在永恒精通中装备第三个货币路径",
+    description: "你可以在终局精通中装备第三个货币路径",
     effect: () => player.disablePostReality ? 1 : 3
   },
   {
@@ -238,7 +238,7 @@ export const endgameUpgrades = [
     hasFailed: () => !EndgameUpgrade(17).isBought,
     checkRequirement: () => Currency.galacticPower.gte(1e40) && EndgameUpgrade(17).isBought,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "你可以在永恒精通中装备第三个压缩路径",
+    description: "你可以在终局精通中装备第三个压缩路径",
     effect: () => player.disablePostReality ? 1 : 3
   },
   {
@@ -249,7 +249,7 @@ export const endgameUpgrades = [
     hasFailed: () => !(EndgameUpgrade(18).isBought && EndgameUpgrade(19).isBought),
     checkRequirement: () => Currency.galacticPower.gte(1e50) && EndgameUpgrade(18).isBought && EndgameUpgrade(19).isBought,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "你可以在永恒精通中装备第四个压缩与货币路径",
+    description: "你可以在终局精通中装备第四个压缩与货币路径",
     effect: () => player.disablePostReality ? 1 : 4
   },
   {
@@ -270,7 +270,7 @@ export const endgameUpgrades = [
     hasFailed: () => !BreakEternityUpgrade.tgThresholdUncap.isBought,
     checkRequirement: () => BreakEternityUpgrade.tgThresholdUncap.isBought,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: () => `基于永恒获得超光速星系阈值的幂`,
+    description: () => `基于终局获得超光速星系阈值的幂`,
     effect: () => player.disablePostReality ? 1 : 1 / Math.log10(player.endgames + 1),
     formatEffect: value => formatPow(value, 2, 3)
   },

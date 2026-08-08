@@ -96,7 +96,7 @@ export default {
         <br>
         可转化为:终局与以太能量获取的
         <span class="c-divine-dim-description__accent">{{ formatX(conversionFormula1, 2, 2) }}</span>
-        倍率;末日状态下反物质指数与所有现实机器的
+        倍率;毁灭状态下反物质指数与所有现实机器的
         <span class="c-divine-dim-description__accent">{{ formatPow(conversionFormula2, 2, 3) }}</span>
         次幂;以及强子与阿尔法残骸衰变上限时间的
         <span class="c-divine-dim-description__accent">{{ formatPercents(conversionFormula3, 2, 2) }}</span>

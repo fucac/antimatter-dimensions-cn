@@ -6927,7 +6927,7 @@ export const news = [
   {
     id: "le129",
     text:
-      `特蕾莎，现实天神。鹿颈长，古遗物天神。无名者们，时间天神。
+      `特蕾莎，现实天神。鹿颈长，古遗迹天神。无名者们，时间天神。
       V，成就天神。太阳神，被遗忘的天神。莱特拉，维度天神。佩勒，
       反物质天神。Alpha，黑暗天神。Slabdrill，第九维度天神。
       这些都很好，但还不够。现在我很自豪地宣布：我，新闻条，已经成为一名天神。`,
@@ -7251,7 +7251,7 @@ export const news = [
     id: "le183",
     text:
       `原来你确实在终局保留了星系发生器。然而，当元素得知此事时，
-      他移除了末日之外所有的充电插座。`,
+      他移除了毁灭之外所有的充电插座。`,
     get unlocked() { return PlayerProgress.endgameUnlocked() }
   },
   {
@@ -7281,7 +7281,7 @@ export const news = [
     id: "le187",
     text:
       `你也可以通过求解 x^2-410286423278424y^2 = 1 的正整数解 x 和 y
-      来逃离末日现实，这要感谢阿基米德。`,
+      来逃离毁灭现实，这要感谢阿基米德。`,
     get unlocked() { return Pelle.isDoomed || PlayerProgress.endgameUnlocked() }
   },
   {

@@ -154,7 +154,7 @@ export const progressStages = [
     id: PROGRESS_STAGE.PELLE,
     name: "佩勒（第7天神）",
     hasReached: save => save.celestials?.pelle?.doomed || save.celestials?.pelle?.quotes.length > 0,
-    suggestedResource: "残余物",
+    suggestedResource: "遗物",
     subProgressValue: save => Decimal.log10(new Decimal(save.celestials.pelle.remnants).add(1)).toNumber() / 9,
   },
 ];

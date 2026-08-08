@@ -156,9 +156,9 @@ export const perks = {
     id: 44,
     label: "ATT",
     family: PERK_FAMILY.DILATION,
-    description: "当你负担得起时，自动购买被动时间研究生成膨胀时间升级。",
+    description: "当你负担得起时，自动购买被动时间定理生成膨胀时间升级。",
     automatorPoints: 5,
-    shortDescription: () => "自动购买时间研究生成",
+    shortDescription: () => "自动购买时间定理生成",
     layoutPosList: [124289, 82601, 79002, 79396, 80206, 72282],
   },
   autounlockTD: {
