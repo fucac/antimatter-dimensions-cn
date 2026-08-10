@@ -8,7 +8,8 @@ export default {
   },
   data() {
     return {
-      storedTime: 0
+      storedTime: 0,
+      customTimeInput: ""
     };
   },
   computed: {
@@ -60,10 +61,32 @@ export default {
         "o-primary-btn--disabled": this.storedTime <= 0
       };
     },
+    customSeconds() {
+      return this.parseCustomTime(this.customTimeInput);
+    },
+    customDisp() {
+      if (this.customSeconds <= 0) return "消耗自定义时间";
+      return `消耗 ${TimeSpan.fromSeconds(new Decimal(this.customSeconds)).toStringShort()} 储存时间`;
+    },
+    classObjCustom() {
+      return {
+        "o-primary-btn": true,
+        "o-primary-btn--disabled": this.customSeconds <= 0 || this.storedTime < this.customSeconds
+      };
+    },
   },
   methods: {
     update() {
       this.storedTime = player.storedTime;
+    },
+    // 解析自定义时间输入：支持 "3600"（秒）、"3小时"、"2天"、"1e9年" 等（可省略单位，默认秒）
+    parseCustomTime(input) {
+      const m = String(input ?? "").trim().toLowerCase().match(/^([0-9.eE+-]+)\s*(年|天|小时|分钟|秒|y|d|h|m|s)?$/);
+      if (!m) return 0;
+      const v = parseFloat(m[1]);
+      if (!isFinite(v) || v < 0) return 0;
+      const unitSecs = { 年: 31557600, y: 31557600, 天: 86400, d: 86400, 小时: 3600, h: 3600, 分钟: 60, m: 60, 秒: 1, s: 1, "": 1 };
+      return v * (unitSecs[m[2]] ?? 1);
     },
     spendOneMin() {
       if (this.storedTime >= 60) {
@@ -94,6 +117,12 @@ export default {
         simulateTime(player.storedTime);
         player.storedTime = 0;
       }
+    },
+    spendCustom() {
+      const secs = this.customSeconds;
+      if (secs <= 0 || this.storedTime < secs) return;
+      player.storedTime -= secs;
+      simulateTime(secs);
     }
   }
 };
@@ -136,6 +165,20 @@ export default {
       >
         {{ allDisp }}
       </PrimaryButton>
+      <div class="c-stored-time-custom">
+        <input
+          v-model="customTimeInput"
+          class="c-stored-time-custom__input"
+          placeholder="如 3小时 / 2天 / 1e9年（也可直接输入秒数）"
+          @keyup.enter="spendCustom"
+        >
+        <PrimaryButton
+          :class="classObjCustom"
+          @click="spendCustom"
+        >
+          {{ customDisp }}
+        </PrimaryButton>
+      </div>
     </div>
   </div>
 </template>
@@ -149,5 +192,24 @@ export default {
 .special-text {
   font-size: 2.5rem;
   color: var(--color-dilation);
+}
+
+.c-stored-time-custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.c-stored-time-custom__input {
+  width: 18rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: #ffffff;
+  background: #111111;
+  border: 1px solid #444444;
+  border-radius: 0.25rem;
 }
 </style>
