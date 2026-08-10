@@ -282,7 +282,9 @@ export const endgameUpgrades = [
     hasFailed: () => !BreakEternityUpgrade.tesseractMultiplier.isBought,
     checkRequirement: () => BreakEternityUpgrade.tesseractMultiplier.isBought,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "天神点延后自由超立方体软上限"
+    description: "天神点延后自由超立方体软上限",
+    effect: () => player.disablePostReality ? 1 : Math.pow(1 + Decimal.log10(Decimal.max(Decimal.log10(player.endgame.celestialPoints.max(1)).div(200), 1)).toNumber(), 2),
+    formatEffect: value => formatX(value, 2, 2)
   },
   {
     name: "牺牲增压",
