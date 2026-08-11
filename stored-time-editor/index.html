@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>反物质维度：终局 - 存储时间修改器（网页版）</title>
+<style>
+  :root {
+    --bg: #10131a;
+    --panel: #1a1f2b;
+    --panel2: #222837;
+    --text: #d8dee9;
+    --muted: #8b94a7;
+    --accent: #e8b33d;
+    --accent2: #5a7bd8;
+    --ok: #6fce5e;
+    --err: #e06c6c;
+    --border: #2e3545;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Microsoft YaHei UI", "Segoe UI", system-ui, sans-serif;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 24px 16px 60px; }
+  h1 {
+    font-size: 22px;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .sub { color: var(--muted); font-size: 13px; margin: 0 0 20px; line-height: 1.6; }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .panel h2 { font-size: 14px; margin: 0 0 10px; color: var(--accent2); }
+  textarea {
+    width: 100%;
+    min-height: 150px;
+    background: var(--panel2);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 13px;
+    resize: vertical;
+  }
+  textarea[readonly] { color: #b8c2d4; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  input[type="text"] {
+    flex: 1;
+    min-width: 180px;
+    background: var(--panel2);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 9px 10px;
+    font-size: 14px;
+  }
+  button {
+    background: var(--accent);
+    color: #1a1406;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button:hover { filter: brightness(1.1); }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  button.ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    font-weight: 400;
+  }
+  #status {
+    margin: 10px 0 0;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 20px;
+    word-break: break-all;
+  }
+  #status.ok { color: var(--ok); }
+  #status.err { color: var(--err); }
+  .hint { color: var(--muted); font-size: 12px; }
+  .footer { color: var(--muted); font-size: 12px; margin-top: 20px; line-height: 1.6; }
+  .footer a { color: var(--accent2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>反物质维度：终局 — 存储时间修改器</h1>
+  <p class="sub">粘贴存档文本，输入目标存储时间，一键生成修改后的存档文本（自动复制，可直接在游戏内「导入存档」粘贴）。所有处理均在本机浏览器内完成，存档不会上传到任何服务器。</p>
+
+  <div class="panel">
+    <h2>① 存档文本</h2>
+    <textarea id="input" placeholder="粘贴游戏「导出存档」生成的文本…"></textarea>
+  </div>
+
+  <div class="panel">
+    <h2>② 修改存储时间为</h2>
+    <div class="row">
+      <input type="text" id="time" placeholder="例如：3600 / 3小时 / 2天 / 50年 / 1e9年 / 30m">
+      <button id="run">生成修改后存档</button>
+    </div>
+    <p class="hint" style="margin-top:8px;">支持：3600(秒) / 3小时 / 2天 / 50年 / 1e9年 / 30m / 1年 2天 3小时（可组合）</p>
+  </div>
+
+  <div class="panel">
+    <h2>③ 修改后存档文本</h2>
+    <textarea id="output" readonly placeholder="生成结果将显示在这里…"></textarea>
+    <div class="row" style="margin-top:10px;">
+      <button class="ghost" id="copy">重新复制</button>
+      <button class="ghost" id="clear">清空</button>
+    </div>
+  </div>
+
+  <p id="status"></p>
+
+  <div class="footer">
+    编码格式与游戏 <code>serializer.js</code> 一致（AntimatterDimensionsEndgameSavefileFormat AAB）。<br>
+    返回游戏：<a href="../">反物质维度：终局</a>
+  </div>
+</div>
+
+<script src="pako.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var STARTING = "AntimatterDimensionsEndgameSavefileFormat";
+  var ENDING = "EndOfSavefile";
+  var VERSION = "AAB";
+  var YEAR_SECS = 31557600;
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function b64ToBytes(b64) {
+    b64 = b64 + "=".repeat((4 - (b64.length % 4)) % 4);
+    var bin = atob(b64);
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return bytes;
+  }
+
+  function bytesToB64(bytes) {
+    var s = "";
+    var chunk = 0x8000;
+    for (var i = 0; i < bytes.length; i += chunk) {
+      s += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+    }
+    return btoa(s);
+  }
+
+  function decodeText(text) {
+    text = text.trim();
+    if (text.indexOf("AntimatterDimensionsSavefileFormat") === 0) {
+      text = STARTING + text.slice("AntimatterDimensionsSavefileFormat".length);
+    }
+    if (text.indexOf(STARTING) !== 0) {
+      // 旧格式：直接 base64 解码
+      var raw = b64ToBytes(text);
+      return JSON.parse(new TextDecoder().decode(raw));
+    }
+    var x = text.slice(STARTING.length + 3);        // 去前缀 + 版本号
+    x = x.slice(0, x.length - ENDING.length);       // 去后缀
+    x = x.replace(/0b/g, "+").replace(/0c/g, "/").replace(/0a/g, "0");
+    var inflated = pako.inflate(b64ToBytes(x));
+    return JSON.parse(new TextDecoder().decode(inflated));
+  }
+
+  function encodeText(obj) {
+    var json = JSON.stringify(obj);
+    var bytes = new TextEncoder().encode(json);
+    var deflated = pako.deflate(bytes);
+    var s = bytesToB64(deflated);
+    s = s.replace(/=+$/g, "").replace(/0/g, "0a").replace(/\+/g, "0b").replace(/\//g, "0c");
+    return STARTING + VERSION + s + ENDING;
+  }
+
+  function parseTime(expr) {
+    var s = String(expr == null ? "" : expr).trim().toLowerCase();
+    if (!s) return NaN;
+    var re = /([0-9.eE+-]+)\s*(年|天|小时|分钟|秒|y|d|h|m|s)?/g;
+    var unitSecs = {
+      年: YEAR_SECS, y: YEAR_SECS,
+      天: 86400, d: 86400,
+      小时: 3600, h: 3600,
+      分钟: 60, m: 60,
+      秒: 1, s: 1, "": 1
+    };
+    var total = 0, found = false, m;
+    while ((m = re.exec(s)) !== null) {
+      var v = parseFloat(m[1]);
+      if (!isFinite(v) || v < 0) return NaN;
+      total += v * (unitSecs[m[2]] != null ? unitSecs[m[2]] : 1);
+      found = true;
+    }
+    return found ? total : NaN;
+  }
+
+  function formatYears(secs) {
+    var y = secs / YEAR_SECS;
+    if (y >= 1e6 || (y !== 0 && Math.abs(y) < 1e-3)) return y.toExponential(4);
+    return String(Math.round(y * 1000) / 1000);
+  }
+
+  function setStatus(msg, cls) {
+    var el = $("status");
+    el.textContent = msg;
+    el.className = cls || "";
+  }
+
+  function copyText(text, cb) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { cb(true); }, function () { cb(false); });
+    } else {
+      cb(false);
+    }
+  }
+
+  $("run").addEventListener("click", function () {
+    var inp = $("input").value.trim();
+    if (!inp) { setStatus("请先粘贴存档文本。", "err"); return; }
+    var secs = parseTime($("time").value);
+    if (!isFinite(secs) || secs < 0) {
+      setStatus("无法解析时间表达式，示例：3600 / 3小时 / 1e9年 / 30m。", "err");
+      return;
+    }
+    var root;
+    try {
+      root = decodeText(inp);
+    } catch (e) {
+      setStatus("无法解码存档文本：" + (e && e.message ? e.message : e), "err");
+      return;
+    }
+    var saves = root && typeof root === "object" && root.saves ? root.saves : null;
+    var p = saves ? (saves[root.current] != null ? saves[root.current] : root) : root;
+    if (!p || typeof p !== "object" || !("storedTime" in p)) {
+      setStatus("存档中未找到 storedTime 字段。", "err");
+      return;
+    }
+    var before = p.storedTime;
+    p.storedTime = secs;
+    var out;
+    try {
+      out = encodeText(root);
+    } catch (e) {
+      setStatus("编码失败：" + (e && e.message ? e.message : e), "err");
+      return;
+    }
+    $("output").value = out;
+    copyText(out, function (ok) {
+      setStatus(
+        "存储时间：" + before + " 秒 → " + secs + " 秒（" + formatYears(secs) + " 年）。" +
+        (ok ? "已复制到剪贴板，可直接在游戏内「导入存档」粘贴。" : "复制失败，请手动选择并复制。"),
+        ok ? "ok" : "err"
+      );
+    });
+  });
+
+  $("copy").addEventListener("click", function () {
+    var out = $("output").value.trim();
+    if (!out) { setStatus("没有可复制的内容。", "err"); return; }
+    copyText(out, function (ok) {
+      setStatus(ok ? "已复制到剪贴板。" : "复制失败，请手动选择并复制。", ok ? "ok" : "err");
+    });
+  });
+
+  $("clear").addEventListener("click", function () {
+    $("input").value = "";
+    $("output").value = "";
+    $("time").value = "";
+    setStatus("已清空。", "");
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") $("run").click();
+  });
+})();
+</script>
+</body>
+</html>
