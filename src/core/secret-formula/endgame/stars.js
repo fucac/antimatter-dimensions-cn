@@ -1,7 +1,7 @@
 export const stars = {
   red: {
     id: 0,
-    name: "红",
+    name: "red",
     dmReq: 1e20,
     resetReq: 1e25,
     effect: (amount = player.endgame.ethereal.stars.red) => {
@@ -13,7 +13,7 @@ export const stars = {
   },
   orange: {
     id: 1,
-    name: "橙",
+    name: "orange",
     dmReq: 1e25,
     resetReq: 1e28,
     effect: (amount = player.endgame.ethereal.stars.orange) => {
@@ -25,7 +25,7 @@ export const stars = {
   },
   yellow: {
     id: 2,
-    name: "黄",
+    name: "yellow",
     dmReq: 1e30,
     resetReq: 1e32,
     effect: (amount = player.endgame.ethereal.stars.yellow) => {
@@ -37,7 +37,7 @@ export const stars = {
   },
   green: {
     id: 3,
-    name: "绿",
+    name: "green",
     dmReq: 1e35,
     resetReq: 1e36,
     effect: (amount = player.endgame.ethereal.stars.green) => {
@@ -49,7 +49,7 @@ export const stars = {
   },
   blue: {
     id: 4,
-    name: "蓝",
+    name: "blue",
     dmReq: 1e45,
     resetReq: 1e40,
     effect: (amount = player.endgame.ethereal.stars.blue) => {
@@ -62,7 +62,7 @@ export const stars = {
   },
   purple: {
     id: 5,
-    name: "紫",
+    name: "purple",
     dmReq: 1e55,
     resetReq: 1e55,
     effect: (amount = player.endgame.ethereal.stars.purple) => {
@@ -74,7 +74,7 @@ export const stars = {
   },
   white: {
     id: 6,
-    name: "白",
+    name: "white",
     dmReq: 1e70,
     resetReq: 1e75,
     effect: (amount = player.endgame.ethereal.stars.white) => {
@@ -86,7 +86,7 @@ export const stars = {
   },
   black: {
     id: 7,
-    name: "黑",
+    name: "black",
     dmReq: 1e85,
     resetReq: 1e100,
     effect: (amount = player.endgame.ethereal.stars.black) => {
@@ -98,7 +98,7 @@ export const stars = {
   },
   gray: {
     id: 8,
-    name: "灰",
+    name: "gray",
     dmReq: 1e100,
     resetReq: 1e125,
     effect: (amount = player.endgame.ethereal.stars.gray) => {

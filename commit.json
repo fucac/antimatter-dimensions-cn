@@ -1,1 +1,1 @@
-{"sha":"676c7def022af884d470f143a6b7840150b40fe3","message":"修复符文等级数值偏高：baseLevel公式还原官方(perkShop乘完再加shardFactor)，threshold改用Decimal.gte比较，同步构建产物 app.d5805ee1.js","author":"fucac"}
+{"sha":"4ff7062050345481583be309322768a6eddfe262","message":"修复反物质数值偏大：二元升级effect公式还原官方(isDecimal用线性指数，isQuadratic独立分支用三角数)，同步构建产物 app.c0aea886.js","author":"fucac"}

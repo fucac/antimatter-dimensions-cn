@@ -32,14 +32,16 @@ export default {
       return this.config.description(this.reward);
     },
     name() {
-      return this.config.name.capitalize();
+      // config.name 是存档键（英文），显示名按 id 映射为中文
+      const starNames = ["红", "橙", "黄", "绿", "蓝", "紫", "白", "黑", "灰"];
+      return starNames[this.star.id];
     },
     canReset() {
       return Currency.etherealPower.value.gte(this.config.resetReq);
     },
     resetText() {
-      if (!this.canReset) return `Reach ${format(this.config.resetReq, 2, 2)} Ethereal Power`;
-      return `Condense Ethereal Power for ${format(this.pending, 2, 2)} ${this.name} Stars`;
+      if (!this.canReset) return `达到 ${format(this.config.resetReq, 2, 2)} 以太能量`;
+      return `将以太能量凝结为 ${format(this.pending, 2, 2)} ${this.name} 星`;
     },
     rewardClassObject() {
       return {
@@ -87,7 +89,7 @@ export default {
       </span>
       <br>
       <span>
-        Effect: <span v-if="showPending && canReset">▲</span>{{ description }}
+        效果：<span v-if="showPending && canReset">▲</span>{{ description }}
       </span>
       <br>
       <br>

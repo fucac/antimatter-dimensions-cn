@@ -455,6 +455,27 @@ export const migrations = {
       if (typeof old === "string" && old !== "" && petNameMap[old] !== undefined) {
         raData.petWithRemembrance = petNameMap[old];
       }
+    },
+    107: player => {
+      // 星宿的 config.name 同时用作存档键（player.endgame.ethereal.stars）。
+      // 早期汉化把 name 直接改成了中文（如"红"），导致读取旧存档（英文键 red/orange/...）时
+      // 取到 undefined，星辉乘积/星宿数量显示异常甚至报错。这里把中文键的值合并回英文键。
+      const starsData = player.endgame && player.endgame.ethereal && player.endgame.ethereal.stars;
+      if (!starsData) return;
+      const starKeyMap = {
+        "红": "red", "橙": "orange", "黄": "yellow", "绿": "green", "蓝": "blue",
+        "紫": "purple", "白": "white", "黑": "black", "灰": "gray"
+      };
+      for (const [zh, en] of Object.entries(starKeyMap)) {
+        const zhValue = starsData[zh];
+        if (zhValue === undefined) continue;
+        const enValue = starsData[en];
+        const zhDecimal = Decimal.isDecimal(zhValue) ? zhValue : new Decimal(zhValue);
+        starsData[en] = enValue === undefined
+          ? zhDecimal
+          : Decimal.isDecimal(enValue) ? enValue.add(zhDecimal) : new Decimal(enValue).add(zhDecimal);
+        delete starsData[zh];
+      }
     }
   },
 
