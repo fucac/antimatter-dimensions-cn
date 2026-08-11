@@ -1,4 +1,4 @@
-﻿const rebuyable = props => {
+const rebuyable = props => {
   props.cost = () => getHybridCostScaling(
     player.reality.dualityRebuyables[props.id],
     1e20,
@@ -10,7 +10,8 @@
     props.costMult
   );
   const { effect } = props;
-  if (props.isDecimal) props.effect = () => player.disablePostReality ? DC.D1 : Decimal.pow(effect, (player.reality.dualityRebuyables[props.id] + 1) * (player.reality.dualityRebuyables[props.id] / 2));
+  if (props.isDecimal) props.effect = () => player.disablePostReality ? DC.D1 : Decimal.pow(effect, player.reality.dualityRebuyables[props.id]);
+  else if (props.isQuadratic) props.effect = () => player.disablePostReality ? DC.D1 : Decimal.pow(effect, (player.reality.dualityRebuyables[props.id] + 1) * (player.reality.dualityRebuyables[props.id] / 2));
   else props.effect = () => player.disablePostReality ? 1 : effect * player.reality.dualityRebuyables[props.id];
   if (!props.formatEffect) props.formatEffect = value => `+${format(value, 2, 2)}`;
   props.formatCost = value => format(value, 2, 0);
