@@ -439,6 +439,22 @@ export const migrations = {
     },
     105: player => {
       endgameMigration(player);
+    },
+    106: player => {
+      // 汉化后太阳神宠物名称由英文改为中文，旧存档中存储的英文宠物名需迁移为当前中文名，
+      // 否则 RaTab 的 petStyle 在查找宠物时返回 undefined，导致太阳神界面渲染崩溃
+      const raData = player.celestials && player.celestials.ra;
+      if (!raData) return;
+      const petNameMap = {
+        "Teresa": "特蕾莎",
+        "Effarig": "鹿颈长",
+        "The Nameless Ones": "无名氏",
+        "V": "薇"
+      };
+      const old = raData.petWithRemembrance;
+      if (typeof old === "string" && old !== "" && petNameMap[old] !== undefined) {
+        raData.petWithRemembrance = petNameMap[old];
+      }
     }
   },
 

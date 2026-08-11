@@ -59,10 +59,9 @@ export default {
       }
     ],
     petStyle() {
+      const pet = this.pets.find(p => p.pet.name === this.petWithRemembrance);
       return {
-        color: (this.petWithRemembrance === "")
-          ? "white"
-          : this.pets.find(pet => pet.pet.name === this.petWithRemembrance).pet.color,
+        color: pet ? pet.pet.color : "white",
       };
     },
     runButtonClassObject() {

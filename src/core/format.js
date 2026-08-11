@@ -21,7 +21,17 @@ window.formatInt = function formatInt(value) {
   if (Notations.current.isPainful && Notations.current.name !== "Standard") {
     return format(value, 2);
   }
-  return formatWithCommas(typeof value === "number" ? value.toFixed(0) : value.toNumber().toFixed(0));
+  // Defensive: 某些旧存档/异常数据可能传入 null、undefined 或非 Decimal 的值，
+  // 直接调用 toNumber() 会导致渲染崩溃（如"上次运行"记录中字段缺失时）
+  let num;
+  if (typeof value === "number") {
+    num = value;
+  } else if (value && typeof value.toNumber === "function") {
+    num = value.toNumber();
+  } else {
+    num = Number(value);
+  }
+  return formatWithCommas(Number.isFinite(num) ? num.toFixed(0) : "0");
 };
 
 window.formatFloat = function formatFloat(value, digits) {
