@@ -1,1 +1,1 @@
-{"sha":"02b1f388302c7e63c0bd6ca311d0e07b937da3ee","message":"增强崩溃捕获：Vue渲染错误与Promise rejection兜底，崩溃信息存入localStorage并重启时显示，用于诊断偶发白屏","author":"fucac"}
+{"sha":"0b29a1cc6c36fcfb1188524b3a224052261cf97b","message":"修复太阳神界面空白崩溃：RaTab.petStyle防undefined兜底，存档迁移106将旧英文宠物名转为中文名，formatInt防御非Decimal值","author":"fucac"}
