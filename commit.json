@@ -1,1 +1,1 @@
-{"sha":"0b29a1cc6c36fcfb1188524b3a224052261cf97b","message":"修复太阳神界面空白崩溃：RaTab.petStyle防undefined兜底，存档迁移106将旧英文宠物名转为中文名，formatInt防御非Decimal值","author":"fucac"}
+{"sha":"676c7def022af884d470f143a6b7840150b40fe3","message":"修复符文等级数值偏高：baseLevel公式还原官方(perkShop乘完再加shardFactor)，threshold改用Decimal.gte比较，同步构建产物 app.d5805ee1.js","author":"fucac"}
