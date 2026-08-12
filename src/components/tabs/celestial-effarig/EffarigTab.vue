@@ -1,4 +1,4 @@
-﻿<script>
+<script>
 import CelestialQuoteHistory from "@/components/CelestialQuoteHistory";
 import EffarigRunUnlockReward from "./EffarigRunUnlockReward";
 import EffarigUnlockButton from "./EffarigUnlockButton";
@@ -174,7 +174,7 @@ export default {
       >
         <div class="c-effarig-run-description">
           <span :class="{ 'o-pelle-disabled': isDoomed }">
-            Enter Effarig's Reality.
+            进入鹿颈长的现实。
           </span>
         </div>
         <div

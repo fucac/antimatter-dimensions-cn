@@ -72,14 +72,14 @@ export default {
     <br>
     <div>
       <span class="l-alpha-text">
-        Each Alpha layer beaten also increases Endgame and Ethereal Power gain by {{ formatPercents(0.33) }}
+        每击败一个阿尔法层级，终局与以太能量的获取增加 {{ formatPercents(0.33) }}
       </span>
     </div>
     <div class="l-alpha-unlocks-and-run">
       <div class="l-alpha-unlocks">
         <div>
           <span class="l-alpha-header">
-            Layer
+            层级
           </span>
           <p
             v-for="(layer, idx) in layers"
@@ -101,7 +101,7 @@ export default {
         </div>
         <div>
           <span class="l-alpha-header">
-            Buff
+            增益
           </span>
           <p
             v-for="(buff, idz) in buffs"
@@ -114,7 +114,7 @@ export default {
       <div class="l-alpha-run">
         <div class="c-alpha-run-description">
           <span :class="{ 'o-pelle-disabled': isDoomed || isDestroyed }">
-            Access Alpha's Reality.
+            进入阿尔法的现实。
           </span>
         </div>
         <div
