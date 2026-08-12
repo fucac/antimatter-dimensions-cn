@@ -24,6 +24,7 @@ export default {
       automatorUnlocked: false,
       automatorLogSize: 0,
       gameVersion: "",
+      latestVersion: "",
     };
   },
   // This puts the slider in the right spot on initialization, 同时加载版本号
@@ -120,6 +121,41 @@ export default {
       } catch {
         this.gameVersion = "";
       }
+      if (this.gameVersion) this.checkLatestVersion();
+    },
+    // 从 GitHub 拉取最新版本号，只显示在版本号下方，不主动弹出提示
+    async checkLatestVersion() {
+      try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 8000);
+        let latest;
+        try {
+          const res = await fetch(
+            "https://raw.githubusercontent.com/fucac/antimatter-dimensions-cn/gh-pages/version.txt",
+            { signal: controller.signal });
+          latest = await res.json();
+        } finally {
+          clearTimeout(timer);
+        }
+        const latestVersion = latest && latest.version ? String(latest.version) : "";
+        if (latestVersion && this.compareVersions(latestVersion, this.gameVersion) > 0) {
+          this.latestVersion = latestVersion;
+        }
+      } catch {
+        // 网络不可用时静默忽略，不打扰玩家
+      }
+    },
+    // 日期格式版本号比较（如 2026-08-12 与 2026-08-12-2）：返回 1 表示 a 更新，-1 表示 b 更新，0 相同
+    compareVersions(a, b) {
+      const pa = String(a).split("-").map(Number);
+      const pb = String(b).split("-").map(Number);
+      for (let i = 0; i < 4; i++) {
+        const x = pa[i] || 0;
+        const y = pb[i] || 0;
+        if (x > y) return 1;
+        if (x < y) return -1;
+      }
+      return 0;
     }
   }
 };
@@ -188,6 +224,9 @@ export default {
     <div class="c-version-info">
       <b>游戏版本：</b>
       <span>{{ gameVersion || "未知" }}</span>
+      <div v-if="latestVersion" class="c-version-info__latest">
+        发现新版本：{{ latestVersion }}
+      </div>
     </div>
   </div>
 </template>
@@ -206,5 +245,8 @@ export default {
   color: #d7dce6;
   background: rgba(255, 255, 255, 0.02);
   word-break: break-word;
+}
+.c-version-info__latest {
+  color: #ffd166;
 }
 </style>
