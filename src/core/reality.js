@@ -314,7 +314,7 @@ function giveRealityRewards(realityProps) {
     MachineHandler.projectedIMCap);
   Currency.realities.add(realityAndPPMultiplier);
   Currency.perkPoints.add(realityAndPPMultiplier);
-  if (TeresaUnlocks.effarig.canBeApplied) {
+  if (TeresaUnlocks.effarig.canBeApplied || EndgameMilestone.celestialEarlyUnlock.isReached) {
     Currency.relicShards.add(realityProps.gainedShards.times(multiplier));
   }
   if (multiplier > 1 && Enslaved.boostReality) {
