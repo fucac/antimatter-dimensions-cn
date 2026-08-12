@@ -1,1 +1,1 @@
-{"sha":"216fade3be15ccca76b82f177d936d66e120606f","message":"重写版本号模块：合并重复的created修复版本号不加载的根因，只显示版本号，移除commit/message","author":"fucac"}
+{"sha":"3d70fb6f8dd43554868a367e63fbcc01abd7160d","message":"新增从GitHub拉取最新版本号提示：仅在版本号下方被动显示，不弹窗","author":"fucac"}
