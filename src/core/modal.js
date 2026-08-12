@@ -32,6 +32,7 @@ import BackupWindowModal from "@/components/modals/options/BackupWindowModal";
 import ConfirmationOptionsModal from "@/components/modals/options/ConfirmationOptionsModal";
 import CosmeticSetChoiceModal from "@/components/modals/options/glyph-appearance/CosmeticSetChoiceModal";
 import GlyphDisplayOptionsModal from "@/components/modals/options/glyph-appearance/GlyphDisplayOptionsModal";
+import GameStatusModal from "@/components/modals/options/GameStatusModal";
 import HiddenTabsModal from "@/components/modals/options/hidden-tabs/HiddenTabsModal";
 import HotkeysModal from "@/components/modals/options/HotkeysModal";
 import InfoDisplayOptionsModal from "@/components/modals/options/InfoDisplayOptionsModal";
@@ -246,6 +247,7 @@ Modal.hiddenTabs = new Modal(HiddenTabsModal);
 Modal.preferredMasteryTree = new Modal(PreferredMasteryTreeModal);
 Modal.preferredTree = new Modal(PreferredTreeModal);
 Modal.notation = new Modal(NotationModal);
+Modal.gameStatus = new Modal(GameStatusModal);
 
 Modal.upgradeLock = new Modal(UpgradeMechanicLockModal, 1);
 Modal.deleteCompanion = new Modal(DeleteCompanionGlyphModal, 1);
