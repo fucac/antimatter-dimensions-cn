@@ -188,7 +188,7 @@ export const imaginaryUpgrades = [
     canLock: true,
     description: () => `${
       Pelle.isDoomed ? "解锁" : "将反物质维度转换为连续统并解锁"
-    } 维度天神莱特拉`,
+    }莱特拉，维度天神`,
   },
   {
     name: "无质量动量",
