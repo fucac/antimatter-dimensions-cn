@@ -406,7 +406,7 @@ window.player = {
     gameCreatedTime: Date.now(),
     totalTimePlayed: DC.D0,
     timePlayedAtBHUnlock: DC.BEMAX,
-    realTimePlayed: 0,
+    realTimePlayed: DC.D0,
     realTimeDoomed: 0,
     fullGameCompletions: 0,
     previousRunRealTime: 0,
@@ -809,7 +809,7 @@ window.player = {
   })),
   blackHolePause: false,
   blackHoleAutoPauseMode: 0,
-  blackHolePauseTime: 0,
+  blackHolePauseTime: DC.D0,
   blackHoleNegative: 1,
   celestials: {
     teresa: {

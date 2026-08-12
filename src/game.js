@@ -693,7 +693,7 @@ export function realTimeMechanics(realDiff) {
 
   // When storing real time, skip everything else having to do with production once stats are updated
   if (Enslaved.isStoringRealTime) {
-    player.records.realTimePlayed += realDiff;
+    player.records.realTimePlayed = player.records.realTimePlayed.add(realDiff);
     player.records.thisInfinity.realTime += realDiff;
     player.records.thisEternity.realTime += realDiff;
     player.records.thisReality.realTime += realDiff;
@@ -866,7 +866,7 @@ export function gameLoop(passedDiff, options = {}) {
   // expects to see identical numbers. We also don't increment the timers if the game has been beaten (Achievement 188)
   if (!Achievement(188).isUnlocked || PlayerProgress.endgameUnlocked()) {
     player.records.realTimeDoomed += realDiff;
-    player.records.realTimePlayed += realDiff;
+    player.records.realTimePlayed = player.records.realTimePlayed.add(realDiff);
     player.records.totalTimePlayed = player.records.totalTimePlayed.add(diff);
     player.records.thisInfinity.realTime += realDiff;
     player.records.thisInfinity.time = player.records.thisInfinity.time.add(diff);

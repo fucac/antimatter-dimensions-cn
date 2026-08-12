@@ -2054,7 +2054,7 @@ export const news = [
   {
     id: "a343",
     get text() {
-      const fakeProgress = Math.pow(player.records.realTimePlayed, 25);
+      const fakeProgress = Math.pow(player.records.realTimePlayed.toNumber(), 25);
       // Caps in ~68 years of real playtime then turns into "Infinite%"
       return `全球挑战 - 在所有 AD 玩家中，累积 ${format(Number.MAX_VALUE, 2)} 个比赛回形针
         （由

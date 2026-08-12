@@ -202,7 +202,7 @@ export default {
       this.hasSeenDivineDims = DivinityMilestone.divineDimensions.isReached;
       this.realTimePlayed.setFrom(new Decimal(records.realTimePlayed));
       this.fullTimePlayed = TimeSpan.fromMilliseconds(
-        new Decimal(records.previousRunRealTime + records.realTimePlayed));
+        new Decimal(records.previousRunRealTime).add(records.realTimePlayed));
       this.uniqueNews = NewsHandler.uniqueTickersSeen;
       this.totalNews = player.news.totalSeen;
       this.secretAchievementCount = SecretAchievements.all.filter(a => a.isUnlocked).length;

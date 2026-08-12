@@ -400,7 +400,7 @@ export const BlackHoles = {
     }
     if (player.blackHolePause) player.requirementChecks.reality.slowestBH = 1;
     player.blackHolePause = !player.blackHolePause;
-    player.blackHolePauseTime = player.records.realTimePlayed;
+    player.blackHolePauseTime = new Decimal(player.records.realTimePlayed);
     const blackHoleString = RealityUpgrade(20).isBought ? "Black Holes" : "Black Hole";
     // If black holes are going unpaused -> paused, use "inverted" or "paused" depending o
     // whether the player's using negative BH (i.e. BH inversion); if going paused -> unpaused,
@@ -413,7 +413,7 @@ export const BlackHoles = {
 
   get unpauseAccelerationFactor() {
     if (this.arePermanent) return 1;
-    return Math.clamp((player.records.realTimePlayed - player.blackHolePauseTime) /
+    return Math.clamp(player.records.realTimePlayed.sub(player.blackHolePauseTime).toNumber() /
       (1000 * this.ACCELERATION_TIME), 0, 1);
   },
 

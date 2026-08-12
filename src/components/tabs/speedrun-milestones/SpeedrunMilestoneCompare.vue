@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     update() {
-      this.realTime = player.records.realTimePlayed;
+      this.realTime = player.records.realTimePlayed.toNumber();
     },
     timeString(ms, showGap) {
       const timeStr = TimeSpan.fromMilliseconds(new Decimal(ms)).toStringShort(true, true);

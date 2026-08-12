@@ -106,7 +106,7 @@ export const Time = {
    * @param {TimeSpan} timespan
    */
   set realTimePlayed(timespan) {
-    this.toMilliseconds(timespan, value => player.records.realTimePlayed = value.toNumber());
+    this.toMilliseconds(timespan, value => player.records.realTimePlayed = value);
   },
 
   /**
