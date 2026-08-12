@@ -23,11 +23,15 @@ export default {
       infinityUnlocked: false,
       automatorUnlocked: false,
       automatorLogSize: 0,
-      gameVersion: null,
-      versionLoadFailed: false,
+      gameVersion: "",
     };
   },
+  // This puts the slider in the right spot on initialization, 同时加载版本号
   created() {
+    const ticks = player.options.offlineTicks;
+    const exponent = Math.floor(Math.log10(ticks));
+    const mantissa = (ticks / Math.pow(10, exponent)) - 1;
+    this.offlineSlider = 9 * exponent + mantissa;
     this.loadVersionInfo();
   },
   computed: {
@@ -70,13 +74,6 @@ export default {
       player.options.automatorEvents.maxEntries = parseInt(newValue, 10);
     },
   },
-  // This puts the slider in the right spot on initialization
-  created() {
-    const ticks = player.options.offlineTicks;
-    const exponent = Math.floor(Math.log10(ticks));
-    const mantissa = (ticks / Math.pow(10, exponent)) - 1;
-    this.offlineSlider = 9 * exponent + mantissa;
-  },
   methods: {
     update() {
       const options = player.options;
@@ -103,38 +100,26 @@ export default {
       this.automatorLogSize = value;
       player.options.automatorEvents.maxEntries = this.automatorLogSize;
     },
-    // 版本信息：EXE 环境通过 preload 暴露的 IPC 获取，网页版通过 fetch 获取
-    // 加统一超时保护，避免任何路径永久停留在"加载中…"
-    loadVersionInfo() {
-      const timeout = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("版本信息加载超时")), 8000));
-      let promise;
-      if (window.gameVersionInfo) {
-        promise = window.gameVersionInfo();
-      } else {
-        // 网页版：版本号与提交信息分开加载，commit.json 加载慢/失败时不阻塞版本号显示
-        promise = Promise.all([
-          fetch("version.txt").then(r => r.json()),
-          Promise.race([
-            fetch("commit.json").then(r => r.json()).catch(() => null),
-            new Promise(resolve => setTimeout(() => resolve(null), 5000))
-          ])
-        ]).then(([version, commit]) => ({ ...version, commit }));
+    // 版本号：EXE 通过 preload 暴露的 IPC 读取本地 version.txt，网页版直接 fetch
+    // 只显示版本号字符串，加载失败显示"未知"，带超时保护避免卡"加载中"
+    async loadVersionInfo() {
+      try {
+        let info;
+        if (window.gameVersionInfo) {
+          info = await window.gameVersionInfo();
+        } else {
+          const controller = new AbortController();
+          const timer = setTimeout(() => controller.abort(), 8000);
+          try {
+            info = await fetch("version.txt", { signal: controller.signal }).then(r => r.json());
+          } finally {
+            clearTimeout(timer);
+          }
+        }
+        this.gameVersion = info && info.version ? String(info.version) : "";
+      } catch {
+        this.gameVersion = "";
       }
-      Promise.race([promise, timeout]).then(info => {
-        this.gameVersion = info;
-      }).catch(() => {
-        this.versionLoadFailed = true;
-      });
-    },
-    formatCommit(commit) {
-      if (typeof commit === "string") return commit.slice(0, 7);
-      if (commit && typeof commit === "object") {
-        const sha = commit.sha ? commit.sha.slice(0, 7) : "未知";
-        const msg = commit.message ? `（${commit.message}）` : "";
-        return `${sha}${msg}`;
-      }
-      return "未知";
     }
   }
 };
@@ -202,18 +187,7 @@ export default {
     </div>
     <div class="c-version-info">
       <b>游戏版本：</b>
-      <span v-if="gameVersion">{{ gameVersion.version }}</span>
-      <span v-else>{{ versionLoadFailed ? "未知" : "加载中…" }}</span>
-      <template v-if="gameVersion">
-        <template v-if="gameVersion.message">
-          <br>
-          <b>更新内容：</b>{{ gameVersion.message }}
-        </template>
-        <br>
-        <b>Commit：</b>
-        <span v-if="gameVersion.commit">{{ formatCommit(gameVersion.commit) }}</span>
-        <span v-else>未知</span>
-      </template>
+      <span>{{ gameVersion || "未知" }}</span>
     </div>
   </div>
 </template>
