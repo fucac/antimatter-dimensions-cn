@@ -1,1 +1,1 @@
-{"sha":"130b9056a0a30c90c41370621b451008ea916cd5","message":"莱特拉界面新增低精度模式开关：开启后界面组件降频刷新(约4次/秒)，缓解卡顿","author":"fucac"}
+{"sha":"2d8acddbf50f44067143f243a70b0b1235df2a2e","message":"回退realTimePlayed的Decimal化改动(恢复number存储)，改为加载后重置自动化状态：storage.js新增normalizeTimeAndAutobuyers，统一realTimePlayed/lastTick为number并重置自动购买器计时，兼容新版Decimal字符串存档，修复自动购买器失效与隐式转换崩溃","author":"fucac"}
