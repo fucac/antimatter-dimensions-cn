@@ -12,6 +12,21 @@ export const Laitela = {
     if (EndgameMilestone.celestialEarlyUnlock.isReached) return true;
     return ImaginaryUpgrade(15).isBought;
   },
+  // 低精度模式：开启后莱特拉界面各组件按低频刷新，减轻卡顿
+  get lowPrecision() {
+    return player.celestials.laitela.lowPrecision;
+  },
+  toggleLowPrecision() {
+    player.celestials.laitela.lowPrecision = !player.celestials.laitela.lowPrecision;
+  },
+  // 低精度模式下节流组件刷新（约每 250ms 刷新一次）；关闭时始终返回 false 即每帧刷新
+  shouldSkipUpdate(vm) {
+    if (!this.lowPrecision) return false;
+    const now = Date.now();
+    if (vm._laitelaLastUpdate !== undefined && now - vm._laitelaLastUpdate < 250) return true;
+    vm._laitelaLastUpdate = now;
+    return false;
+  },
   initializeRun() {
     clearCelestialRuns();
     this.celestial.run = true;

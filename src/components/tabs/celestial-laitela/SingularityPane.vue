@@ -74,6 +74,7 @@ export default {
   },
   methods: {
     update() {
+      if (Laitela.shouldSkipUpdate(this)) return;
       const laitela = player.celestials.laitela;
       this.darkEnergy.copyFrom(Currency.darkEnergy.value);
       this.darkEnergyGainPerSecond.copyFrom(Currency.darkEnergy.productionPerSecond);

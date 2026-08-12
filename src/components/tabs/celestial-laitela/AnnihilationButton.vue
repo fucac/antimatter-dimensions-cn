@@ -24,6 +24,7 @@ export default {
   },
   methods: {
     update() {
+      if (Laitela.shouldSkipUpdate(this)) return;
       this.darkMatter.copyFrom(Currency.darkMatter);
       this.darkMatterMult.copyFrom(Laitela.darkMatterMult);
       this.darkMatterMultGain.copyFrom(Laitela.darkMatterMultGain);

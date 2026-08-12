@@ -102,6 +102,7 @@ export default {
   },
   methods: {
     update() {
+      if (Laitela.shouldSkipUpdate(this)) return;
       const dim = DarkMatterDimension(this.tier);
       this.isUnlocked = dim.isUnlocked;
       this.ascension.copyFrom(dim.ascensions);

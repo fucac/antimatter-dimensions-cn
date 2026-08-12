@@ -112,6 +112,7 @@ export default {
   },
   methods: {
     update() {
+      if (Laitela.shouldSkipUpdate(this)) return;
       const hadrons = player.celestials.laitela.hadrons;
       this.totalHadrons = hadrons.total;
       this.lightHadrons = hadrons.light;

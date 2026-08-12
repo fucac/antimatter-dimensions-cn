@@ -55,6 +55,7 @@ export default {
   },
   methods: {
     update() {
+      if (Laitela.shouldSkipUpdate(this)) return;
       this.hasDimension = Autobuyer.darkMatterDims.isUnlocked;
       this.hasAscension = Autobuyer.darkMatterDimsAscension.isUnlocked;
       this.hasSingularity = Autobuyer.singularity.isUnlocked;

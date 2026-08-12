@@ -941,6 +941,7 @@ window.player = {
       petWithRemembrance: ""
     },
     laitela: {
+      lowPrecision: false,
       darkMatter: DC.D0,
       unnerfedDarkMatter: DC.D0,
       maxDarkMatter: DC.D0,

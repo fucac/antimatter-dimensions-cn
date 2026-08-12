@@ -22,6 +22,7 @@ export default {
   },
   methods: {
     update() {
+      if (Laitela.shouldSkipUpdate(this)) return;
       this.milestones = SingularityMilestones.nextMilestoneGroup;
       this.hasNew = SingularityMilestones.unseenMilestones.length !== 0;
       this.shouldGlow = player.celestials.laitela.milestoneGlow;

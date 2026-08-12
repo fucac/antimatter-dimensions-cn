@@ -43,6 +43,7 @@ export default {
       softcap2: new Decimal(0),
       hadronsUnlocked: false,
       isUncapped: false,
+      lowPrecision: false,
     };
   },
   computed: {
@@ -54,6 +55,8 @@ export default {
   },
   methods: {
     update() {
+      if (Laitela.shouldSkipUpdate(this)) return;
+      this.lowPrecision = Laitela.lowPrecision;
       this.isDoomed = (Pelle.isDoomed && !PelleDestructionUpgrade.continuumBuff.canBeApplied);
       this.darkMatter.copyFrom(Currency.darkMatter);
       this.isDMCapped = this.darkMatter.eq(Laitela.darkMatterCap);
@@ -85,6 +88,10 @@ export default {
     maxAll() {
       Laitela.maxAllDMDimensions(8);
     },
+    toggleLowPrecision() {
+      Laitela.toggleLowPrecision();
+      this.lowPrecision = Laitela.lowPrecision;
+    },
     showLaitelaHowTo() {
       ui.view.h2pForcedTab = GameDatabase.h2p.tabs.filter(tab => tab.name === "Lai'tela")[0];
       Modal.h2p.show();
@@ -113,6 +120,12 @@ export default {
         @click="maxAll"
       >
         全部购买暗物质维度
+      </PrimaryButton>
+      <PrimaryButton
+        class="o-primary-btn--subtab-option"
+        @click="toggleLowPrecision"
+      >
+        低精度模式：{{ lowPrecision ? "开" : "关" }}
       </PrimaryButton>
     </div>
     <div class="o-laitela-matter-amount">
