@@ -104,24 +104,25 @@ export default {
       player.options.automatorEvents.maxEntries = this.automatorLogSize;
     },
     // 版本信息：EXE 环境通过 preload 暴露的 IPC 获取，网页版通过 fetch 获取
+    // 加统一超时保护，避免任何路径永久停留在"加载中…"
     loadVersionInfo() {
+      const timeout = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("版本信息加载超时")), 8000));
+      let promise;
       if (window.gameVersionInfo) {
-        window.gameVersionInfo().then(info => {
-          this.gameVersion = info;
-        }).catch(() => {
-          this.versionLoadFailed = true;
-        });
-        return;
+        promise = window.gameVersionInfo();
+      } else {
+        // 网页版：版本号与提交信息分开加载，commit.json 加载慢/失败时不阻塞版本号显示
+        promise = Promise.all([
+          fetch("version.txt").then(r => r.json()),
+          Promise.race([
+            fetch("commit.json").then(r => r.json()).catch(() => null),
+            new Promise(resolve => setTimeout(() => resolve(null), 5000))
+          ])
+        ]).then(([version, commit]) => ({ ...version, commit }));
       }
-      // 网页版：版本号与提交信息分开加载，commit.json 加载慢/失败时不阻塞版本号显示
-      Promise.all([
-        fetch("version.txt").then(r => r.json()),
-        Promise.race([
-          fetch("commit.json").then(r => r.json()).catch(() => null),
-          new Promise(resolve => setTimeout(() => resolve(null), 5000))
-        ])
-      ]).then(([version, commit]) => {
-        this.gameVersion = { ...version, commit };
+      Promise.race([promise, timeout]).then(info => {
+        this.gameVersion = info;
       }).catch(() => {
         this.versionLoadFailed = true;
       });
