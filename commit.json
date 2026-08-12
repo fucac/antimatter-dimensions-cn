@@ -1,1 +1,1 @@
-{"sha":"c02c609d3baa1ab40edc1df0fd0e98f87518edaa","message":"修复超长游戏时间(如1e100年后)自动购买器/自动机失效：records.realTimePlayed改为Decimal存储，autobuyer时间差用Decimal减法，兼容旧存档number型lastTick","author":"fucac"}
+{"sha":"130b9056a0a30c90c41370621b451008ea916cd5","message":"莱特拉界面新增低精度模式开关：开启后界面组件降频刷新(约4次/秒)，缓解卡顿","author":"fucac"}
