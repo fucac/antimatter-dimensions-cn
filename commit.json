@@ -1,1 +1,1 @@
-{"sha":"2d8acddbf50f44067143f243a70b0b1235df2a2e","message":"回退realTimePlayed的Decimal化改动(恢复number存储)，改为加载后重置自动化状态：storage.js新增normalizeTimeAndAutobuyers，统一realTimePlayed/lastTick为number并重置自动购买器计时，兼容新版Decimal字符串存档，修复自动购买器失效与隐式转换崩溃","author":"fucac"}
+{"sha":"6fb382024ea9b479ca121d08da3582bd490e9d69","message":"删除EXE联网自动更新机制(主进程/预加载/更新浮层)，修复版本号加载：version.txt改为合法JSON字符串版本11.9.2，desktop-get-version-info不再Number()转换","author":"fucac"}
