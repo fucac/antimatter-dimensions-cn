@@ -1,1 +1,1 @@
-{"sha":"4ff7062050345481583be309322768a6eddfe262","message":"修复反物质数值偏大：二元升级effect公式还原官方(isDecimal用线性指数，isQuadratic独立分支用三角数)，同步构建产物 app.c0aea886.js","author":"fucac"}
+{"sha":"10d8da7a2fdabca713366d54409511e9caa78d6b","message":"修复星辉乘积为0：星宿config.name恢复英文键(同时是存档键/CSS类名)，显示名在UI按id映射中文，新增迁移107合并中文键存档，同步构建产物 app.fc0c88c2.js","author":"fucac"}
