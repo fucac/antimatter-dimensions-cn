@@ -421,6 +421,42 @@ export const GameStorage = {
     Cloud.resetTempState();
   },
 
+  // 统一实时时间与自动购买器状态为 number 类型。
+  // 兼容旧存档 number 与新版 Decimal 字符串存档混载的情况：若 realTimePlayed/lastTick
+  // 混入 Decimal 字符串，旧式 number 算术（-、+=、Math.*）会数值错乱或抛错，导致自动购买器
+  // 失效/倍数异常。每次消耗存储时间（加载/导入/离线模拟）前统一重置自动化相关状态。
+  normalizeTimeAndAutobuyers() {
+    const toNumber = value => {
+      if (value === undefined || value === null) return 0;
+      if (typeof value === "number") return Number.isFinite(value) ? value : 0;
+      if (typeof value === "object" && typeof value.toNumber === "function") return value.toNumber();
+      const n = Number(value);
+      return Number.isFinite(n) ? n : 0;
+    };
+    if (player.records) {
+      player.records.realTimePlayed = toNumber(player.records.realTimePlayed);
+      player.records.realTimeDoomed = toNumber(player.records.realTimeDoomed);
+    }
+    if (typeof player.blackHolePauseTime !== "number") {
+      player.blackHolePauseTime = toNumber(player.blackHolePauseTime);
+    }
+    // 重置所有自动购买器计时基准，避免继承 Decimal 字符串/错乱数值
+    const resetLastTicks = obj => {
+      if (!obj || typeof obj !== "object") return;
+      for (const key of Object.keys(obj)) {
+        const value = obj[key];
+        if (value && typeof value === "object") {
+          if (Object.prototype.hasOwnProperty.call(value, "lastTick")) value.lastTick = 0;
+          resetLastTicks(value);
+        }
+      }
+    };
+    resetLastTicks(player.auto);
+    if (player.celestials?.alpha?.records?.auto) {
+      resetLastTicks(player.celestials.alpha.records.auto);
+    }
+  },
+
   loadPlayerObject(playerObject) {
     this.saved = 0;
 
@@ -463,6 +499,9 @@ export const GameStorage = {
     }
 
     decimalMigration(player);
+
+    // 统一实时时间类型并重置自动购买器计时基准（兼容新旧存档混载），必须在离线模拟前执行
+    this.normalizeTimeAndAutobuyers();
 
     let s1 = player.reality.glyphs.active;
     for (let g1 = 0; g1 < s1.length; g1++) {

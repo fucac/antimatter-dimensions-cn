@@ -97,11 +97,11 @@ export class IntervaledAutobuyerState extends AutobuyerState {
   }
 
   get timeSinceLastTick() {
-    return new Decimal(player.records.realTimePlayed).sub(this.data.lastTick).toNumber();
+    return player.records.realTimePlayed - this.data.lastTick;
   }
 
   tick() {
-    this.data.lastTick = new Decimal(player.records.realTimePlayed);
+    this.data.lastTick = player.records.realTimePlayed;
   }
 
   /**

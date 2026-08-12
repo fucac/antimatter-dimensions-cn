@@ -406,7 +406,7 @@ window.player = {
     gameCreatedTime: Date.now(),
     totalTimePlayed: DC.D0,
     timePlayedAtBHUnlock: DC.BEMAX,
-    realTimePlayed: DC.D0,
+    realTimePlayed: 0,
     realTimeDoomed: 0,
     fullGameCompletions: 0,
     previousRunRealTime: 0,

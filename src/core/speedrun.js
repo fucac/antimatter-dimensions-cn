@@ -144,7 +144,7 @@ class SpeedrunMilestone extends GameMechanicState {
   complete() {
     if (this.isReached || !player.speedrun.isActive) return;
     // Rounding slightly reduces filesize by removing weird float rounding
-    player.speedrun.records[this.config.id] = Math.round(player.records.realTimePlayed.toNumber());
+    player.speedrun.records[this.config.id] = Math.round(player.records.realTimePlayed);
     GameUI.notify.success(`已达成速通里程碑：${this.name}`);
   }
 }
