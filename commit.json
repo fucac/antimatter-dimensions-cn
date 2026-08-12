@@ -1,1 +1,1 @@
-{"sha":"1aaef2ead6003a577bb675a64f2ec53fac0888a5","message":"版本号更新为 2026-08-12-2","author":"fucac"}
+{"sha":"016dcfceb89de8df2fab96069231a989bcac6f6b","message":"修复消耗储存时间后自动购买器失效：新增 autobuyerRealTime 独立计时器并在模拟后重置","author":"fucac"}
