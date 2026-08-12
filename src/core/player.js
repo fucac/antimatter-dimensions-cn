@@ -408,6 +408,10 @@ window.player = {
     timePlayedAtBHUnlock: DC.BEMAX,
     realTimePlayed: 0,
     realTimeDoomed: 0,
+    // 自动购买器的独立计时基准（从 0 累计实时秒数，消耗储存时间后归零）。
+    // 不直接用 realTimePlayed：该值在消耗 1e100 秒后会超出 number 精度，秒级增量被吞掉，
+    // 导致 timeSinceLastTick 恒为 0、所有基于 lastTick 的自动购买器永久失效。
+    autobuyerRealTime: 0,
     fullGameCompletions: 0,
     previousRunRealTime: 0,
     totalAntimatter: DC.E1,

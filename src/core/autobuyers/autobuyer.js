@@ -97,11 +97,14 @@ export class IntervaledAutobuyerState extends AutobuyerState {
   }
 
   get timeSinceLastTick() {
-    return player.records.realTimePlayed - this.data.lastTick;
+    // 使用独立计时器 autobuyerRealTime 而非 realTimePlayed：
+    // realTimePlayed 在消耗大量储存时间后会超出 number 精度，秒级增量无法累加，
+    // 导致 timeSinceLastTick 恒为 0、自动购买器永久不 tick
+    return (player.records.autobuyerRealTime ?? 0) - this.data.lastTick;
   }
 
   tick() {
-    this.data.lastTick = player.records.realTimePlayed;
+    this.data.lastTick = player.records.autobuyerRealTime ?? 0;
   }
 
   /**

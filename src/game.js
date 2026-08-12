@@ -694,6 +694,7 @@ export function realTimeMechanics(realDiff) {
   // When storing real time, skip everything else having to do with production once stats are updated
   if (Enslaved.isStoringRealTime) {
     player.records.realTimePlayed += realDiff;
+    player.records.autobuyerRealTime += realDiff;
     player.records.thisInfinity.realTime += realDiff;
     player.records.thisEternity.realTime += realDiff;
     player.records.thisReality.realTime += realDiff;
@@ -867,6 +868,7 @@ export function gameLoop(passedDiff, options = {}) {
   if (!Achievement(188).isUnlocked || PlayerProgress.endgameUnlocked()) {
     player.records.realTimeDoomed += realDiff;
     player.records.realTimePlayed += realDiff;
+    player.records.autobuyerRealTime += realDiff;
     player.records.totalTimePlayed = player.records.totalTimePlayed.add(diff);
     player.records.thisInfinity.realTime += realDiff;
     player.records.thisInfinity.time = player.records.thisInfinity.time.add(diff);
@@ -1638,11 +1640,32 @@ function recursiveTimeOut(fn, iterations, endFn) {
   else setTimeout(() => recursiveTimeOut(fn, iterations - 1, endFn), 0);
 }
 
+// 消耗大量储存时间（simulateTime）后，autobuyerRealTime 会随 realDiff 暴涨到超出
+// number 精度，秒级增量无法累加，导致所有基于 lastTick 的自动购买器永久失效。
+// 这里把自动购买器的计时基准与 lastTick 一并归零，使其恢复正常按秒累计。
+function resetAutobuyerTimers() {
+  player.records.autobuyerRealTime = 0;
+  const resetLastTicks = obj => {
+    if (!obj || typeof obj !== "object") return;
+    for (const key of Object.keys(obj)) {
+      const value = obj[key];
+      if (value && typeof value === "object") {
+        if (Object.prototype.hasOwnProperty.call(value, "lastTick")) value.lastTick = 0;
+        resetLastTicks(value);
+      }
+    }
+  };
+  resetLastTicks(player.auto);
+  if (player.celestials?.alpha?.records?.auto) resetLastTicks(player.celestials.alpha.records.auto);
+}
+
 function afterSimulation(seconds, playerBefore) {
   if (seconds > 600) {
     const playerAfter = deepmergeAll([{}, player]);
     Modal.awayProgress.show({ playerBefore, playerAfter, seconds });
   }
+
+  resetAutobuyerTimers();
 
   GameUI.notify.showBlackHoles = true;
 }

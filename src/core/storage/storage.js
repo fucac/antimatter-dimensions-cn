@@ -436,6 +436,8 @@ export const GameStorage = {
     if (player.records) {
       player.records.realTimePlayed = toNumber(player.records.realTimePlayed);
       player.records.realTimeDoomed = toNumber(player.records.realTimeDoomed);
+      // 自动购买器计时基准随新会话从 0 重新累计，与 lastTick=0 保持一致
+      player.records.autobuyerRealTime = 0;
     }
     if (typeof player.blackHolePauseTime !== "number") {
       player.blackHolePauseTime = toNumber(player.blackHolePauseTime);
