@@ -1,1 +1,1 @@
-{"sha":"6fb382024ea9b479ca121d08da3582bd490e9d69","message":"删除EXE联网自动更新机制(主进程/预加载/更新浮层)，修复版本号加载：version.txt改为合法JSON字符串版本11.9.2，desktop-get-version-info不再Number()转换","author":"fucac"}
+{"sha":"651f2888ccb8ba67c8e84040e07de24c1c65e3dc","message":"版本号改为日期格式(2026-08-12-1)；版本信息加载加8秒超时保护，避免永久显示加载中","author":"fucac"}
