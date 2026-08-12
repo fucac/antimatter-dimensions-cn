@@ -25,6 +25,7 @@ export default {
       automatorLogSize: 0,
       gameVersion: "",
       latestVersion: "",
+      isLatest: false,
     };
   },
   // This puts the slider in the right spot on initialization, 同时加载版本号
@@ -138,9 +139,14 @@ export default {
           clearTimeout(timer);
         }
         const latestVersion = latest && latest.version ? String(latest.version) : "";
-        if (latestVersion && this.compareVersions(latestVersion, this.gameVersion) > 0) {
+        if (!latestVersion) return;
+        const cmp = this.compareVersions(latestVersion, this.gameVersion);
+        if (cmp > 0) {
           this.latestVersion = latestVersion;
+        } else if (cmp === 0) {
+          this.isLatest = true;
         }
+        // cmp < 0 表示本地比线上还新（本地测试版），不做任何提示
       } catch {
         // 网络不可用时静默忽略，不打扰玩家
       }
@@ -227,6 +233,9 @@ export default {
       <div v-if="latestVersion" class="c-version-info__latest">
         发现新版本：{{ latestVersion }}
       </div>
+      <div v-else-if="isLatest" class="c-version-info__uptodate">
+        已是最新版本
+      </div>
     </div>
   </div>
 </template>
@@ -248,5 +257,8 @@ export default {
 }
 .c-version-info__latest {
   color: #ffd166;
+}
+.c-version-info__uptodate {
+  color: #8fd18f;
 }
 </style>
