@@ -301,6 +301,6 @@ export const dualityUpgrades = [
     hasFailed: () => false,
     checkRequirement: () => player.celestials.laitela.hadrons.dark >= 32 && Hadrons.timeFactor.div(5).gte(100),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    description: "解锁超立方体",
+    description: "解锁超立方",
   },
 ];
