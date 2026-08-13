@@ -1,1 +1,1 @@
-{"sha":"016dcfceb89de8df2fab96069231a989bcac6f6b","message":"修复消耗储存时间后自动购买器失效：新增 autobuyerRealTime 独立计时器并在模拟后重置","author":"fucac"}
+{"sha":"4f690d03c112bcd9ea8a22aa10efd38f0c0bb192","message":"修复白屏：modal.js 补上 GameStatusModal 的 import 声明","author":"fucac"}
