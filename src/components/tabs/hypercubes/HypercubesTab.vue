@@ -164,7 +164,7 @@ export default {
       Hepteracts.buyHepteract();
     },
     buyOcteract() {
-      Octeracts.buyOcteract();
+      Octeracts.buyOcteracts();
     },
     handleTesseractAutoToggle(value) {
       Autobuyer.tesseract.isActive = value;
