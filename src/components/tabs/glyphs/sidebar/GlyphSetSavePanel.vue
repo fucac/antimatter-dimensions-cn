@@ -119,9 +119,9 @@ export default {
         }
       }
       if (missingGlyphs > 0) {
-        GameUI.Notify.error(`无法找到或装备${this.setName(id)}中的 ${missingGlyphs} 个符文。`);
+        GameUI.notify.error(`无法找到或装备${this.setName(id)}中的 ${missingGlyphs} 个符文。`);
       } else {
-        GameUI.Notify.success(`成功加载${this.setName(id)}。`);
+        GameUI.notify.success(`成功加载${this.setName(id)}。`);
       }
     },
     // Given a list of options for suitable matches to those glyphs and a maximum glyph count to match, returns the
