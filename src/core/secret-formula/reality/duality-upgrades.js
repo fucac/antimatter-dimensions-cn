@@ -64,7 +64,7 @@ export const dualityUpgrades = [
     id: 6,
     initialCost: 1e4,
     costMult: 360,
-    description: () => `将幻想机上限提升 ${formatX(1e100)}`,
+    description: () => `将虚幻机器上限提升 ${formatX(1e100)}`,
     effect: 1e100,
     formatEffect: value => `${formatX(value)}`,
     isDecimal: true
