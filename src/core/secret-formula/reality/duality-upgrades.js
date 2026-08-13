@@ -162,8 +162,8 @@ export const dualityUpgrades = [
     name: "对偶创造",
     id: 15,
     cost: new Decimal(1e12),
-    requirement: () => `在末日之外，于无限、时间或第 ${formatInt(8)} 反物质维度之前
-      达到 ${format("e5e55")} 反物质`,
+    requirement: () => `在末日之外，本次终局内从未购买过无限、时间或第 ${formatInt(8)} 反物质维度，
+      并在膨胀时间中达到 ${format("e5e55")} 反物质`,
     hasFailed: () => !player.requirementChecks.endgame.onlyLowDims || Pelle.isDoomed,
     checkRequirement: () => player.requirementChecks.endgame.onlyLowDims && player.dilation.active &&
       player.antimatter.add(1).log10().gte(5e55) && !Pelle.isDoomed,
