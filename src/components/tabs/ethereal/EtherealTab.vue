@@ -63,7 +63,7 @@ export default {
     },
     nextStarText() {
       if (this.allStarsUnlocked) return `所有星宿均已解锁`;
-      return `下一颗星宿将于 ${format(this.nextStarReq, 2, 2)} 双重现实机器时解锁`;
+      return `下一颗星宿将于 ${format(this.nextStarReq, 2, 2)} 二元机器时解锁`;
     },
     etherealPowerTimeEstimate() {
       return TimeSpan.fromSeconds(Decimal.sub(this.nextSectorAt, this.etherealPower)

@@ -21,7 +21,7 @@ export default {
     types: () => GLYPH_TYPES.filter(type => type !== "cursed" && type !== "companion"),
     lastMachines() {
       return this.lastMachinesTeresa.gte(DC.E20000)
-        ? `${quantify("双重现实机器", this.lastMachinesTeresa.dividedBy(DC.E20000), 2)}`
+        ? `${quantify("二元机器", this.lastMachinesTeresa.dividedBy(DC.E20000), 2)}`
         : (this.lastMachinesTeresa.lt(DC.E10000)
           ? `${quantify("现实机器", this.lastMachinesTeresa, 2)}`
           : `${quantify("虚幻机器", this.lastMachinesTeresa.dividedBy(DC.E10000), 2)}`);
