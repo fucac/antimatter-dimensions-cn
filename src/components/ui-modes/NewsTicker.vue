@@ -52,6 +52,11 @@ export default {
 
       // Prevent tickers from repeating if they aren't unlocked or were seen recently
       const canShow = news => (news.unlocked ?? true) && !this.recentTickers.includes(news.id);
+      // randomElement() 在过滤结果为空时返回 undefined，
+      // 需兜底回退到任何一条近期未展示的新闻，避免 currentNews 为 undefined 导致崩溃
+      const fallback = () => GameDatabase.news
+        .filter(message => canShow(message))
+        .randomElement();
 
       if (nextNewsMessageId && GameDatabase.news.find(message => message.id === nextNewsMessageId)) {
         this.currentNews = GameDatabase.news.find(message => message.id === nextNewsMessageId);
@@ -59,7 +64,7 @@ export default {
       } else if (this.currentNews && this.currentNews.id === "a236") {
         this.currentNews = GameDatabase.news
           .filter(message => message.isAdvertising && canShow(message))
-          .randomElement();
+          .randomElement() ?? fallback();
       } else {
         const isAI = Math.random() < player.options.news.AIChance;
         const isEND = Math.random() < player.options.news.ENDChance;
@@ -71,8 +76,10 @@ export default {
           .filter(message => message.id.includes("se") === isStory)
           .filter(message => message.id.includes("m") === isMature)
           .filter(message => canShow(message))
-          .randomElement();
+          .randomElement() ?? fallback();
       }
+
+      if (this.currentNews === undefined) return;
 
       this.recentTickers.push(this.currentNews.id);
       while (this.recentTickers.length > player.options.news.repeatBuffer) this.recentTickers.shift();
